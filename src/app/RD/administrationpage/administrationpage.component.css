@@ -1,0 +1,37 @@
+
+
+.example-action-buttons {
+    padding-bottom: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+    
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+
+  }
+  .panel{
+    background-color: rgb(218, 210, 210);
+  }
+
+
+   .bigcontainer {
+    border: solid;
+    width: 50%;
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 15px 15px 15px 15px;
+    border-style: groove;
+  }
+  .text-header { color: white; text-align: center; top: 30px; width: 110px; left: 35%; position: absolute; background: green;}

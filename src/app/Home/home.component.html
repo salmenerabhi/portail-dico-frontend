@@ -1,0 +1,58 @@
+
+
+  <div class="bg-light full-height pt-5 h-100">
+    <div class="container  ">
+      <div class="row">
+        <div class="col-md-6">
+            
+          <img src="../../assets/img/dico.jpg" alt="Image" class="img-fluid rounded float-left">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <img src="../../assets/img/logo-actia.png" alt="logo" class="img-fluid ">
+            <div class="col-md-8 justify-content-center">
+              <div class="mb-4 ">
+                <h1 class="text-center">Sign In</h1>
+              </div>
+              <form [formGroup]="loginForm"  >
+                <div class="example-container">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput placeholder="pat@example.com" [formControl]="email" required>
+                    <mat-error *ngIf="email.invalid">{{getErrorEmailMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="example-container">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'"placeholder="password" [formControl]="password" required>
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+  
+                <div class="row justify-content-center">
+                  <button   mat-raised-button color="primary"  [disabled]="!loginForm.valid" (click)="signIn()" class="w-75  " > Sing In </button>
+                
+                
+
+                
+                    <button mat-raised-button color="primary" class="text-center mt-2"(click)="openDialog2()">Register</button>
+    
+                  
+                </div>
+                
+                <div class="row ">
+                  <span class="text-center mt-2" ><a class="password" (click)="openDialog()">Forgot Password</a></span>
+  
+                </div>
+                
+              </form>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>

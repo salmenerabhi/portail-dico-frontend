@@ -1,0 +1,107 @@
+<div class="row">
+    <img src="../../assets/img/logo-actia.png" alt="logo" class="img-fluid "
+        style="height: 20%; width: 20%; margin-top: 1ch; ">
+</div>
+
+<br><br>
+
+<div class="bigcontainer  ">
+    <div class="container  ">
+        <br>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b>Sentence request and approximation</b><mat-icon style="position: absolute; left: 80%;"> insert_drive_file</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>to introduce information about the context of requests and approximations and upload them to the server</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b> <a class="dashboard"  (click)="redirectDashboard()"  >Dashboard</a></b> <mat-icon style="position: absolute; left: 80%;">dashboard</mat-icon>
+                   
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>to manage requests and approximation files and track their history </p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+    <div class="container  ">
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b>Tools</b> <mat-icon style="position: absolute; left: 80%;">memory</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>To upload and manage tools</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b> FAQs</b> <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>To ask and answer and manage the most frequently asked questions here   </p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <br>
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b> Statistics</b><mat-icon style="position: absolute; left: 80%;"> show_chart</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>to view charts and manage statistics</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b>Administration </b><mat-icon style="position: absolute; left: 80%;">domain</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>To manage members, FAQs, tools, logs and alerts</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+        
+    </div>
+    <br>
+</div>

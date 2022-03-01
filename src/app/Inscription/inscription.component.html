@@ -1,0 +1,72 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <h3 class="breadcrumb-item  active" aria-current="page"> Add User </h3>
+    </ol>
+  </nav>
+    <mat-card class="container w-75 ">
+      <mat-card-content >
+  
+        <div class="d-flex justify-content-center align-items-center mb-4 offset-1">
+          <label for="file" class="uploadIcon  text-center bg-light   rounded-circle"><a > <mat-icon>camera_enhance </mat-icon></a></label>
+          <input type="file" id="file" accept="image/*"  (change)="onSelectFile($event)" class="form-control-file" />
+          <img class="rounded-circle  "
+                [src]="retrievedImage"
+               alt="" width="120" height="120">
+  
+        </div>
+        <div class="row">
+          <mat-form-field class="col-6" appearance="fill">
+            <mat-label>First name</mat-label>
+            <input matInput  [(ngModel)]="user.firstName" maxlength="10" placeholder="First name" required>
+          </mat-form-field>
+          <mat-form-field class="col-6" appearance="fill">
+            <mat-label>Last name</mat-label>
+            <input matInput maxlength="10" [(ngModel)]="user.lastName" placeholder="Last name" required>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field class="col-6" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" [formControl]="email" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-6" appearance="fill">
+            <mat-label>Role</mat-label>
+            <mat-select   [(ngModel)]="user.role" #role="ngModel"  placeholder="Role" required>
+              <mat-option disabled > select role</mat-option>
+              
+              <mat-option value="TL"> TL</mat-option>
+              <mat-option value="RC" selected="RC">RC</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        
+        </div>
+        
+        <div class="row">
+          <mat-form-field appearance="fill" class=" col-6 ">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="password"  [formControl]="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="col-6">
+            <mat-label>Confirm password</mat-label>
+            <input matInput [type]="show ? 'password' : 'text'" placeholder="confirm password"
+                   [formControl]="confirmPassword" required>
+            <mat-icon matSuffix (click)="show = !show">{{show ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="confirmPassword.invalid">{{getErrorConfirmPasswordMessage()}}</mat-error>
+            <mat-error *ngIf="confirmPassword.dirty &&confirmPassword.value!=password.value">password does not match</mat-error>
+          </mat-form-field>
+        </div>
+  
+      </mat-card-content>
+      <mat-card-actions class="p-2" >
+        <div class="row justify-content-end">
+          <button mat-button  class="w-25 " (click)="addUser()"> Add User </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  
+  

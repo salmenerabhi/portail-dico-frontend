@@ -1,0 +1,84 @@
+<div class="bigcontainer  ">
+    <div class="container  ">
+        <br>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b><a class="dashboard"  (click)="redirectUserManagement()">User managment </a></b><mat-icon style="position: absolute; left: 80%;"> supervised_user_circle</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>Accept user registration, update and delete the user informations</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b> <a class="dashboard"  (click)="redirectUserManagement()"  >FAQs managment</a></b> <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
+                   
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>to manage requests and approximation files and track their history </p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+    <div class="container  ">
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b>Tools</b> <mat-icon style="position: absolute; left: 80%;">memory</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>To upload and manage tools</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b>Reference logs managment</b> <mat-icon style="position: absolute; left: 80%;">file_copy</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>To ask and answer and manage the most frequently asked questions here   </p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <br>
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b> Alerts management</b><mat-icon style="position: absolute; left: 80%;"> notification_important</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>to view charts and manage statistics</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <br>
+
+  
+</div>

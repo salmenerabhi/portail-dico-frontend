@@ -1,0 +1,21 @@
+
+<div class="example-button-container">
+    <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="redirectfaqchild()" style="position: relative; left: 90%;">
+      <mat-icon>question_answer</mat-icon>
+    </button>
+  </div>
+
+
+<br>
+
+
+<mat-toolbar color="primary">{{title}}</mat-toolbar>
+<mat-accordion [displayMode]="displayMode" [multi]="multi"
+               class="faq-container">
+               <br>
+  <mat-expansion-panel *ngFor="let faqItem of ListFaqs">
+    <mat-expansion-panel-header >{{faqItem.question}}</mat-expansion-panel-header>
+    <p>{{faqItem.answer}}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
