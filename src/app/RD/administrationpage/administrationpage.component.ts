@@ -19,4 +19,13 @@ export class AdministrationpageComponent implements OnInit {
     this.router.navigateByUrl('/dashboard/usermanagement');
   }
 
+  redirectAlertManagement() {
+
+    this.router.navigateByUrl('/dashboard/alertmanagement');
+  }
+
+  redirectFaqManagement() {
+
+    this.router.navigateByUrl('/dashboard/faqmanagement');
+  }
 }

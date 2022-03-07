@@ -1,0 +1,17 @@
+<div class="container-fluid">
+	<p></p>
+	<dual-list [sort]="keepSorted" [source]="source" [key]="key" [display]="display" [filter]="filter"
+		[(destination)]="confirmed" height="265px" [format]="format" [disabled]="disabled"></dual-list>
+	<br><br>
+	<ul>
+		<li><button class="btn btn-default" (click)="doFilter()">{{filterBtn()}}</button></li>
+		<li>
+			<div class="form-group">
+				<label>Enable drag-and-drop</label>
+				<div class="checkbox">
+					<label><input type="checkbox" [(ngModel)]="format.draggable" name="drag">draggable</label>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

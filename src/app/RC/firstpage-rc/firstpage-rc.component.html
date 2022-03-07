@@ -1,3 +1,10 @@
+<div class="row">
+    <img src="../../assets/img/logo-actia.png" alt="logo" class="img-fluid "
+        style="height: 20%; width: 20%; margin-top: 1ch; ">
+</div>
+
+<br><br>
+
 <div class="bigcontainer  ">
     <div class="container  ">
         <br>
@@ -5,11 +12,11 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectUserManagement()">User managment </a></b><mat-icon style="position: absolute; left: 80%;"> supervised_user_circle</mat-icon>
+                        <b>Sentence request and approximation</b><mat-icon style="position: absolute; left: 80%;"> insert_drive_file</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>Accept user registration, update and delete the user informations</p>
+                <p>to introduce information about the context of requests and approximations and upload them to the server</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -21,7 +28,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b> <a class="dashboard"  (click)="redirectFaqManagement()"  >FAQs managment</a></b> <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
+                        <b> <a class="dashboard"  (click)=" redirectDashboard() "  >Dashboard</a></b> <mat-icon style="position: absolute; left: 80%;">dashboard</mat-icon>
                    
                     </mat-panel-title>
 
@@ -53,7 +60,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b>Reference logs managment</b> <mat-icon style="position: absolute; left: 80%;">file_copy</mat-icon>
+                        <b> FAQs</b> <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
@@ -70,14 +77,14 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b> <a class="dashboard"  (click)="redirectAlertManagement()"  >Alerts management</a></b><mat-icon style="position: absolute; left: 80%;"> notification_important</mat-icon>
+                        <b> Statistics</b><mat-icon style="position: absolute; left: 80%;"> show_chart</mat-icon>
                     </mat-panel-title>
+
                 </mat-expansion-panel-header>
                 <p>to view charts and manage statistics</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
-    <br>
-
-  
+       <br>
 </div>
+

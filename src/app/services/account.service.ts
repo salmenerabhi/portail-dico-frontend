@@ -32,7 +32,7 @@ export class AccountService {
    return  this.http.get<UserEntity[]>(this.url)
   }
   addUser(formData:FormData):Observable<UserEntity>{
-   return  this.http.post<UserEntity>(this.url,formData);
+   return  this.http.post<UserEntity>(this.url+'register',formData);
   }
   addUserWithoutImage(user:UserEntity):Observable<UserEntity>{
     return  this.http.post<UserEntity>(this.url+'add',user);

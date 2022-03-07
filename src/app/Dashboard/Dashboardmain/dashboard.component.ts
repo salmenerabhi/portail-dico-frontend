@@ -24,28 +24,7 @@ export class DashboardComponent implements OnInit {
     height: 300
   };
 
-  option = {
-    series: [
-      {
-        type: 'pie',
-        data: [
-          {
-            value: 335,
-            name: 'Direct Visit'
-          },
-          {
-            value: 234,
-            name: 'Union Ad'
-          },
-          {
-            value: 1548,
-            name: 'Search Engine'
-          }
-        ]
-      }
-    ]
-  };
-
+ 
   constructor(private tokenService: TokenService,
     private router: Router,
     public LoadService: LoaderService,

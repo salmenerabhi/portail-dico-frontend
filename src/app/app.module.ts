@@ -7,6 +7,7 @@ import { HomeComponent } from './Home/home.component';
 
 
 
+
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +28,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { InscriptionComponent } from './inscription/inscription.component';
-import { FirstpageComponent } from './Firstpage/firstpage.component';
+
 import {MatExpansionModule} from '@angular/material/expansion';
 import { DashboardComponent } from './Dashboard/Dashboardmain/dashboard.component';
 import { ListFilesComponent } from './Dashboard/list-files/list-files.component';
@@ -45,6 +46,20 @@ import { FaqComponent } from './Dashboard/faq/faq.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FaqchildComponent } from './Dashboard/faq/faqchild/faqchild/faqchild.component';
 import { AdministrationpageComponent } from './RD/administrationpage/administrationpage.component';
+import { AlertManagementComponent } from './RD/alert-management/alert-management.component';
+import { FaqManagementComponent } from './RD/faq-management/faq-management.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { FaqConfigurationComponent } from './RD/faq-management/faq-configuration/faq-configuration.component';
+import { FaqAddComponent } from './RD/faq-management/faq-add/faq-add.component';
+import { AngularDualListBoxModule } from 'angular-dual-listbox';
+import { FirstpageComponent } from './Dashboard/Firstpage/firstpage.component';
+import { FirstpageRCComponent } from './RC/firstpage-rc/firstpage-rc.component';
+import { DashboardRCComponent } from './RC/dashboard-rc/dashboard-rc.component';
+import { FilesRequestRCComponent } from './RC/files-request-rc/files-request-rc.component';
+
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 
@@ -54,7 +69,6 @@ import { AdministrationpageComponent } from './RD/administrationpage/administrat
     AppComponent,
     HomeComponent,
     InscriptionComponent,
-    FirstpageComponent,
     DashboardComponent,
     ListFilesComponent,
     ToolsComponent,
@@ -66,6 +80,15 @@ import { AdministrationpageComponent } from './RD/administrationpage/administrat
     FaqComponent,
     FaqchildComponent,
     AdministrationpageComponent,
+    AlertManagementComponent,
+    FaqManagementComponent,
+    FaqConfigurationComponent,
+    FaqAddComponent,
+    FirstpageComponent,
+    FirstpageRCComponent,
+    DashboardRCComponent,
+    FilesRequestRCComponent,
+
     
   ],
   imports: [
@@ -81,13 +104,16 @@ import { AdministrationpageComponent } from './RD/administrationpage/administrat
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDatepickerModule,
     MatSelectModule,
+    MatTooltipModule,
     MatSliderModule,
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatNativeDateModule ,
     MatCardModule,
     MatSidenavModule,
     MatDividerModule,
@@ -97,7 +123,8 @@ import { AdministrationpageComponent } from './RD/administrationpage/administrat
     MatExpansionModule,
     MatCheckboxModule,
     AngularEditorModule ,
-  
+    MatTabsModule,
+    AngularDualListBoxModule ,
     
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},

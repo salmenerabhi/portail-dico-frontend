@@ -1,14 +1,20 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-tools',
-  templateUrl: './tools.component.html',
-  styleUrls: ['./tools.component.css']
+  selector: 'app-files-request-rc',
+  templateUrl: './files-request-rc.component.html',
+  styleUrls: ['./files-request-rc.component.css'],
+
+  encapsulation: ViewEncapsulation.None,
+
 })
-export class ToolsComponent implements OnInit {
+
+export class FilesRequestRCComponent implements OnInit {
+  disabled = new FormControl(false);
   retrievedImage: string = 'assets/img/logo.png';
   @Input()
   requiredFileType:string;

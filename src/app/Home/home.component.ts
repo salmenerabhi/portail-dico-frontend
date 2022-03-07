@@ -104,10 +104,10 @@ export class HomeComponent implements OnInit {
     if (this.token.getUserRole() == "RD") {
       this.router.navigateByUrl('/firstpageRD');
     }
-/*    else if (this.token.getUserRole() === "ADMIN") {
+    else if (this.token.getUserRole() === "RC") {
 
-      this.router.navigateByUrl('/dashAdmin');
-    } else this.router.navigateByUrl('/dashAgent');*/
+      this.router.navigateByUrl('/firstpageRC');
+    } else this.router.navigateByUrl('/dashAgent');
   }
 
 }

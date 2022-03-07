@@ -1,0 +1,29 @@
+.example-button {
+    margin-top: 16px;
+  }
+  
+  .example-tooltip-red {
+    background: #b71c1c;
+  }
+
+  h2 {
+    float: left;
+    clear: none;
+    display: block;
+    padding: 0px 1em 0px 8px;
+  }
+  
+  question {
+    float: left;
+    clear: none;
+    margin: 2px 0 0 2px;
+  }
+
+  .bigcontainer {
+ border: solid;
+  width: 80%;
+  margin-top: auto;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 15px 15px 15px 15px;
+  border-style: groove;}

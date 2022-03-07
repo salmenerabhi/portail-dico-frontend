@@ -1,1 +1,72 @@
-<p>update-user works!</p>
+
+<h2 mat-dialog-title  > Update {{user.firstName}} {{user.lastName}} profile </h2>
+<mat-dialog-content>
+
+      <div class="d-flex justify-content-center align-items-center mb-4 offset-1">
+        <label for="file" class="uploadIcon  text-center bg-light   rounded-circle"><a > <mat-icon>camera_enhance </mat-icon></a></label>
+        <input type="file" id="file" accept="image/*" (change)="onSelectFile($event)" class="form-control-file" />
+        <img class="rounded-circle  "
+             [src]="retrievedImage"
+             alt="" width="120" height="120">
+
+      </div>
+      <div class="row">
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>First name</mat-label>
+          <input matInput  [(ngModel)]="user.firstName" maxlength="10" placeholder="First name">
+        </mat-form-field>
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>Last name</mat-label>
+          <input matInput maxlength="10" [(ngModel)]="user.lastName" placeholder="Last name">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+     
+      </div>
+      <div class="row">
+        <mat-form-field class="col-6" appearance="fill">
+            <mat-label>Role</mat-label>
+            <mat-select   [(ngModel)]="user.role" #role="ngModel"  placeholder="Role" required>
+              <mat-option disabled > select role</mat-option>
+              
+              <mat-option value="TL"> TL</mat-option>
+              <mat-option value="RC" >RC</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <div  class="col-6" >
+          <div class="row  align-items-center justify-content-center">
+            
+            <mat-form-field  appearance="fill">
+                <mat-label>Site</mat-label>
+                <mat-select   [(ngModel)]="user.site"   placeholder="Site" required>
+                  <mat-option disabled>select role</mat-option>
+                  <mat-option value="Multidiag">Multidiag</mat-option>
+                  <mat-option value="ATAL"> ATAL</mat-option>
+                  <mat-option value="ACTIA_Italie">ACTIAItalie</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        
+        <mat-form-field class="col-6" appearance="fill">
+          <mat-label>Creation date</mat-label>
+          <input matInput  [(ngModel)]="user.creationDate" disabled placeholder="Creation date">
+        </mat-form-field>
+      </div>
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="close" (click)="updateUser()" cdkFocusInitial>Update</button>
+  </mat-dialog-actions>

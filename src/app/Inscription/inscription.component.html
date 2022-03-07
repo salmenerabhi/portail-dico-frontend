@@ -41,6 +41,17 @@
             </mat-select>
           </mat-form-field>
           
+          <mat-form-field class="col-6" appearance="fill">
+            <mat-label>Site</mat-label>
+            <mat-select   [(ngModel)]="user.site" #role="ngModel"  placeholder="Site" required>
+              <mat-option disabled > select Site</mat-option>
+              
+              <mat-option value="Multidiag"> Multidiag</mat-option>
+              <mat-option value="ATAL" selected="ATAL">ATAL</mat-option>
+              <mat-option value="ACTIA_Italie"> ACTIA Italie</mat-option>
+
+            </mat-select>
+          </mat-form-field>
         
         </div>
         
