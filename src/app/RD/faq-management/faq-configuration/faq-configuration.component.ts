@@ -84,10 +84,10 @@ export class FaqConfigurationComponent implements OnInit ,AfterViewInit{
    
   }
 
-  deleteUser(id:number){
-    let confirm= window.confirm('do you went to delete this user')
+  deletefaq(id:number){
+    let confirm= window.confirm('do you want to delete this user')
     if(confirm) {
-      this.accountService.deleteUser(id).subscribe(res => {
+      this.faqService.deletefaq(id).subscribe(res => {
           this.toast.success("user deleted ",'delete', {
             timeOut: 3000,
             positionClass: 'toast-bottom-right'})

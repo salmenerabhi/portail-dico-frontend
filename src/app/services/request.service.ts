@@ -1,15 +1,14 @@
-import { FileDB } from './../../Models/FileDB';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {TokenService} from "../Authentification/services/token.service";
-import {environment} from '../../environments/environment';
-
+import { Observable } from 'rxjs';
+import { RequestFile } from 'src/models/RequestFile';
+import { TokenService } from '../Authentification/services/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ToolsService {
-  private url='http://localhost:8085/tool';
+export class RequestService {
+  private url='http://localhost:8085/requestfile';
 
   constructor(private Token: TokenService,private http :HttpClient) { }
 
@@ -20,5 +19,7 @@ export class ToolsService {
   get(id: string){
     return this.http.get(this.url +'/doc'+ id);
   }
+  getAll():Observable<RequestFile[]>{
+    return  this.http.get<RequestFile[]>(this.url)
+   }
   }
-

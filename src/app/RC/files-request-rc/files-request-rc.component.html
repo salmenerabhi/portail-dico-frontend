@@ -1,49 +1,129 @@
-<div  class="bigcontainer " style="margin-left: 10%; ">
-<div > 
-    <h2>Request phrase</h2>
-    <mat-icon class="question" mat-raised-button matTooltipClass="example-tooltip-red" matTooltip="Info about the action" matTooltipPosition="right"
-    [matTooltipDisabled]="disabled.value"
-    aria-label="Button that displays a tooltip that can be programmatically disabled">help_outline</mat-icon>
-
-    <br><br>
-</div>
-
-<div class="file-upload">
-    <input type="file" class="file-input" style="margin-right: 5%;" [accept]="requiredFileType"
-        (change)="onFileSelected($event)" #fileUpload>
-    {{fileName || "No file uploaded yet."}}
-
-    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
-
-    </button>
-
-</div>
-
-<div class="progress">
-
-    <mat-progress-bar class="progress-bar" mode="determinate" [value]="uploadProgress" *ngIf="uploadProgress">
-
-    </mat-progress-bar>
-
-    <mat-icon class="cancel-upload" (click)="cancelUpload()" *ngIf="uploadProgress">delete_forever</mat-icon>
-
-</div>
-
-</div>
-
-<!-- <h4>Outil.number</h4>
-<div class="container " >
+<div class="bigcontainer " style="margin-left: 10%; ">
     <div>
-        <p>outil.description</p>
-        <p>outil.notification</p>
+        <h2>Request phrase</h2>
+        <mat-icon style="margin-top: 6px;" class="question" mat-raised-button matTooltipClass="example-tooltip-red"
+            matTooltip="Info about the action" matTooltipPosition="right" [matTooltipDisabled]="disabled.value"
+            aria-label="Button that displays a tooltip that can be programmatically disabled">help_outline</mat-icon>
+
+        <br><br>
     </div>
-    <div class="d-flex justify-content-left align-items-center mb-4 offset-1">
-        <label for="file" class="uploadIcon  text-center bg-light   rounded-circle"><a > <mat-icon> attach_file</mat-icon></a></label>
-        <input type="file" id="file" accept="image/*" class="form-control-file" />
-        <img class="rounded-circle  "
-              [src]="retrievedImage"
-             alt="" width="50" height="50">
+
+    <div class="file-upload">
+        <input type="file" class="file-input" style="margin-right: 5%;" [accept]="requiredFileType"
+            (change)="onFileSelected($event)" #fileUpload hidden>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{fileName || "No file uploaded yet."}}
+
+        <button style="position: relative; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
+            (click)="openDialog()">
+            <mat-icon>add</mat-icon>
+
+        </button>
+
+    </div>
+
+    <div class="progress">
+
+        <mat-progress-bar class="progress-bar" mode="determinate" [value]="uploadProgress" *ngIf="uploadProgress">
+
+        </mat-progress-bar>
+
+        <mat-icon class="cancel-upload" (click)="cancelUpload()" *ngIf="uploadProgress">delete_forever</mat-icon>
+
+    </div>
+
+</div>
+
+<br><br>
+<div class="bigcontainer " style="margin-left: 10%; ">
+    <div>
+        <h2>approximation</h2>
+        <mat-icon style="margin-top: 6px;" class="question" mat-raised-button matTooltipClass="example-tooltip-red"
+            matTooltip="Info about the action" matTooltipPosition="right" [matTooltipDisabled]="disabled.value"
+            aria-label="Button that displays a tooltip that can be programmatically disabled">help_outline</mat-icon>
+
+        <br><br>
+    </div>
+
+    <div class="file-upload">
+        <input type="file" class="file-input" style="margin-right: 5%;" [accept]="requiredFileType"
+            (change)="onFileSelected($event)" #fileUpload hidden>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        {{fileName || "No file uploaded yet."}}
+
+        <button style="position: relative; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
+            (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+
+        </button>
+
+    </div>
+
+    <div class="progress">
+
+        <mat-progress-bar class="progress-bar" mode="determinate" [value]="uploadProgress" *ngIf="uploadProgress">
+
+        </mat-progress-bar>
+
+        <mat-icon class="cancel-upload" (click)="cancelUpload()" *ngIf="uploadProgress">delete_forever</mat-icon>
+
+    </div>
+</div>
+<br><br>
+<div class="row">
+<div class="  col-4 m-5 p-2" >
+    <h1>Context of the request</h1> <br>
+
     
-      </div>
-</div> -->
+        <mat-form-field  class="w-100">
+            <mat-label>Brand</mat-label>
+            <mat-select [(value)]="selected" [formControl]="brand">
+                <mat-option value="Renault">Renault</mat-option>
+                <mat-option value="Peugeot">Peugeot</mat-option>
+                <mat-option value="Citroen">Citroen</mat-option>
+                <mat-option value="BMW">BMW</mat-option>
+                <mat-option value="Volkswagen">Volkswagen</mat-option>
+                <mat-option value="Hyundai">Hyundai</mat-option>
+                <mat-option value="Mazda">Mazda</mat-option>
+                <mat-option value="Toyota">Toyota</mat-option>
+                <mat-option value="Audi">Audi</mat-option>
+                <mat-option value="Suzuki">Suzuki</mat-option>
+
+
+
+            </mat-select>
+        </mat-form-field>
+ 
+        <mat-form-field   class="w-100">
+            <mat-label> ECU</mat-label>
+            <input matInput [formControl]="ECU" required>
+            <mat-error *ngIf="ECU.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+   
+      
+        <mat-form-field  class="w-100">
+            <mat-label>Target</mat-label>
+            <mat-select [(value)]="selected1" [formControl]="target">
+                <mat-option value="II_2019_pack">II 2019 pack</mat-option>
+                <mat-option value="III_2019_pack">III 2019 pack</mat-option>
+                <mat-option value="II_2020_pack">II 2020 pack</mat-option>
+            </mat-select>
+        </mat-form-field>
+   
+
+ 
+</div>
+<div class="col-6">
+    <section class="example-section" >
+        <h1>Checklist to verify:</h1>
+        <p *ngFor=" let v of values"><mat-checkbox  [checked]="v.isCheked" >{{v.info}}</mat-checkbox></p>
+    
+      </section>
+</div>
+</div>
+
+
+

@@ -105,7 +105,7 @@ export class InscriptionComponent implements OnInit {
             this.route.navigateByUrl("/dashboard")
           },
           error => {
-            this.toast.error(error.error.message, 'add', {
+            this.toast.error(error.error.message, 'something went wrong!!', {
               timeOut: 3000,
               positionClass: 'toast-bottom-left'
             })

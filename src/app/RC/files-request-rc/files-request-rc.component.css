@@ -1,29 +1,59 @@
 .example-button {
-    margin-top: 16px;
-  }
-  
-  .example-tooltip-red {
-    background: #b71c1c;
-  }
+  margin-top: 18px;
+}
 
-  h2 {
-    float: left;
-    clear: none;
-    display: block;
-    padding: 0px 1em 0px 8px;
-  }
-  
-  question {
-    float: left;
-    clear: none;
-    margin: 2px 0 0 2px;
-  }
+.example-tooltip-red {
+  background: #78ac8c;
+}
 
-  .bigcontainer {
- border: solid;
+
+.example-section {
+  margin: 12px 0;
+}
+
+h2 {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 0px 1em 0px 8px;
+}
+question {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 2px;
+}
+
+.bigcontainer {
+  border: solid;
   width: 80%;
   margin-top: auto;
   margin-right: auto;
   margin-left: auto;
   border-radius: 15px 15px 15px 15px;
-  border-style: groove;}
+  border-style: groove;
+}
+.mediumcontainer {
+  border: solid;
+  width: 50%;
+  margin-top: auto;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 15px 15px 15px 15px;
+  border-style: groove;
+  float: right;
+
+}
+.smallcontainer {
+  border: solid;
+  width: 30%;
+  margin-top: auto;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 15px 15px 15px 15px;
+  border-style: groove;
+  float: left;
+}
+
+label {
+  line-height: 65px;
+}

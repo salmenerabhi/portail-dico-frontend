@@ -5,8 +5,8 @@
         </span>
         <div class="nav-link text-center  ">
             <img [src]="retrievedImage" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
-            <p class="name mt-2">{{user.firstName}} {{user.lastName}}</p>
-            <p class=" designation">{{user.role}}</p>
+            <p class="name mt-2">{{user?.firstName}} {{user?.lastName}}</p>
+            <p class=" designation">{{user?.role}}</p>
         </div>
         <ul class="nav">
             <li class="nav-item text-center">
@@ -92,8 +92,8 @@
             <mat-menu #menu="matMenu">
 
                 <span mat-menu-item class="text-center">
-                    <p class="name">{{user.firstName}} {{user.lastName}}</p>
-                    <p class="designation">Member since {{user.creationDate|date}} </p>
+                    <p class="name">{{user?.firstName}} {{user?.lastName}}</p>
+                    <p class="designation">Member since {{user?.creationDate|date}} </p>
               
                   </span>
 

@@ -1,0 +1,81 @@
+<div class="bigcontainer " style="margin-left: 10%; ">
+    <div>
+        <h2>Features</h2>
+        <mat-icon style="margin-top: 6px;" class="question" mat-raised-button matTooltipClass="example-tooltip-red"
+            matTooltip="Info about the action" matTooltipPosition="right" [matTooltipDisabled]="disabled.value"
+            aria-label="Button that displays a tooltip that can be programmatically disabled">help_outline</mat-icon>
+
+        <br><br>
+    </div>
+
+    <div class="file-upload row " style="width: 80%; margin-left: 10%; ">
+        <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [(value)]="selected" [(ngModel)]="requestfile.fonctionnalite" required>
+                <mat-option value="DEFAULT">DEFAULT</mat-option>
+                <mat-option value="TA">TA</mat-option>
+                <mat-option value="MPM">MPM</mat-option>
+                <mat-option value="MENU">MENU</mat-option>
+                <mat-option value="FNC">FNC</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<br><br>
+<div class="bigcontainer " style="margin-left: 10%; ">
+    <div>
+        <h2>Language</h2>
+        <br><br>
+    </div>
+    <br>
+    <div class="file-upload row center" style="width: 80%; margin-left: 10%; ">
+        <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [(value)]="selected1" [(ngModel)]="requestfile.langue">
+                <mat-option value="FR">FR</mat-option>
+                <mat-option value="EN">EN</mat-option>
+                <mat-option value="DE">DE</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+</div>
+<br><br>
+<div class="bigcontainer " style="margin-left: 10%; ">
+
+    <div>
+        <h2>Upload file</h2>
+        <mat-icon style="margin-top: 6px;" class="question" mat-raised-button matTooltipClass="example-tooltip-red"
+            matTooltip="Info about the action" matTooltipPosition="right" [matTooltipDisabled]="disabled.value"
+            aria-label="Button that displays a tooltip that can be programmatically disabled">help_outline</mat-icon>
+
+        <br><br>
+    </div>
+
+    <div class="file-upload">
+        <input type="file" name="file" class="file-input" style="margin-right: 5%;" [accept]="requiredFileType"
+        (change)="onSelectFile($event)" #fileUpload hidden>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {{fileName || "No file uploaded yet."}}
+
+        <button style="position: relative; left: 60%;" mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+
+        </button>
+
+    </div>
+
+    <div class="progress">
+
+        <mat-progress-bar class="progress-bar" mode="determinate" [value]="uploadProgress" *ngIf="uploadProgress">
+
+        </mat-progress-bar>
+
+        <mat-icon class="cancel-upload" (click)="cancelUpload()" *ngIf="uploadProgress">delete_forever</mat-icon>
+
+    </div>
+</div>
+<br><br>
+<button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent" (click)=" updloadFile()">Correct </button>
+<button mat-button [mat-dialog-close]="requestfile" cdkFocusInitial>Ok</button>

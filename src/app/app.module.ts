@@ -33,7 +33,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { DashboardComponent } from './Dashboard/Dashboardmain/dashboard.component';
 import { ListFilesComponent } from './Dashboard/list-files/list-files.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { ToolsComponent } from './Dashboard/tools/tools.component';
+import { ToolsComponent } from './RD/tool-management/tools/tools.component';
 import { PasswordComponent } from './Authentification/password/password.component';
 import { ResetPasswordComponent } from './Authentification/reset-password/reset-password.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -60,6 +60,9 @@ import { FilesRequestRCComponent } from './RC/files-request-rc/files-request-rc.
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { LoadingrequestComponent } from './RC/loadingrequest/loadingrequest.component';
+import { ToolManagementComponent } from './RD/tool-management/tool-management.component';
+import { ToolconfigurationComponent } from './RD/tool-management/toolconfiguration/toolconfiguration.component';
 
 
 
@@ -88,6 +91,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     FirstpageRCComponent,
     DashboardRCComponent,
     FilesRequestRCComponent,
+    LoadingrequestComponent,
+    ToolManagementComponent,
+    ToolconfigurationComponent,
 
     
   ],

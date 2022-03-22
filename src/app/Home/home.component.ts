@@ -1,3 +1,4 @@
+import { PasswordComponent } from './../Authentification/password/password.component';
 import { InscriptionComponent } from '../inscription/inscription.component';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -36,7 +37,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
   openDialog() {
-    this.dialog.open(HomeComponent, {
+    this.dialog.open(PasswordComponent, {
       height: '40%',
       width: '40%'
     });

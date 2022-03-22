@@ -21,4 +21,8 @@ export class FaqService {
 
   }
 
+  deletefaq(id :number){
+    return this.http.delete(this.url+id);
+  }
+
 }

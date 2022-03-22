@@ -4,6 +4,7 @@ import {TokenService} from "../Authentification/services/token.service";
 import {UserEntity} from "../../models/userEntity";
 import {HttpClient} from "@angular/common/http";
 import {StatUser} from "../../models/StatUser";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class AccountService {
     this.loggedIn.next(value);
   }
 
+  get(id: string):Observable<UserEntity>{
+    return this.http.get<UserEntity>(`${environment.baseUrl}` + id);
+  }
   getUserByEmail(id: string):Observable<UserEntity>{
     return this.http.get<UserEntity>(this.url+id)
   }

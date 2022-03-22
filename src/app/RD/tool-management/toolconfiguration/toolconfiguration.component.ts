@@ -1,20 +1,17 @@
-import { AccountService } from 'src/app/services/account.service';
+import { ToolsService } from './../../../services/tools.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { DualListComponent } from 'angular-dual-listbox';
-import { TokenService } from 'src/app/Authentification/services/token.service';
-import { FaqService } from 'src/app/services/faq.service';
-import { FaqItem } from 'src/models/faq.item';
-import { UserEntity } from 'src/models/userEntity';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Tool } from 'src/models/Tool';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-	selector: 'app-faq-add',
-	templateUrl: './faq-add.component.html',
-	styleUrls: ['./faq-add.component.css']
+  selector: 'app-toolconfiguration',
+  templateUrl: './toolconfiguration.component.html',
+  styleUrls: ['./toolconfiguration.component.css']
 })
-export class FaqAddComponent implements OnInit, AfterViewInit {
-	user: UserEntity;
-	tab = 1;
+export class ToolconfigurationComponent implements OnInit, AfterViewInit {
+
+  tab = 1;
 	keepSorted = true;
 	key: string;
 	display: any;
@@ -24,10 +21,11 @@ export class FaqAddComponent implements OnInit, AfterViewInit {
 	userAdd = '';
 	disabled = false;
 
-	ListFaqs: FaqItem[];
-	ListFaq: any;
-	faqItem: FaqItem;
+  tools: Tool[];
+tool: Tool;
+toool:any;
 
+  
 	sourceLeft = true;
 	format: any = DualListComponent.DEFAULT_FORMAT;
 
@@ -41,6 +39,7 @@ export class FaqAddComponent implements OnInit, AfterViewInit {
 
 	type = this.arrayType[0].value;
 
+  
 	private stations: Array<any> = [
 		{ key: 1, station: 'Antonito', state: 'CO' },
 		{ key: 2, station: 'Big Horn', state: 'NM' },
@@ -76,28 +75,49 @@ export class FaqAddComponent implements OnInit, AfterViewInit {
 		{ key: 32, station: 'Eureka', state: 'CO' }
 	];
 
-	constructor(private faqService: FaqService,
-		private token: TokenService,
-		private router: Router,
-		private route: ActivatedRoute,
-		private accountService:AccountService
 
-	) { }
-	ngOnInit() {
-		this.doReset();
-		this.faqItem = new FaqItem();
-		this.faqItem.user = new UserEntity();
-		this.getFaq();
-	
+  constructor(private toolservice:ToolsService,
+    private route: ActivatedRoute,
+    ) { }
+  ngAfterViewInit(): void {
+    this.getTool();
+  }
+
+  ngOnInit(): void {
+    this.doReset();
+    this.tool=new Tool();
+    this.getTool();
+  }
+
+  getTool(){
+    // this.toolservice.get(this.tool.id).subscribe((r) => (this.tools = r));
+  }
+
+  getTool1(){
+		this.toolservice
+			.get(this.route.snapshot.params['id'])
+			.subscribe(user => this.toool = user)
 	}
-	ngAfterViewInit(): void {
-		this.getFaq();
-		console.log(this.faqItem)
 
+
+
+  doReset() {
+		this.sourceStations = JSON.parse(JSON.stringify(this.stations));
+		this.confirmedStations = new Array<any>();
+
+		// Preconfirm some items.
+		this.confirmedStations.push(this.stations[31]);
+
+
+		switch (this.type) {
+			case this.arrayType[0].value:
+				this.useStations();
+				break;
+		}
 	}
 
-	private stationLabel(item: any) {
-		return item.question + ', ' + item.answer;
+  private stationLabel(item: any) {
+		return item.name;
 	}
 
 	private useStations() {
@@ -117,22 +137,7 @@ export class FaqAddComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	doReset() {
-		this.sourceStations = JSON.parse(JSON.stringify(this.stations));
-		this.confirmedStations = new Array<any>();
-
-		// Preconfirm some items.
-		this.confirmedStations.push(this.stations[31]);
-
-
-		switch (this.type) {
-			case this.arrayType[0].value:
-				this.useStations();
-				break;
-		}
-	}
-
-	doDelete() {
+  doDelete() {
 		if (this.source.length > 0) {
 			this.source.splice(0, 1);
 		}
@@ -188,18 +193,5 @@ export class FaqAddComponent implements OnInit, AfterViewInit {
 		this.format.direction = this.sourceLeft ? DualListComponent.LTR : DualListComponent.RTL;
 	}
 
-	getFaq() {
-		this.faqService.getListFaqs().subscribe((r) => (this.ListFaqs = r));
-	}
 
-	loadFaqs(){
-		this.faqService.getListFaqs()
-			   .subscribe(courses => this.ListFaqs = courses);
-	   }
-
-	   loadUserDetails(){
-		this.accountService
-			.get(this.route.snapshot.params['id'])
-			.subscribe(user => this.user = user)
-	}
 }

@@ -28,4 +28,9 @@ export class AdministrationpageComponent implements OnInit {
 
     this.router.navigateByUrl('/dashboard/faqmanagement');
   }
+
+  redirectToolManagement() {
+
+    this.router.navigateByUrl('/dashboard/toolmanagement');
+  }
 }

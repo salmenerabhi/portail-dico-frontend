@@ -1,3 +1,4 @@
+import { ToolManagementComponent } from './RD/tool-management/tool-management.component';
 import { DashboardRCComponent } from './RC/dashboard-rc/dashboard-rc.component';
 import { FirstpageRCComponent } from './RC/firstpage-rc/firstpage-rc.component';
 import { AdministrationpageComponent } from './RD/administrationpage/administrationpage.component';
@@ -14,7 +15,7 @@ import { FirstpageComponent } from './Dashboard/Firstpage/firstpage.component';
 import { HomeComponent } from './Home/home.component';
 import { AddUserComponent } from './RD/UserManagement/add-user/add-user.component';
 import { UpdateUserComponent } from './RD/UserManagement/update-user/update-user.component';
-import { ToolsComponent } from './Dashboard/tools/tools.component';
+import { ToolsComponent } from './RD/tool-management/tools/tools.component';
 import { FaqComponent } from './Dashboard/faq/faq.component';
 import { ListUserComponent } from './RD/UserManagement/list-user/list-user.component';
 import { AlertManagementComponent } from './RD/alert-management/alert-management.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
     { path: 'administration', component: AdministrationpageComponent, canActivate: [AuthGuard] },
     {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
     {path: 'faqmanagement', component:FaqManagementComponent, canActivate: [AuthGuard] },
+    {path: 'toolmanagement', component:ToolManagementComponent, canActivate: [AuthGuard] },
     {path: 'alertmanagement', component:AlertManagementComponent, canActivate: [AuthGuard] },
   ]},
   {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
