@@ -13,7 +13,7 @@
             (change)="onFileSelected($event)" #fileUpload hidden>
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {{fileName || "No file uploaded yet."}}
+        {{file.name || "No file uploaded yet."}}
 
         <button style="position: relative; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
             (click)="openDialog()">
@@ -119,11 +119,21 @@
 <div class="col-6">
     <section class="example-section" >
         <h1>Checklist to verify:</h1>
-        <p *ngFor=" let v of values"><mat-checkbox  [checked]="v.isCheked" >{{v.info}}</mat-checkbox></p>
+        <p *ngFor=" let v of values"><mat-checkbox  [checked]="v.state" (change)="v.state=!v.state" >{{v.infos}}</mat-checkbox></p>
     
       </section>
 </div>
-</div>
 
+
+</div>
+<div class="col-6 m-5">
+<mat-form-field class="w-50">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="file.echeanceRC">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent" (click)=" updloadFile()">Correct </button>
 
 

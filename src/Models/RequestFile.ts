@@ -11,7 +11,7 @@ export class RequestFile {
     fonctionnalite:Fonctionnalite;
     langue: Langue;
     state: State;
-    infos:Infos;
+    checklist:Infos[];
     user:UserEntity;
   }
 
@@ -40,6 +40,6 @@ export class RequestFile {
   }
 
   export class Infos{
-   info:string;
-   isCkecked:boolean;
+   infos:string;
+   state:boolean;
   }

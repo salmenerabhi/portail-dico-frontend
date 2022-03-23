@@ -6,6 +6,9 @@
   background: #78ac8c;
 }
 
+.calendar-form-field {
+  margin-right: 20px;
+}
 
 .example-section {
   margin: 12px 0;

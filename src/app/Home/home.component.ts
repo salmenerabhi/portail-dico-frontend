@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
     else if (this.token.getUserRole() === "RC") {
 
       this.router.navigateByUrl('/firstpageRC');
-    } else this.router.navigateByUrl('/dashAgent');
+    } else this.router.navigateByUrl('/firstpageRD');
   }
 
 }

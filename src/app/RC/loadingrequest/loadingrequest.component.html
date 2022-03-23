@@ -77,5 +77,4 @@
     </div>
 </div>
 <br><br>
-<button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent" (click)=" updloadFile()">Correct </button>
-<button mat-button [mat-dialog-close]="requestfile" cdkFocusInitial>Ok</button>
+<button mat-button  class="mat-raised-button  " style="position: relative; left: 80%;" color="accent" [mat-dialog-close]="[requestfile,files]" cdkFocusInitial>Continue</button>

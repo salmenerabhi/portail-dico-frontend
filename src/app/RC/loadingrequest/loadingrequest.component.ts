@@ -41,9 +41,7 @@ private dialogRef: MatDialogRef<LoadingrequestComponent> ) { }
     this.requestfile=new RequestFile();
     this.id = this.Token.getInfos().id;
     this.tok = this.Token.getToken();
-    this.requestFileService.get(this.id).subscribe((res: RequestFile) => {
-      this.requestfile = res;
-    });
+ 
   }
 
   onSelectFile(event: any) {
@@ -56,6 +54,7 @@ private dialogRef: MatDialogRef<LoadingrequestComponent> ) { }
       this.requestfile.name=this.files.name
       console.log(this.message);
       this.fileName = file.name;
+      
 
     }
   }

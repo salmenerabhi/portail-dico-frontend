@@ -34,6 +34,7 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.route.snapshot.paramMap.get('token');
     this.checkToken();
+    console.log(this.tokenService.getExprirationDate(this.token))
   }
 
   checkToken() {

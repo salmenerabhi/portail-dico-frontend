@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import { Infos, Langue, RequestFile } from 'src/models/RequestFile';
 import { LoadingrequestComponent } from '../loadingrequest/loadingrequest.component';
 import { RequestService } from 'src/app/services/request.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-files-request-rc',
@@ -21,6 +22,7 @@ export class FilesRequestRCComponent implements OnInit {
  info =new Infos()
   disabled = new FormControl(false);
   ECU = new FormControl('', [Validators.required]);
+  
   retrievedImage: string = 'assets/img/logo.png';
   @Input()
   requiredFileType:string;
@@ -28,12 +30,12 @@ selected: false;
 selected1: false;
 brand = new FormControl(null, [Validators.required])
 target = new FormControl(null, [Validators.required])
-
+file: RequestFile = new RequestFile();
+files: File;
 checked = false;
   fileName = '';
   uploadProgress:number;
   uploadSub: Subscription;
-file= new  RequestFile()
 
 
   types:any[]=[]; // for storing types values as array..
@@ -42,17 +44,23 @@ fileIsUploading = false;
 fileUrl: string;
 fileUploaded = false;
 toppings: FormGroup;
+requestfile: RequestFile;
 
- values = [
-  { info :"manual modification on demand",isCheked:false},{ info :"spell check",isCheked:false},{ info :"number per star",isCheked:true},{ info :"words in min except abbreviations",isCheked:false},{ info :"surplus of spaces",isCheked:true},{ info :"truncated words",isCheked:false},
-  { info :"existing sentence",isCheked:false},{ info :"period at the end of the line",isCheked:false},{ info :"duplicates",isCheked:false},
+
+ values : Infos []= [
+  { infos :"manual modification on demand",state:false},{ infos :"spell check",state:false},{ infos :"number per star",state:true},{ infos :"words in min except abbreviations",state:false},{ infos :"surplus of spaces",state:true},{ infos :"truncated words",state:false},
+  { infos :"existing sentence",state:false},{ infos :"period at the end of the line",state:false},{ infos :"duplicates",state:false},
  ];
 
   constructor(private http: HttpClient,
     private formBuilder: FormBuilder,
+    private requestFileService: RequestService,
+    private toast: ToastrService,
     private dialog: MatDialog) {}
   ngOnInit(): void {
     this.file.langue=Langue.FR
+    this.requestfile=new RequestFile();
+
   }
 
 
@@ -104,7 +112,10 @@ openDialog() {
 
   dialogRef.afterClosed().subscribe(res => {
     // received data from dialog-component
-    this.file=res
+    this.file=res[0]
+    console.log(this.file)
+    this.files=res[1]
+
   })
 }
 
@@ -116,6 +127,29 @@ getErrorMessage() {
   return this.ECU.hasError('ECU') ? 'Not a valid ECU' : '';
 }
 
+
+updloadFile() {
+  const formData = new FormData();
+  this.file.checklist=this.values
+  this.file.ecu=this.ECU.value
+  this.file.marque=this.brand.value
+  this.file.cible=this.target.value
+
+
+  console.log(this.values)
+  formData.append('file', this.files);
+  formData.append('requestfile', JSON.stringify(this.file));
+  this.requestFileService.Save(formData)
+    .subscribe(res => {
+      console.log(res);
+    });
+  this.toast.warning('tool added successfully !!', 'ADDED', {
+    timeOut: 3000,
+    positionClass: 'toast-bottom-left'
+  });
+  console.log(this.file)
+
+}
 
 }
 
