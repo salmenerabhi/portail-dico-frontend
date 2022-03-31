@@ -67,7 +67,7 @@ export class FaqComponent implements OnInit ,AfterViewInit{
 
     redirectfaqchild(){
 
-      this.router.navigateByUrl('/dashboard/ask');
+      this.router.navigateByUrl('/dashboardRC/ask');
 
     }
 

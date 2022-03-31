@@ -46,9 +46,9 @@ private toolserv: ToolsService,
     this.tool=new Tool();
     this.id = this.Token.getInfos().id;
     this.tok = this.Token.getToken();
-    this.toolserv.get(this.id).subscribe((res: Tool) => {
-      this.tool = res;
-    });
+    // this.toolserv.get(this.id).subscribe((res: Tool) => {
+    //   this.tool = res;
+    // });
   }
 
 
@@ -65,12 +65,18 @@ private toolserv: ToolsService,
     formData.append('tool', JSON.stringify(this.tool));
     this.toolserv.Save(formData)
       .subscribe(res => {
-        console.log(res);
+        this.toast.success('Data added successfully !!', 'add', {
+          timeOut: 3000,
+          positionClass: 'toast-bottom-right'
+        });
+      },
+      error => {
+        this.toast.error('Data not added !!', 'something went wrong!!', {
+          timeOut: 3000,
+          positionClass: 'toast-bottom-left'
+        })
+        console.log(error)
       });
-    this.toast.warning('tool added successfully !!', 'ADDED', {
-      timeOut: 3000,
-      positionClass: 'toast-bottom-left'
-    });
 
   }
 
@@ -85,7 +91,7 @@ private toolserv: ToolsService,
       reader.readAsDataURL(this.image)
 
     }
-      this.updloadFile();
+      // this.updloadFile();
     }
   
 
@@ -93,7 +99,7 @@ private toolserv: ToolsService,
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
       this.message = this.file;
-      this.updloadFile();
+      // this.updloadFile();
       console.log(this.message);
     }
   }

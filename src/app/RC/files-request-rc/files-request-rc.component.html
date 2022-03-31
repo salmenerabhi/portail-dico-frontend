@@ -90,9 +90,6 @@
                 <mat-option value="Toyota">Toyota</mat-option>
                 <mat-option value="Audi">Audi</mat-option>
                 <mat-option value="Suzuki">Suzuki</mat-option>
-
-
-
             </mat-select>
         </mat-form-field>
  
@@ -102,8 +99,7 @@
             <mat-error *ngIf="ECU.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
-   
-      
+
         <mat-form-field  class="w-100">
             <mat-label>Target</mat-label>
             <mat-select [(value)]="selected1" [formControl]="target">
@@ -113,8 +109,6 @@
             </mat-select>
         </mat-form-field>
    
-
- 
 </div>
 <div class="col-6">
     <section class="example-section" >
@@ -134,6 +128,6 @@
     <mat-datepicker touchUi #picker></mat-datepicker>
   </mat-form-field>
 </div>
-<button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent" (click)=" updloadFile()">Correct </button>
+<button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent" (click)=" updloadFile()">Validate </button>
 
 

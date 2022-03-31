@@ -1,3 +1,4 @@
+import { AccountService } from './../../services/account.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +9,8 @@ import { Infos, Langue, RequestFile } from 'src/models/RequestFile';
 import { LoadingrequestComponent } from '../loadingrequest/loadingrequest.component';
 import { RequestService } from 'src/app/services/request.service';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from 'src/app/Authentification/services/token.service';
+import { UserEntity } from 'src/models/userEntity';
 
 @Component({
   selector: 'app-files-request-rc',
@@ -48,7 +51,7 @@ requestfile: RequestFile;
 
 
  values : Infos []= [
-  { infos :"manual modification on demand",state:false},{ infos :"spell check",state:false},{ infos :"number per star",state:true},{ infos :"words in min except abbreviations",state:false},{ infos :"surplus of spaces",state:true},{ infos :"truncated words",state:false},
+  { infos :"manual modification on demand",state:false},{ infos :"spell check",state:false},{ infos :"number per star",state:false},{ infos :"words in min except abbreviations",state:false},{ infos :"surplus of spaces",state:false},{ infos :"truncated words",state:false},
   { infos :"existing sentence",state:false},{ infos :"period at the end of the line",state:false},{ infos :"duplicates",state:false},
  ];
 
@@ -56,17 +59,18 @@ requestfile: RequestFile;
     private formBuilder: FormBuilder,
     private requestFileService: RequestService,
     private toast: ToastrService,
-    private dialog: MatDialog) {}
+    private dialog: MatDialog,
+    private Token: TokenService,
+    ) {}
+
+    
+    tok: string;
+    id: string;
   ngOnInit(): void {
     this.file.langue=Langue.FR
     this.requestfile=new RequestFile();
 
   }
-
-
-
-
-
 
 
   onFileSelected(event) {
@@ -130,7 +134,9 @@ getErrorMessage() {
 
 updloadFile() {
   const formData = new FormData();
+  this.file.user= new UserEntity;
   this.file.checklist=this.values
+  this.file.user.id=localStorage.getItem('id')
   this.file.ecu=this.ECU.value
   this.file.marque=this.brand.value
   this.file.cible=this.target.value

@@ -48,6 +48,7 @@ export class FaqchildComponent implements OnInit ,AfterViewInit{
   reset() {
     this.question = this.answer = undefined;
   }
+private buttonElement! : HTMLElement | null ;
 
   add(): void {
     this.faqItem.question = this.quest.value;
@@ -73,7 +74,7 @@ export class FaqchildComponent implements OnInit ,AfterViewInit{
 
   redirectfaq(){
 
-    this.router.navigateByUrl('/dashboard/faq');
+    this.router.navigateByUrl('/dashboardRC/faq');
 
   }
 }

@@ -21,6 +21,9 @@ import { ListUserComponent } from './RD/UserManagement/list-user/list-user.compo
 import { AlertManagementComponent } from './RD/alert-management/alert-management.component';
 import { FaqManagementComponent } from './RD/faq-management/faq-management.component';
 import { FilesRequestRCComponent } from './RC/files-request-rc/files-request-rc.component';
+import { DashboardingComponent } from './RC/dashboarding/dashboarding.component';
+import { RejectComponent } from './Dashboard/reject/reject.component';
+import { SchedulerComponent } from './Dashboard/scheduler/scheduler.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent}, 
@@ -29,13 +32,15 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] ,children:[
     { path: 'listFiles', component: ListFilesComponent,canActivate: [AuthGuard]},
     { path: 'toolsmanager', component: ToolsComponent, canActivate: [AuthGuard] },
-    { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
-    { path: 'ask', component: FaqchildComponent, canActivate: [AuthGuard] },
+
     { path: 'administration', component: AdministrationpageComponent, canActivate: [AuthGuard] },
     {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
     {path: 'faqmanagement', component:FaqManagementComponent, canActivate: [AuthGuard] },
     {path: 'toolmanagement', component:ToolManagementComponent, canActivate: [AuthGuard] },
     {path: 'alertmanagement', component:AlertManagementComponent, canActivate: [AuthGuard] },
+    {path: 'planning', component:SchedulerComponent, canActivate: [AuthGuard] },
+
+
   ]},
   {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
   { path: 'updateuser', component: UpdateUserComponent, canActivate: [AuthGuard] },
@@ -45,7 +50,11 @@ const routes: Routes = [
   {path: 'firstpageRC', component:FirstpageRCComponent, canActivate: [AuthGuard] },
   { path: 'dashboardRC', component: DashboardRCComponent, canActivate: [AuthGuard] ,children:[
     { path: 'filesRequest', component: FilesRequestRCComponent ,canActivate: [AuthGuard]},
-
+    { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
+    { path: 'toolsmanager', component: ToolsComponent, canActivate: [AuthGuard] },
+    { path: 'mainRC', component: DashboardingComponent ,canActivate: [AuthGuard]},
+    {path: 'reject', component:RejectComponent, canActivate: [AuthGuard] },
+    { path: 'ask', component: FaqchildComponent, canActivate: [AuthGuard] },
   ]},
 
   {path: 'resetPassword/:token', component: ResetPasswordComponent},

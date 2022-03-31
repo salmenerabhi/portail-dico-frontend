@@ -1,3 +1,4 @@
+import { FileType, State } from './../../../models/RequestFile';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -41,6 +42,10 @@ private dialogRef: MatDialogRef<LoadingrequestComponent> ) { }
     this.requestfile=new RequestFile();
     this.id = this.Token.getInfos().id;
     this.tok = this.Token.getToken();
+    this.requestfile.fileType= FileType.Demande;
+    this.requestfile.state= State.unstarted;
+
+console.log(this.file.fileType);
  
   }
 
@@ -54,7 +59,7 @@ private dialogRef: MatDialogRef<LoadingrequestComponent> ) { }
       this.requestfile.name=this.files.name
       console.log(this.message);
       this.fileName = file.name;
-      
+  
 
     }
   }
@@ -94,6 +99,7 @@ this.uploadSub = null;
 
 updloadFile() {
   this.file.id = this.id;
+  
   const formData = new FormData();
   formData.append('file', this.files);
   formData.append('requestfile', JSON.stringify(this.requestfile));

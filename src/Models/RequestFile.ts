@@ -12,7 +12,9 @@ export class RequestFile {
     langue: Langue;
     state: State;
     checklist:Infos[];
+    commentaire: string;
     user:UserEntity;
+    select:any;
   }
 
   export enum FileType{

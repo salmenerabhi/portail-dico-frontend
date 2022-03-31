@@ -59,7 +59,7 @@ export class FaqConfigurationComponent implements OnInit ,AfterViewInit{
 
   getFaq() {
     this.faqService.getListFaqs().subscribe((r)=>(this.ListFaqs=r));
-  
+
     }
 
 

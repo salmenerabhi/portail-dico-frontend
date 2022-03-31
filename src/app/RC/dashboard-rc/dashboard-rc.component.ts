@@ -53,12 +53,17 @@ export class DashboardRCComponent implements OnInit {
     }
  
  redirectTools(){
-   this.router.navigateByUrl('dashboard/toolsmanager');
+   this.router.navigateByUrl('dashboardRC/toolsmanager');
  }
  redirectDashboard(){
+  this.router.navigateByUrl('/dashboardRC/mainRC');
+}
+ redirectFilesRequest(){
    this.router.navigateByUrl('/dashboardRC/filesRequest');
  }
- 
+ redirectFaq(){
+  this.router.navigateByUrl('/dashboardRC/faq');
+}
  
  redirectAdministration(){
    this.router.navigateByUrl('/dashboard/administration');

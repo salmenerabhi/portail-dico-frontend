@@ -56,13 +56,20 @@ import { FirstpageComponent } from './Dashboard/Firstpage/firstpage.component';
 import { FirstpageRCComponent } from './RC/firstpage-rc/firstpage-rc.component';
 import { DashboardRCComponent } from './RC/dashboard-rc/dashboard-rc.component';
 import { FilesRequestRCComponent } from './RC/files-request-rc/files-request-rc.component';
-
+import {DayPilotModule} from "daypilot-pro-angular";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { LoadingrequestComponent } from './RC/loadingrequest/loadingrequest.component';
 import { ToolManagementComponent } from './RD/tool-management/tool-management.component';
 import { ToolconfigurationComponent } from './RD/tool-management/toolconfiguration/toolconfiguration.component';
+import { DashboardingComponent } from './RC/dashboarding/dashboarding.component';
+import { RejectComponent } from './Dashboard/reject/reject.component';
+import { ScheduleModule, RecurrenceEditorModule,DayService,WeekService,MonthAgendaService,WorkWeekService,MonthService } from '@syncfusion/ej2-angular-schedule';
+import { SchedulerComponent } from './Dashboard/scheduler/scheduler.component';
+import { RichTextEditorModule, LinkService, ImageService, HtmlEditorService,ToolbarService, TableService } from '@syncfusion/ej2-angular-richtexteditor';
+import { CorrectionComponent } from './RC/correction/correction.component';
+
 
 
 
@@ -94,6 +101,10 @@ import { ToolconfigurationComponent } from './RD/tool-management/toolconfigurati
     LoadingrequestComponent,
     ToolManagementComponent,
     ToolconfigurationComponent,
+    DashboardingComponent,
+    RejectComponent,
+    SchedulerComponent,
+    CorrectionComponent,
 
     
   ],
@@ -130,7 +141,12 @@ import { ToolconfigurationComponent } from './RD/tool-management/toolconfigurati
     MatCheckboxModule,
     AngularEditorModule ,
     MatTabsModule,
-    AngularDualListBoxModule ,
+    AngularDualListBoxModule,
+    DayPilotModule,
+    ScheduleModule,
+    RecurrenceEditorModule,
+    RichTextEditorModule
+
     
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
@@ -138,7 +154,8 @@ import { ToolconfigurationComponent } from './RD/tool-management/toolconfigurati
   provide: HTTP_INTERCEPTORS,
   useClass: JwtInterceptorService,
   multi: true
-},AuthGuard],
+},AuthGuard,DayService,WeekService,MonthAgendaService,WorkWeekService,MonthService ,
+LinkService, ImageService, HtmlEditorService,ToolbarService,TableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

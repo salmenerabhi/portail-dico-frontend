@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequestFile } from 'src/models/RequestFile';
+import { UserEntity } from 'src/models/userEntity';
 import { TokenService } from '../Authentification/services/token.service';
 
 @Injectable({
@@ -16,10 +17,23 @@ export class RequestService {
   Save(data: FormData) {
     return this.http.post(this.url,data);
   }
-  get(id: string){
-    return this.http.get(this.url +'/doc'+ id);
+  get(id: string):Observable<RequestFile>{
+    return this.http.get<RequestFile>(this.url + id);
   }
   getAll():Observable<RequestFile[]>{
+    return  this.http.get<RequestFile[]>(this.url+'/state/fr')
+   }
+   getAllUS():Observable<RequestFile[]>{
+    return  this.http.get<RequestFile[]>(this.url+'/state/us')
+   }
+
+   getAlll():Observable<RequestFile[]>{
     return  this.http.get<RequestFile[]>(this.url)
    }
+
+   update(requestFile:RequestFile):Observable<RequestFile>{
+    return  this.http.put<RequestFile>(this.url,requestFile);
+  }
+  getUserName(id: string){
+    return this.http.get(this.url+'/user'+ id);}
   }

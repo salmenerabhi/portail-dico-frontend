@@ -53,10 +53,14 @@ export class DashboardComponent implements OnInit {
    }
 
 redirectTools(){
-  this.router.navigateByUrl('dashboard/toolsmanager');
+  this.router.navigateByUrl('/dashboard/toolsmanager');
 }
 redirectDashboard(){
   this.router.navigateByUrl('/dashboard/listFiles');
+}
+
+redirectFaq(){
+  this.router.navigateByUrl('/dashboard/faqmanagement');
 }
 
 

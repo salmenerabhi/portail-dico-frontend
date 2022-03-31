@@ -5,17 +5,26 @@
         </span>
         <div class="nav-link text-center  ">
             <img [src]="retrievedImage" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
-            <p class="name mt-2">{{user.firstName}} {{user.lastName}}</p>
-            <p class=" designation">{{user.role}}</p>
+            <p class="name mt-2">{{user?.firstName}} {{user?.lastName}}</p>
+            <p class=" designation">{{user?.role}}</p>
         </div>
         <ul class="nav">
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/filesRequest">
                     <mat-icon>dashboard</mat-icon>
+                    <span style="line-height: 1em;"> <a class="dashboard" (click)="redirectFilesRequest()">Request phrase and <br>approximation</a></span>
+
+                </button>
+            </li>
+
+            <li class="nav-item text-center">
+                <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/mainRC">
+                    <mat-icon>dashboard</mat-icon>
                     <span> <a class="dashboard" (click)="redirectDashboard()">Dashboard</a></span>
 
                 </button>
             </li>
+            
             <li class="nav-item">
                 <mat-accordion>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
@@ -28,7 +37,7 @@
 
                         </mat-expansion-panel-header>
             <li class="nav-item text-center">
-                <button mat-button class="menu-button  " routerLink="/dashboard/tools/toolsmanager">
+                <button mat-button class="menu-button  " routerLink="/dashboardRC/toolsmanager">
                     <mat-icon>dashboard</mat-icon>
                     <span> <a class="tools" (click)="redirectTools()">Tools</a></span>
                 </button>
@@ -43,9 +52,9 @@
             </mat-accordion>
             </li>
             <li class="nav-item text-center">
-                <button mat-button class="menu-button  " #button1 routerLink="/dashboard/faq">
+                <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/faq">
                     <mat-icon>question_answer</mat-icon>
-                    <span> <a class="dashboard" (click)="redirectDashboard()">FAQ</a></span>
+                    <span> <a class="dashboard" (click)="redirectFaq()">FAQ</a></span>
                 </button>
             </li>
 
@@ -77,8 +86,8 @@
             <mat-menu #menu="matMenu">
 
                 <span mat-menu-item class="text-center">
-                    <p class="name">{{user.firstName}} {{user.lastName}}</p>
-                    <p class="designation">Member since {{user.creationDate|date}} </p>
+                    <p class="name">{{user?.firstName}} {{user?.lastName}}</p>
+                    <p class="designation">Member since {{user?.creationDate|date}} </p>
               
                   </span>
 

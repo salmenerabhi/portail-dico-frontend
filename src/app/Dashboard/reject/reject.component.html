@@ -1,0 +1,23 @@
+<h1 mat-dialog-title> Reject a file request : {{requestfile.name}} </h1>
+<h2>Checklist to verify:</h2>
+<div class="row">
+<div class="col-6">
+  <section class="example-section">
+    
+    <p *ngFor=" let v of checklist">
+      <mat-checkbox [checked]="v.state" (change)="v.state=!v.state">{{v.infos}}</mat-checkbox>
+    </p>
+  </section>
+</div>
+
+<div class="col-6">
+  <label for="exampleFormControlTextarea1">Comments</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="12"></textarea>
+</div>
+</div><br><br>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Validate</button>
+</mat-dialog-actions>
