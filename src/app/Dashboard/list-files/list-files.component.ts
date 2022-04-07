@@ -26,7 +26,7 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./list-files.component.css']
 })
 export class ListFilesComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['select','id','user', 'fileType', 'langue', 'name', 'echeanceRC', 'echeanceRD', 'state'];
+  displayedColumns: string[] = ['select', 'id', 'user', 'fileType', 'langue', 'name', 'echeanceRC', 'echeanceRD', 'state','download'];
   dataSource: MatTableDataSource<any>;
   dataSourceUS: MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,10 +38,12 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   users: UserEntity[];
   files: RequestFile[];
   requestFile: RequestFile
+  file: RequestFile = new RequestFile();
+
   selection = new SelectionModel<RequestFile>(true, []);
   selected: any;
   user: UserEntity
-  constructor(private accountService: AccountService,
+  constructor(
     private script: ScriptServiceService,
     private toast: ToastrService,
     private token: TokenService,
@@ -58,7 +60,7 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-   
+
 
     this.getAllFiles();
     this.getAllUS();
@@ -73,6 +75,9 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
     this.requestFile.user = new UserEntity();
     this.getAllFiles();
     this.getAllFilesUsers();
+    this.getAllUS();
+console.log( this.dataSourceUS)
+console.log( this.dataSource)
 
 
   }
@@ -112,7 +117,6 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
     for (let file of this.selection.selected) {
       file.state = State.rejected
       this.requestService.update(file).subscribe();
-      this.onEdit(file);
     }
     this.ngAfterViewInit();
   }
@@ -153,7 +157,7 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   }
 
   getAllFilesUsers() {
-    this.requestService.getAlll().subscribe((r)=>(this.files=r))
+    this.requestService.getAlll().subscribe((r) => (this.files = r))
   }
 
   getAllUS() {
@@ -171,14 +175,17 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onEdit(row) {
+  onEdit() {
+
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    dialogConfig.data = row;
-    this.dialog.open(RejectComponent, dialogConfig);
-    this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());
+    for (let file of this.selection.selected) {
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.width = "60%";
+      dialogConfig.data = file;
+      this.dialog.open(RejectComponent, dialogConfig);
+      this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());
+    }
   }
 
   fileName = 'ExcelSheet.xlsx';
@@ -200,7 +207,10 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   redirectPlanning() {
     this.router.navigateByUrl('/dashboard/planning');
 
-      }
+  }
+
+
+  
 
 }
 

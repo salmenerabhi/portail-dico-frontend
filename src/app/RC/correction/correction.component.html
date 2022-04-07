@@ -12,7 +12,8 @@
 
 <div class="col-6">
   <label for="exampleFormControlTextarea1">Comments</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="12"></textarea>
+  <textarea class="form-control" id="exampleFormControlTextarea1" [formControl]="commentaire" required rows="12"></textarea>
+  <mat-error *ngIf="commentaire.invalid">{{getErrorMessagecomment()}}</mat-error>
 </div>
 </div><br><br>
 
@@ -23,7 +24,7 @@
     
         <mat-form-field  class="w-100">
             <mat-label>Brand</mat-label>
-            <mat-select [(value)]="selected" [formControl]="brand">
+            <mat-select [(value)]="selected" [formControl]="brand" [(ngModel)]="requestfile.marque"> 
                 <mat-option value="Renault">Renault</mat-option>
                 <mat-option value="Peugeot">Peugeot</mat-option>
                 <mat-option value="Citroen">Citroen</mat-option>
@@ -39,14 +40,14 @@
 
         <mat-form-field   class="w-100">
             <mat-label> ECU</mat-label>
-            <input matInput [formControl]="ECU" required>
+            <input matInput [formControl]="ECU" required [(ngModel)]="requestfile.ecu">
             <mat-error *ngIf="ECU.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
 
         <mat-form-field  class="w-100">
             <mat-label>Target</mat-label>
-            <mat-select [(value)]="selected1" [formControl]="target">
+            <mat-select [(value)]="selected1" [formControl]="target" [(ngModel)]="requestfile.cible">
                 <mat-option value="II_2019_pack">II 2019 pack</mat-option>
                 <mat-option value="III_2019_pack">III 2019 pack</mat-option>
                 <mat-option value="II_2020_pack">II 2020 pack</mat-option>
@@ -55,9 +56,18 @@
    
 </div>
 
+<div class="file-upload">
+  <input type="file" name="file" class="file-input" style="margin-right: 5%;" [accept]="requiredFileType"
+  (change)="onSelectFile($event)" #fileUpload hidden>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  {{fileName || "No file uploaded yet."}}
 
+  <button style="position: relative; left: 60%;" mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+      <mat-icon>attach_file</mat-icon>
+
+  </button>
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Validate</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updloadFile()">Validate</button>
 </mat-dialog-actions>

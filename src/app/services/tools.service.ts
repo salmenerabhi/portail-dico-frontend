@@ -1,8 +1,10 @@
+import { Tool } from './../../Models/Tool';
 import { FileDB } from './../../Models/FileDB';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {TokenService} from "../Authentification/services/token.service";
 import {environment} from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -19,6 +21,10 @@ export class ToolsService {
   }
   get(id: string){
     return this.http.get(this.url +'/doc'+ id);
+  }
+  
+  getListTools():Observable<Tool[]>{
+    return this.http.get<Tool[]>(this.url)
   }
   }
 

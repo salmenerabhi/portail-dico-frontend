@@ -39,7 +39,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
        User
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.user.firstName}} {{element.user.lastName}} </td>
     </ng-container>
     <!-- Type Column -->
     <ng-container matColumnDef="fileType">
@@ -78,7 +78,16 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by proposed date">
         Proposed date
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.echeanceRD | date: 'longDate'}} </td>
+
+      
+      <td mat-cell *matCellDef="let element "> 
+        <mat-form-field class="w-50">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="file.echeanceRD" [ngModelOptions]="{standalone: true}" >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+      </td>
     </ng-container>
 
     <!-- State Column -->
@@ -91,18 +100,18 @@
 
 
 
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
+    <!-- Download Column -->
+    <ng-container matColumnDef="download">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by action">
         Action
       </th>
-      <td mat-cell *matCellDef="let row"> <button mat-button class="menu-button " (click)="onEdit(row)">Correct
+      <td mat-cell *matCellDef="let row"> <button mat-button class="menu-button " ><a href="{{'http://localhost:8085/requestfile/download/'+row.name}}">Download</a>
         </button> </td>
     </ng-container>
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row;let i = index; columns: displayedColumns;"></tr>
 
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
@@ -124,9 +133,8 @@
   <button mat-raised-button color="primary" style="cursor: pointer" (click)="exportexcel()">Exporter <mat-icon>
       cloud_download</mat-icon></button>
   <button mat-raised-button color="basic" (click)="startAll()">Start</button>
-
   <button mat-raised-button color="basic" (click)="loadScript()">Finalize</button>
-  <button mat-raised-button color="basic" (click)="rejectAll()">Reject</button>
+  <button mat-raised-button color="basic" (click)="onEdit()">Reject</button>
   <button mat-raised-button color="accent" (click)="redirectPlanning()">See schedule</button>
 
 </div>
@@ -215,23 +223,29 @@
 
 
 
-
+    <ng-container matColumnDef="download">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by action">
+        Action
+      </th>
+      <td mat-cell *matCellDef="let row"> <button mat-button class="menu-button ">Download
+        </button> </td>
+    </ng-container>
     <!-- Action Column -->
-    <ng-container matColumnDef="action">
+    <!-- <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by action">
         Action
       </th>
       <td mat-cell *matCellDef="let element"> <button mat-button class="menu-button  " routerLink="/home">Correct
         </button> </td>
-    </ng-container>
+    </ng-container> -->
 
 
-    !-- Action Column -->
+    <!-- select Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by action">
         Action
       </th>
-      <td mat-cell *matCellDef="let row"> <button mat-button class="menu-button " (click)="onEdit(row)"> </button> </td>
+      <td mat-cell *matCellDef="let row"> <button mat-button class="menu-button "> </button> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

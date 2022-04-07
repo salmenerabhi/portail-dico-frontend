@@ -15,6 +15,7 @@ import { UserEntity } from 'src/models/userEntity';
 export class FaqchildComponent implements OnInit ,AfterViewInit{
   quest = new FormControl(null, [Validators.required, Validators.minLength(1)])
   rep = new FormControl(null, [Validators.required, Validators.minLength(1)])
+  description = new FormControl(null, [Validators.required, Validators.minLength(1)])
 
   faqItem: FaqItem;
 

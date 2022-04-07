@@ -38,7 +38,10 @@ export class RequestFile {
   }
 
   export enum State{
-    unstarted,in_progress,rejected,finished
+    unstarted,
+    in_progress,
+    rejected,
+    finished
   }
 
   export class Infos{

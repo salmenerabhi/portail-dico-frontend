@@ -1,3 +1,4 @@
+import { ToolsRCComponent } from './RC/tools-rc/tools-rc.component';
 import { ToolManagementComponent } from './RD/tool-management/tool-management.component';
 import { DashboardRCComponent } from './RC/dashboard-rc/dashboard-rc.component';
 import { FirstpageRCComponent } from './RC/firstpage-rc/firstpage-rc.component';
@@ -51,7 +52,7 @@ const routes: Routes = [
   { path: 'dashboardRC', component: DashboardRCComponent, canActivate: [AuthGuard] ,children:[
     { path: 'filesRequest', component: FilesRequestRCComponent ,canActivate: [AuthGuard]},
     { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
-    { path: 'toolsmanager', component: ToolsComponent, canActivate: [AuthGuard] },
+    { path: 'toolsmanager', component: ToolsRCComponent, canActivate: [AuthGuard] },
     { path: 'mainRC', component: DashboardingComponent ,canActivate: [AuthGuard]},
     {path: 'reject', component:RejectComponent, canActivate: [AuthGuard] },
     { path: 'ask', component: FaqchildComponent, canActivate: [AuthGuard] },

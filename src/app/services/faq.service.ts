@@ -18,7 +18,6 @@ export class FaqService {
 
    getListFaqs():Observable<FaqItem[]>{
     return this.http.get<FaqItem[]>(this.url)
-
   }
 
   deletefaq(id :number){

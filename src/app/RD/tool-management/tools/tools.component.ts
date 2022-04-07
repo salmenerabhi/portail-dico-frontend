@@ -91,7 +91,6 @@ private toolserv: ToolsService,
       reader.readAsDataURL(this.image)
 
     }
-      // this.updloadFile();
     }
   
 

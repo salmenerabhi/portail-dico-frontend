@@ -69,6 +69,7 @@ import { ScheduleModule, RecurrenceEditorModule,DayService,WeekService,MonthAgen
 import { SchedulerComponent } from './Dashboard/scheduler/scheduler.component';
 import { RichTextEditorModule, LinkService, ImageService, HtmlEditorService,ToolbarService, TableService } from '@syncfusion/ej2-angular-richtexteditor';
 import { CorrectionComponent } from './RC/correction/correction.component';
+import { ToolsRCComponent } from './RC/tools-rc/tools-rc.component';
 
 
 
@@ -105,6 +106,7 @@ import { CorrectionComponent } from './RC/correction/correction.component';
     RejectComponent,
     SchedulerComponent,
     CorrectionComponent,
+    ToolsRCComponent,
 
     
   ],

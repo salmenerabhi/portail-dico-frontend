@@ -78,6 +78,7 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;
     dialogConfig.width = "60%";
+    dialogConfig.maxHeight= '90vh'
     dialogConfig.data = row;
     this.dialog.open(CorrectionComponent, dialogConfig);
     this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());

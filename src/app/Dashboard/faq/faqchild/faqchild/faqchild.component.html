@@ -1,16 +1,10 @@
 <div class="example-button-container">
-    <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="redirectfaq()" style="position: relative; left: 90%;">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-  </div>
+  <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click)="redirectfaq()"
+    style="position: relative; left: 90%;">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</div>
 <br>
-
-<ejs-richtexteditor>
-  <ng-template #valueTemplate>
-    <p>ezrkmlmaejz</p>
-  </ng-template>
-</ejs-richtexteditor>
-
 
 
 <mat-toolbar color="primary">{{title1}}</mat-toolbar>
@@ -18,15 +12,23 @@
   <mat-card-content fxLayout="column">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>The question</mat-label>
-      <input matInput  [formControl]="quest">
+      <input matInput [formControl]="quest">
       <mat-hint>Add here the question of your clients</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>The answer</mat-label>
-      <textarea matInput  [formControl]="rep"></textarea>
+      <textarea matInput [formControl]="rep"></textarea>
       <mat-hint>Please type an appropriate answer here to the above question</mat-hint>
     </mat-form-field>
+<br>
+    <mat-label>Description</mat-label>
+    <ejs-richtexteditor>
+      <ng-template>
+      </ng-template>
+    </ejs-richtexteditor>
+    <mat-hint>Please type an appropriate description here to the above question</mat-hint>
+
   </mat-card-content>
 
   <mat-card-actions fxLayoutAlign="end">
@@ -35,5 +37,3 @@
     </button>
   </mat-card-actions>
 </mat-card>
-
-
