@@ -25,23 +25,21 @@ import { FilesRequestRCComponent } from './RC/files-request-rc/files-request-rc.
 import { DashboardingComponent } from './RC/dashboarding/dashboarding.component';
 import { RejectComponent } from './Dashboard/reject/reject.component';
 import { SchedulerComponent } from './Dashboard/scheduler/scheduler.component';
+import { StatsComponent } from './Dashboard/stats/stats.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent}, 
-  // { path: 'adduser', component: AddUserComponent, canActivate: [AuthGuard] },
   {path: 'firstpageRD', component:FirstpageComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] ,children:[
     { path: 'listFiles', component: ListFilesComponent,canActivate: [AuthGuard]},
     { path: 'toolsmanager', component: ToolsComponent, canActivate: [AuthGuard] },
-
+    { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
     { path: 'administration', component: AdministrationpageComponent, canActivate: [AuthGuard] },
     {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
     {path: 'faqmanagement', component:FaqManagementComponent, canActivate: [AuthGuard] },
     {path: 'toolmanagement', component:ToolManagementComponent, canActivate: [AuthGuard] },
     {path: 'alertmanagement', component:AlertManagementComponent, canActivate: [AuthGuard] },
     {path: 'planning', component:SchedulerComponent, canActivate: [AuthGuard] },
-
-
   ]},
   {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
   { path: 'updateuser', component: UpdateUserComponent, canActivate: [AuthGuard] },
@@ -56,6 +54,8 @@ const routes: Routes = [
     { path: 'mainRC', component: DashboardingComponent ,canActivate: [AuthGuard]},
     {path: 'reject', component:RejectComponent, canActivate: [AuthGuard] },
     { path: 'ask', component: FaqchildComponent, canActivate: [AuthGuard] },
+    { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
+
   ]},
 
   {path: 'resetPassword/:token', component: ResetPasswordComponent},

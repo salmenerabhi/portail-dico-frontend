@@ -16,8 +16,21 @@ export class FirstpageComponent implements OnInit {
   }
 
   redirectDashboard() {
-
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('/dashboard/listFiles');
   }
 
+  redirectTools() {
+    this.router.navigateByUrl('/dashboard/toolsmanager');
+  }
+
+  redirectFaq() {
+    this.router.navigateByUrl('/dashboard/faqmanagement');
+  }
+
+  redirectStats() {
+    this.router.navigateByUrl('/dashboard/stats');
+  }
+  redirectAdministration() {
+    this.router.navigateByUrl('/dashboard/administration');
+  }
 }

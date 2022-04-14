@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.email.reset();
+    this.password.reset();
   }
   openDialog() {
     this.dialog.open(PasswordComponent, {

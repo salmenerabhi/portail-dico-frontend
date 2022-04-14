@@ -11,5 +11,5 @@ export class UserEntity{
  role :Role;
  site : Site
  image :FileDB;
-
+ responsable:string;
 }

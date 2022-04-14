@@ -69,7 +69,7 @@ export class ResetPasswordComponent implements OnInit {
       setTimeout(() => {
           this.router.navigateByUrl("/");
         }
-        , 5000);
+        , 3000);
 
     });
   }

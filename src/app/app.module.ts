@@ -70,6 +70,10 @@ import { SchedulerComponent } from './Dashboard/scheduler/scheduler.component';
 import { RichTextEditorModule, LinkService, ImageService, HtmlEditorService,ToolbarService, TableService } from '@syncfusion/ej2-angular-richtexteditor';
 import { CorrectionComponent } from './RC/correction/correction.component';
 import { ToolsRCComponent } from './RC/tools-rc/tools-rc.component';
+import { FaqAnswerComponent } from './RD/faq-management/faq-answer/faq-answer.component';
+import { FaqAddAnswerComponent } from './RD/faq-management/faq-add-answer/faq-add-answer.component';
+import { StatsComponent } from './Dashboard/stats/stats.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 
@@ -107,6 +111,9 @@ import { ToolsRCComponent } from './RC/tools-rc/tools-rc.component';
     SchedulerComponent,
     CorrectionComponent,
     ToolsRCComponent,
+    FaqAnswerComponent,
+    FaqAddAnswerComponent,
+    StatsComponent,
 
     
   ],
@@ -147,10 +154,13 @@ import { ToolsRCComponent } from './RC/tools-rc/tools-rc.component';
     DayPilotModule,
     ScheduleModule,
     RecurrenceEditorModule,
-    RichTextEditorModule
-
-    
+    RichTextEditorModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
   ],
+
+
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
   {
   provide: HTTP_INTERCEPTORS,

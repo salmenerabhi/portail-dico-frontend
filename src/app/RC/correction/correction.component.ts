@@ -23,10 +23,10 @@ export class CorrectionComponent implements OnInit, AfterViewInit {
 
   selected1: false;
   selection = new SelectionModel<RequestFile>(true, []);
-  values: Infos[] = [
-    { infos: "manual modification on demand", state: false }, { infos: "spell check", state: false }, { infos: "number per star", state: false }, { infos: "words in min except abbreviations", state: false }, { infos: "surplus of spaces", state: false }, { infos: "truncated words", state: false },
-    { infos: "existing sentence", state: false }, { infos: "period at the end of the line", state: false }, { infos: "duplicates", state: false },
-  ];
+  values : Infos []= [
+    { infos :"Manual modification on demand",state:false},{ infos :"Spell check",state:false},{ infos :"Number per star",state:false},{ infos :"Words in min except abbreviations",state:false},{ infos :"Surplus of spaces",state:false},{ infos :"Truncated words",state:false},
+    { infos :"Existing sentence",state:false},{ infos :"Period at the end of the line",state:false},{ infos :"Duplicates",state:false},
+   ];
   checklist: Infos[]
   requestFile: RequestFile
   disabled = new FormControl(false);
@@ -82,16 +82,17 @@ export class CorrectionComponent implements OnInit, AfterViewInit {
 
   updloadFile() {
     const formData = new FormData();
-    this.file.user= new UserEntity;
-    this.file.checklist = this.values
-    this.file.user.id = localStorage.getItem('id')
-    this.file.ecu = this.ECU.value
-    this.file.marque = this.brand.value
-    this.file.cible = this.target.value
-    this.file.commentaire= this.commentaire.value
+    this.requestfile.checklist = this.values
+    this.requestfile.ecu = this.ECU.value
+    this.requestfile.marque = this.brand.value
+    this.requestfile.cible = this.target.value
+   // this.requestfile.commentaire= this.commentaire.value
     formData.append('file', this.files);
-    formData.append('requestfile', JSON.stringify(this.file));
+    formData.append('requestfile', JSON.stringify(this.requestfile));
+    console.log(this.requestfile)
+
     this.requestFileService.updateRequest(formData)
+    
       .subscribe(res => {
         console.log(res);
       });

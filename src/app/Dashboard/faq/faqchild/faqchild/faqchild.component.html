@@ -7,7 +7,7 @@
 <br>
 
 
-<mat-toolbar color="primary">{{title1}}</mat-toolbar>
+<mat-toolbar color="primary">FAQ</mat-toolbar>
 <mat-card>
   <mat-card-content fxLayout="column">
     <mat-form-field class="full-width" appearance="outline">
@@ -16,15 +16,15 @@
       <mat-hint>Add here the question of your clients</mat-hint>
     </mat-form-field>
 
-    <mat-form-field class="full-width" appearance="outline">
+    <!-- <mat-form-field class="full-width" appearance="outline">
       <mat-label>The answer</mat-label>
       <textarea matInput [formControl]="rep"></textarea>
       <mat-hint>Please type an appropriate answer here to the above question</mat-hint>
-    </mat-form-field>
+    </mat-form-field> -->
 <br>
     <mat-label>Description</mat-label>
-    <ejs-richtexteditor>
-      <ng-template>
+    <ejs-richtexteditor #exampleRTE>
+      <ng-template >
       </ng-template>
     </ejs-richtexteditor>
     <mat-hint>Please type an appropriate description here to the above question</mat-hint>
@@ -32,8 +32,9 @@
   </mat-card-content>
 
   <mat-card-actions fxLayoutAlign="end">
-    <button mat-fab color="primary" (click)="add()">
+    <button mat-fab color="primary" id="button" (click)="add()">
       <mat-icon>add</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>
+<br><br><br><br><br><br><br><br><br><br>

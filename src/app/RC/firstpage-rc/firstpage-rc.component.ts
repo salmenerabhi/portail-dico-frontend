@@ -17,7 +17,20 @@ export class FirstpageRCComponent implements OnInit {
 
   redirectDashboard() {
 
-    this.router.navigateByUrl('/dashboardRC');
+    this.router.navigateByUrl('/dashboardRC/mainRC');
+  }
+  redirectTools() {
+    this.router.navigateByUrl('/dashboardRC/toolsmanager');
   }
 
+  redirectFaq() {
+    this.router.navigateByUrl('/dashboardRC/faq');
+  }
+
+  redirectStats() {
+    this.router.navigateByUrl('/dashboardRC/stats');
+  }
+  redirectRequestFile() {
+    this.router.navigateByUrl('/dashboardRC/filesRequest');
+  }
 }

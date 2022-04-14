@@ -14,9 +14,12 @@ import { AccountService } from '../services/account.service';
 })
 export class InscriptionComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
+  role = new FormControl('');
+
   user: UserEntity = new UserEntity();
   hide = true;
   RD = true;
+  TL: UserEntity[];
   confirmPassword = new FormControl(null, [Validators.required, Validators.minLength(8)])
   show = true;
   message: File;
@@ -34,7 +37,12 @@ export class InscriptionComponent implements OnInit {
 
   ngOnInit(): void {
      this.user.image = new FileDB();
+     this.getTL();
+     console.log(this.getTL())
+  }
 
+  getTL() {
+    this.accountService.getAllTL().subscribe((r)=>(this.TL=r))
   }
 
   getErrorConfirmPasswordMessage() {
@@ -89,7 +97,7 @@ export class InscriptionComponent implements OnInit {
               timeOut: 3000,
               positionClass: 'toast-bottom-right'
             });
-            this.route.navigateByUrl("/dashboard")
+            this.route.navigateByUrl("/dashboardRC")
           },
           error => this.toast.error('Data not added !!', 'add', {
             timeOut: 3000,
@@ -102,7 +110,7 @@ export class InscriptionComponent implements OnInit {
               timeOut: 3000,
               positionClass: 'toast-bottom-right'
             });
-            this.route.navigateByUrl("/dashboard")
+            this.route.navigateByUrl("/dashboardRC");
           },
           error => {
             this.toast.error(error.error.message, 'something went wrong!!', {

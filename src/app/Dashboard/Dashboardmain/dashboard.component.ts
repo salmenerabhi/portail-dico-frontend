@@ -62,7 +62,9 @@ redirectDashboard(){
 redirectFaq(){
   this.router.navigateByUrl('/dashboard/faqmanagement');
 }
-
+redirectStats(){
+  this.router.navigateByUrl('/dashboard/stats');
+}
 
 redirectAdministration(){
   this.router.navigateByUrl('/dashboard/administration');

@@ -1,8 +1,4 @@
-<!-- <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <h3 class="breadcrumb-item  active" aria-current="page"> Add User </h3>
-    </ol>
-  </nav> -->
+
     <mat-card class="container w-75 ">
       <mat-card-content >
   
@@ -53,6 +49,15 @@
             </mat-select>
           </mat-form-field>
         
+
+           <mat-form-field class="col-6" appearance="fill" *ngIf="role.value=='RC'">
+            <mat-label>Responsible</mat-label>
+            <mat-select   [(ngModel)]="user.responsable" #role="ngModel"  placeholder="Site" required>
+              <mat-option disabled > select a Team Leader</mat-option>
+              
+              <mat-option *ngFor="let user of TL" [value]="user.id">{{user.firstName}} {{user.lastName}}</mat-option>
+            </mat-select>
+          </mat-form-field> 
         </div>
         
         <div class="row">
@@ -79,5 +84,3 @@
         </div>
       </mat-card-actions>
     </mat-card>
-  
-  

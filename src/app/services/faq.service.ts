@@ -24,4 +24,8 @@ export class FaqService {
     return this.http.delete(this.url+id);
   }
 
+  updateFaq(info: FaqItem):Observable<FaqItem>{
+    return this.http.put<FaqItem>(this.url ,info)
+  }
+
 }

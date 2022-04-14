@@ -17,6 +17,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RequestService } from 'src/app/services/request.service';
 import { RejectComponent } from 'src/app/Dashboard/reject/reject.component';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 /**
  * @title Table with sorting
  */
@@ -137,6 +138,7 @@ console.log( this.dataSource)
       console.log('script loaded is', data);
     }).catch(error => console.log(error)
     )
+  this.requestService.launchScript().subscribe();
   }
 
 
@@ -206,10 +208,15 @@ console.log( this.dataSource)
 
   redirectPlanning() {
     this.router.navigateByUrl('/dashboard/planning');
-
   }
+  
 
-
+  addEvent(row:any, event: MatDatepickerInputEvent<Date>){
+   row.echeanceRD=event.value;
+  
+   this.requestService.update(row).subscribe();
+    console.log(this.requestFile)
+  }
   
 
 }

@@ -1,0 +1,16 @@
+<div class="blog-card" *ngFor="let faqItem of ListFaqs">
+  <div class="meta">
+    <div class="photo" style="background-image: url(../../../../assets/img/question.png)"></div>
+    <ul class="details">
+      <li class="author"><a href="#">{{faqItem.user.firstName}} {{faqItem.user.firstName}}</a></li>
+    </ul>
+  </div>
+  <div class="description">
+    <h1>{{faqItem.question}}</h1>
+    <h2>{{faqItem.user.firstName}} {{faqItem.user.firstName}}</h2>
+    <p [innerHTML]="faqItem.title"></p>
+    <p class="read-more">
+      <button mat-icon-button (click)="onEdit(faqItem)">Answer</button>
+    </p>
+  </div>
+</div>

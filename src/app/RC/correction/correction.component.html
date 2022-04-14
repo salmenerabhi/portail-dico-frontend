@@ -12,7 +12,7 @@
 
 <div class="col-6">
   <label for="exampleFormControlTextarea1">Comments</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" [formControl]="commentaire" required rows="12"></textarea>
+  <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="requestfile.commentaire" required rows="12"></textarea>
   <mat-error *ngIf="commentaire.invalid">{{getErrorMessagecomment()}}</mat-error>
 </div>
 </div><br><br>

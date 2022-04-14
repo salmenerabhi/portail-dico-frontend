@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { RichTextEditorComponent } from '@syncfusion/ej2-angular-richtexteditor';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -12,10 +13,10 @@ import { UserEntity } from 'src/models/userEntity';
   templateUrl: './faqchild.component.html',
   styleUrls: ['./faqchild.component.css']
 })
-export class FaqchildComponent implements OnInit ,AfterViewInit{
+export class FaqchildComponent implements OnInit, AfterViewInit {
   quest = new FormControl(null, [Validators.required, Validators.minLength(1)])
   rep = new FormControl(null, [Validators.required, Validators.minLength(1)])
-  description = new FormControl(null, [Validators.required, Validators.minLength(1)])
+  desc = new FormControl(null, [Validators.required, Validators.minLength(1)])
 
   faqItem: FaqItem;
 
@@ -35,25 +36,29 @@ export class FaqchildComponent implements OnInit ,AfterViewInit{
     this.faqItem.user = new UserEntity();
   }
 
-
-
-  @Input()
-  title1 = 'Admin';
+  @ViewChild('exampleRTE')
+  public componentObject!: RichTextEditorComponent
 
   @Output()
   onFAQItemAdded: EventEmitter<FaqItem> = new EventEmitter<FaqItem>();
 
   question: string;
   answer: string;
+  description: string;
 
   reset() {
-    this.question = this.answer = undefined;
+    this.question = this.answer = this.description = undefined;
   }
-private buttonElement! : HTMLElement | null ;
+  private buttonElement!: HTMLElement | null;
+  private htmlContent!: string;
 
   add(): void {
+    this.buttonElement = document.getElementById('button');
+    this.htmlContent = this.componentObject.getHtml();
+
+    this.faqItem.title = this.htmlContent;
     this.faqItem.question = this.quest.value;
-    this.faqItem.answer = this.rep.value;
+    // this.faqItem.answer = this.rep.value;
     this.faqItem.user.id = this.token.getId();
 
     this.faqService.addFaq(this.faqItem).subscribe();
@@ -69,11 +74,11 @@ private buttonElement! : HTMLElement | null ;
         positionClass: 'toast-bottom-left',
 
       },
-      );
+    );
 
   }
 
-  redirectfaq(){
+  redirectfaq() {
 
     this.router.navigateByUrl('/dashboardRC/faq');
 

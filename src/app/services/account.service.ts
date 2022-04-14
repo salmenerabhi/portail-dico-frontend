@@ -53,4 +53,8 @@ getStatUser() :Observable<StatUser>{
 resetPassword(id:string,password:string):Observable<any>{
     return this.http.post<any>(this.url+id,password)
 }
+
+getAllTL(): Observable<UserEntity[]> {
+  return this.http.get<UserEntity[]>(this.url + 'tl')
+}
 }

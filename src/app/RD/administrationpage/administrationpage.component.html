@@ -79,5 +79,21 @@
     </div>
     <br>
 
+    <div class="container  ">
+
+
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="justify-content-center">
+                        <b><a class="dashboard"  (click)="redirectAlertManagement()"  >Configuration</a></b> <mat-icon style="position: absolute; left: 80%;">settings</mat-icon>
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>To configure and manage internal stuff</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+<br>
   
 </div>

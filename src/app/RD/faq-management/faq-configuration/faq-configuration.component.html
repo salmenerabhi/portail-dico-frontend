@@ -15,7 +15,7 @@
       <tr>
           <td>{{faqItem.question}}</td>
           <td>{{faqItem.user.firstName}} {{faqItem.user.lastName}}</td>
-          <td><button mat-icon-button    matTooltip="Edit user"   matTooltipPosition="left" (click)="onEdit(faqItem)"><mat-icon>launch</mat-icon></button>
+          <td>
             <button mat-icon-button color="warn"    matTooltip="delete FAQ" matTooltipPosition="right" (click)="deletefaq(faqItem.id)"><mat-icon>delete_outline</mat-icon></button>
     </td>
       </tr>

@@ -1,18 +1,18 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { RequestService } from 'src/app/services/request.service';
-import { Infos, RequestFile } from 'src/models/RequestFile';
+import { Infos, RequestFile, State } from 'src/models/RequestFile';
 
 @Component({
   selector: 'app-reject',
   templateUrl: './reject.component.html',
   styleUrls: ['./reject.component.css']
 })
-export class RejectComponent implements OnInit {
+export class RejectComponent implements OnInit, AfterViewInit{
   values : Infos []= [
-    { infos :"manual modification on demand",state:false},{ infos :"spell check",state:false},{ infos :"number per star",state:false},{ infos :"words in min except abbreviations",state:false},{ infos :"surplus of spaces",state:false},{ infos :"truncated words",state:false},
-    { infos :"existing sentence",state:false},{ infos :"period at the end of the line",state:false},{ infos :"duplicates",state:false},
+    { infos :"Manual modification on demand",state:false},{ infos :"Spell check",state:false},{ infos :"Number per star",state:false},{ infos :"Words in min except abbreviations",state:false},{ infos :"Surplus of spaces",state:false},{ infos :"Truncated words",state:false},
+    { infos :"Existing sentence",state:false},{ infos :"Period at the end of the line",state:false},{ infos :"Duplicates",state:false},
    ];
   checklist: Infos[]
 requestFile: RequestFile
@@ -23,9 +23,11 @@ requestFile: RequestFile
   ngOnInit(): void {
     this.getrequests()
     console.log(this.checklist)
-
-
   }
+  ngAfterViewInit() {
+    this.getrequests();
+  }
+
 
   getrequests() {
     this.checklist=this.requestfile.checklist
@@ -33,6 +35,10 @@ requestFile: RequestFile
      }
  
 
-
+     rejectAll() {
+        this.requestfile.state = State.rejected
+        this.requestFileService.update(this.requestfile).subscribe();
+      this.ngAfterViewInit();
+    }
      
 }

@@ -40,7 +40,9 @@ export class RequestService {
   download(name:string):Observable<any>{
     return  this.http.get<any>(this.url + '/download/'+name);
   }
-
+  launchScript() {
+    return this.http.get(this.url+ '/launch');
+  }
   updateRequest(formData: FormData):Observable<RequestFile>{
     return this.http.put<RequestFile>(this.url+ '/update',formData)
   }

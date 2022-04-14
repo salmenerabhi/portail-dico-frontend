@@ -31,7 +31,8 @@ export class DataService {
     return this.http.post("/api/events/delete", data) as Observable<any>;
   }
 
-}
+  
+ }
 
 export interface EventCreateParams {
   start: string;
