@@ -1,11 +1,11 @@
-import { AccountService } from './../../services/account.service';
+import { LoadingapproximationComponent } from './../loadingapproximation/loadingapproximation.component';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { Infos, Langue, RequestFile } from 'src/models/RequestFile';
+import { Brand, Infos, Langue, RequestFile, Target } from 'src/models/RequestFile';
 import { LoadingrequestComponent } from '../loadingrequest/loadingrequest.component';
 import { RequestService } from 'src/app/services/request.service';
 import { ToastrService } from 'ngx-toastr';
@@ -22,26 +22,28 @@ import { UserEntity } from 'src/models/userEntity';
 })
 
 export class FilesRequestRCComponent implements OnInit {
- info =new Infos()
+ info = new Infos();
   disabled = new FormControl(false);
   ECU = new FormControl('', [Validators.required]);
-  
-  retrievedImage: string = 'assets/img/logo.png';
+  targets: Target[];
+  brands: Brand[];
+
+  retrievedImage = 'assets/img/logo.png';
   @Input()
-  requiredFileType:string;
+  requiredFileType: string;
 selected: false;
 selected1: false;
-brand = new FormControl(null, [Validators.required])
-target = new FormControl(null, [Validators.required])
+brand = new FormControl(null, [Validators.required]);
+target = new FormControl(null, [Validators.required]);
 file: RequestFile = new RequestFile();
 files: File;
 checked = false;
   fileName = '';
-  uploadProgress:number;
+  uploadProgress: number;
   uploadSub: Subscription;
 
 
-  types:any[]=[]; // for storing types values as array..
+  types: any[] = []; // for storing types values as array..
 infoForm: FormGroup;
 fileIsUploading = false;
 fileUrl: string;
@@ -50,50 +52,50 @@ toppings: FormGroup;
 requestfile: RequestFile;
 
 
-values : Infos []= [
-  { infos :"Manual modification on demand",state:false},{ infos :"Spell check",state:false},{ infos :"Number per star",state:false},{ infos :"Words in min except abbreviations",state:false},{ infos :"Surplus of spaces",state:false},{ infos :"Truncated words",state:false},
-  { infos :"Existing sentence",state:false},{ infos :"Period at the end of the line",state:false},{ infos :"Duplicates",state:false},
+values: Infos [] = [
+  { infos : 'Manual modification on demand', state: false}, { infos : 'Spell check', state: false},
+  { infos : 'Number per star', state: false}, { infos : 'Words in min except abbreviations', state: false},
+   { infos : 'Surplus of spaces', state: false}, { infos : 'Truncated words', state: false},
+  { infos : 'Existing sentence', state: false}, { infos : 'Period at the end of the line', state: false},
+  { infos : 'Duplicates', state: false},
  ];
 
   constructor(private http: HttpClient,
-    private formBuilder: FormBuilder,
-    private requestFileService: RequestService,
-    private toast: ToastrService,
-    private dialog: MatDialog,
-    private Token: TokenService,
+              private requestFileService: RequestService,
+              private toast: ToastrService,
+              private dialog: MatDialog,
     ) {}
 
-    
     tok: string;
     id: string;
   ngOnInit(): void {
-    this.file.langue=Langue.FR
-    this.requestfile=new RequestFile();
-
+    this.file.langue = Langue.FR;
+    this.requestfile = new RequestFile();
+    this.getTargets();
+    this.getBrands();
   }
 
 
   onFileSelected(event) {
-      const file:File = event.target.files[0];
-    
+      const file: File = event.target.files[0];
       if (file) {
           this.fileName = file.name;
           const formData = new FormData();
-          formData.append("thumbnail", file);
+          formData.append('thumbnail', file);
 
-          const upload$ = this.http.post("/api/thumbnail-upload", formData, {
+          const upload$ = this.http.post('/api/thumbnail-upload', formData, {
               reportProgress: true,
               observe: 'events'
           })
           .pipe(
               finalize(() => this.reset())
           );
-        
+          // tslint:disable-next-line: no-shadowed-variable
           this.uploadSub = upload$.subscribe(event => {
             if (event.type == HttpEventType.UploadProgress) {
               this.uploadProgress = Math.round(100 * (event.loaded / event.total));
             }
-          })
+          });
       }
   }
 
@@ -108,19 +110,29 @@ reset() {
 }
 
 openDialog() {
-  let dialogRef =this.dialog.open(LoadingrequestComponent, {
+  const dialogRef = this.dialog.open(LoadingrequestComponent, {
     height: '90%',
     width: '70%',
-  
   });
 
   dialogRef.afterClosed().subscribe(res => {
     // received data from dialog-component
-    this.file=res[0]
-    console.log(this.file)
-    this.files=res[1]
+    this.file = res[0];
+    this.files = res[1];
+  });
+}
 
-  })
+openApproximationDialog() {
+  const dialogRef = this.dialog.open(LoadingapproximationComponent, {
+    height: '90%',
+    width: '70%',
+  });
+
+  dialogRef.afterClosed().subscribe(res => {
+    // received data from dialog-component
+    this.file = res[0];
+    this.files = res[1];
+  });
 }
 
 getErrorMessage() {
@@ -134,27 +146,31 @@ getErrorMessage() {
 
 updloadFile() {
   const formData = new FormData();
-  this.file.user= new UserEntity;
-  this.file.checklist=this.values
-  this.file.user.id=localStorage.getItem('id')
-  this.file.ecu=this.ECU.value
-  this.file.marque=this.brand.value
-  this.file.cible=this.target.value
+  this.file.user = new UserEntity();
+  this.file.checklist = this.values;
+  this.file.user.id = localStorage.getItem('id');
+  this.file.ecu = this.ECU.value;
+  this.file.marque = this.brand.value;
+  this.file.cible = this.target.value;
 
 
-  console.log(this.values)
   formData.append('file', this.files);
   formData.append('requestfile', JSON.stringify(this.file));
   this.requestFileService.Save(formData)
     .subscribe(res => {
-      console.log(res);
     });
-  this.toast.warning('tool added successfully !!', 'ADDED', {
+  this.toast.success('File added successfully !!', 'ADDED', {
     timeOut: 3000,
     positionClass: 'toast-bottom-left'
   });
-  console.log(this.file)
+}
 
+getBrands() {
+  this.requestFileService.getBrands().subscribe((r) => (this.brands = r));
+}
+
+getTargets() {
+  this.requestFileService.getTargets().subscribe((r) => (this.targets = r));
 }
 
 }

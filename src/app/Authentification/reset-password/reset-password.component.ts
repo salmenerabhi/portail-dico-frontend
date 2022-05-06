@@ -12,14 +12,14 @@ import { TokenService } from '../services/token.service';
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-  password = new FormControl(null, [Validators.required, Validators.minLength(8)])
-  confirmPassword = new FormControl(null, [Validators.required, Validators.minLength(8)])
+  password = new FormControl(null, [Validators.required, Validators.minLength(8)]);
+  confirmPassword = new FormControl(null, [Validators.required, Validators.minLength(8)]);
   hide = true;
   show = true;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private toast:ToastrService,
+              private toast: ToastrService,
               private authentificationService: AuthentificationService,
               private tokenService: TokenService) {
   }
@@ -27,20 +27,19 @@ export class ResetPasswordComponent implements OnInit {
   token: string;
   resetpassword: ResetPassword = new ResetPassword();
   passwordForm: FormGroup = new FormGroup({
-    password :this.password,
-    confirmPassword:this.confirmPassword
-  },);
+    password : this.password,
+    confirmPassword: this.confirmPassword
+  }, );
 
   ngOnInit(): void {
     this.token = this.route.snapshot.paramMap.get('token');
     this.checkToken();
-    console.log(this.tokenService.getExprirationDate(this.token))
   }
 
   checkToken() {
     if (this.tokenService.getExprirationDate(this.token) < new Date()) {
-      window.alert("URL Expired");
-     window.close();
+      window.alert('URL Expired');
+      window.close();
 
     }
   }
@@ -65,9 +64,9 @@ export class ResetPasswordComponent implements OnInit {
     this.resetpassword.token = this.token;
     this.resetpassword.password = this.password.value;
     this.authentificationService.resetPassword(this.resetpassword).subscribe(next => {
-      this.toast.success("password reset")
+      this.toast.success('password reset');
       setTimeout(() => {
-          this.router.navigateByUrl("/");
+          this.router.navigateByUrl('/');
         }
         , 3000);
 

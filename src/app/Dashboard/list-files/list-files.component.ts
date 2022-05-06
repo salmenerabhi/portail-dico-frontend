@@ -12,7 +12,6 @@ import * as XLSX from 'xlsx';
 import { RequestFile, State } from 'src/models/RequestFile';
 import { UserEntity } from 'src/models/userEntity';
 import { ToastrService } from 'ngx-toastr';
-import { TokenService } from 'src/app/Authentification/services/token.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RequestService } from 'src/app/services/request.service';
 import { RejectComponent } from 'src/app/Dashboard/reject/reject.component';
@@ -27,7 +26,23 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./list-files.component.css']
 })
 export class ListFilesComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['select', 'id', 'user', 'fileType', 'langue', 'name', 'echeanceRC', 'echeanceRD', 'state','download'];
+  constructor(
+    private script: ScriptServiceService,
+    private toast: ToastrService,
+    private dialog: MatDialog,
+    private router: Router,
+    private requestService: RequestService,
+    private liveAnnouncer: LiveAnnouncer) {
+    this.dataSource = new MatTableDataSource(this.files);
+    this.dataSourceUS = new MatTableDataSource(this.files);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.dataSourceUS.sort = this.sort1;
+    this.dataSourceUS.paginator = this.paginator1;
+  }
+  displayedColumns: string[] = ['select', 'user', 'fileType', 'langue', 'name', 'echeanceRC', 'echeanceRD', 'state', 'download'];
+  displayedColumns2: string[] = ['user', 'fileType', 'langue', 'name', 'echeanceRC', 'echeanceRD', 'state'];
+
   dataSource: MatTableDataSource<any>;
   dataSourceUS: MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,27 +53,14 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   todayWithPipe = null;
   users: UserEntity[];
   files: RequestFile[];
-  requestFile: RequestFile
+  requestFile: RequestFile;
   file: RequestFile = new RequestFile();
 
   selection = new SelectionModel<RequestFile>(true, []);
   selected: any;
-  user: UserEntity
-  constructor(
-    private script: ScriptServiceService,
-    private toast: ToastrService,
-    private token: TokenService,
-    private dialog: MatDialog,
-    private router: Router,
-    private requestService: RequestService,
-    private _liveAnnouncer: LiveAnnouncer) {
-    this.dataSource = new MatTableDataSource(this.files);
-    this.dataSourceUS = new MatTableDataSource(this.files);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.dataSourceUS.sort = this.sort1;
-    this.dataSourceUS.paginator = this.paginator1;
-  }
+  user: UserEntity;
+
+  fileName = 'ExcelSheet.xlsx';
 
   ngAfterViewInit() {
 
@@ -77,17 +79,16 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
     this.getAllFiles();
     this.getAllFilesUsers();
     this.getAllUS();
-console.log( this.dataSourceUS)
-console.log( this.dataSource)
+
 
 
   }
   announceSortChange(sortState: Sort) {
 
     if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+      this.liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+      this.liveAnnouncer.announce('Sorting cleared');
     }
   }
 
@@ -107,17 +108,19 @@ console.log( this.dataSource)
     this.selection.select(...this.dataSource.data);
   }
   startAll() {
-    for (let file of this.selection.selected) {
-      file.state = State.in_progress
-      this.requestService.update(file).subscribe();
+    for (const file of this.selection.selected) {
+      file.state = State.in_progress;
+      this.requestService.update(file).subscribe(r => this.ngAfterViewInit()
+      );
+
     }
     this.ngAfterViewInit();
 
   }
   rejectAll() {
-    for (let file of this.selection.selected) {
-      file.state = State.rejected
-      this.requestService.update(file).subscribe();
+    for (const file of this.selection.selected) {
+      file.state = State.rejected;
+      this.requestService.update(file).subscribe(r => this.ngAfterViewInit());
     }
     this.ngAfterViewInit();
   }
@@ -135,10 +138,8 @@ console.log( this.dataSource)
 
   loadScript() {
     this.script.load('creation of sentence requests').then(data => {
-      console.log('script loaded is', data);
-    }).catch(error => console.log(error)
-    )
-  this.requestService.launchScript().subscribe();
+    }).catch();
+    this.requestService.launchScript().subscribe();
   }
 
 
@@ -155,18 +156,18 @@ console.log( this.dataSource)
     this.requestService.getAll().subscribe(data => {
       this.dataSource.data = data;
     }
-    )
+    );
   }
 
   getAllFilesUsers() {
-    this.requestService.getAlll().subscribe((r) => (this.files = r))
+    this.requestService.getAlll().subscribe((r) => (this.files = r));
   }
 
   getAllUS() {
     this.requestService.getAllUS().subscribe(data => {
       this.dataSourceUS.data = data;
     }
-    )
+    );
   }
   applyFilter2(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -180,21 +181,20 @@ console.log( this.dataSource)
   onEdit() {
 
     const dialogConfig = new MatDialogConfig();
-    for (let file of this.selection.selected) {
+    for (const file of this.selection.selected) {
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
-      dialogConfig.width = "60%";
+      dialogConfig.width = '60%';
       dialogConfig.data = file;
       this.dialog.open(RejectComponent, dialogConfig);
+      this.selection.clear();
       this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());
     }
   }
 
-  fileName = 'ExcelSheet.xlsx';
-
   exportexcel(): void {
     /* table id is passed over here */
-    let element = document.getElementById('excel-table');
+    const element = document.getElementById('excel-table');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 
     /* generate workbook and add the worksheet */
@@ -209,17 +209,22 @@ console.log( this.dataSource)
   redirectPlanning() {
     this.router.navigateByUrl('/dashboard/planning');
   }
-  
 
-  addEvent(row:any, event: MatDatepickerInputEvent<Date>){
-   row.echeanceRD=event.value;
-  
-   this.requestService.update(row).subscribe();
-    console.log(this.requestFile)
+
+  addEvent(row: any, event: MatDatepickerInputEvent<Date>) {
+    row.echeanceRD = event.value;
+    this.requestService.update(row).subscribe(res => {
+      this.toast.success('a proposed date is fixed successfully', '', {
+        timeOut: 3000,
+        positionClass: 'toast-bottom-right'
+      });
+      this.ngAfterViewInit();
+    },
+      error => this.toast.error('something wrong '));
   }
-  
-
 }
+
+
 
 
 

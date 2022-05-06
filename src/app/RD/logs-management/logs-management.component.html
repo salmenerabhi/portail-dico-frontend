@@ -1,0 +1,28 @@
+<div >
+    <h2>Select the log type to upload: {{file.type}} Log</h2>
+</div>
+<br><br>
+<div>
+    <mat-form-field class="col-6" appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="file.type" #type="ngModel" placeholder="Type" required>
+            <mat-option disabled> select the log type</mat-option>
+
+            <mat-option value="Error"> Error Log</mat-option>
+            <mat-option value="TBBT">@TBBT Log</mat-option>
+            <mat-option value="Ref" selected="Ref">Reference Log</mat-option>
+
+        </mat-select>
+    </mat-form-field>
+</div>
+
+
+<br><br>
+<div class="col-6">
+    <div class="file-upload">
+        <input type="file" name="file" class="file-input" style="margin-right: 5%;" [accept]="requiredFileType"
+        (change)="onSelectFile($event)" #fileUpload >        
+    </div>
+    <button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent"
+    (click)=" updloadFile()">Validate </button>
+</div>

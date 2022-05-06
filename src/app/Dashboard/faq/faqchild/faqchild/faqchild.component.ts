@@ -14,19 +14,36 @@ import { UserEntity } from 'src/models/userEntity';
   styleUrls: ['./faqchild.component.css']
 })
 export class FaqchildComponent implements OnInit, AfterViewInit {
-  quest = new FormControl(null, [Validators.required, Validators.minLength(1)])
-  rep = new FormControl(null, [Validators.required, Validators.minLength(1)])
-  desc = new FormControl(null, [Validators.required, Validators.minLength(1)])
-
-  faqItem: FaqItem;
 
   constructor(private token: TokenService,
-    private faqService: FaqService,
-    private router: Router,
-    private toastr: ToastrService,
+              private faqService: FaqService,
+              private router: Router,
+              private toastr: ToastrService,
 
 
   ) { }
+  quest = new FormControl(null, [Validators.required, Validators.minLength(1)]);
+  rep = new FormControl(null, [Validators.required, Validators.minLength(1)]);
+  desc = new FormControl(null, [Validators.required, Validators.minLength(1)]);
+
+  faqItem: FaqItem;
+
+  // tslint:disable-next-line: member-ordering
+  @ViewChild('exampleRTE')
+  public componentObject!: RichTextEditorComponent;
+
+  @Output()
+  onFAQItemAdded: EventEmitter<FaqItem> = new EventEmitter<FaqItem>();
+
+  // tslint:disable-next-line: member-ordering
+  question: string;
+  // tslint:disable-next-line: member-ordering
+  answer: string;
+  // tslint:disable-next-line: member-ordering
+  description: string;
+  // tslint:disable-next-line: member-ordering
+  private buttonElement!: HTMLElement | null;
+  private htmlContent!: string;
   ngAfterViewInit(): void {
   }
 
@@ -36,21 +53,9 @@ export class FaqchildComponent implements OnInit, AfterViewInit {
     this.faqItem.user = new UserEntity();
   }
 
-  @ViewChild('exampleRTE')
-  public componentObject!: RichTextEditorComponent
-
-  @Output()
-  onFAQItemAdded: EventEmitter<FaqItem> = new EventEmitter<FaqItem>();
-
-  question: string;
-  answer: string;
-  description: string;
-
   reset() {
     this.question = this.answer = this.description = undefined;
   }
-  private buttonElement!: HTMLElement | null;
-  private htmlContent!: string;
 
   add(): void {
     this.buttonElement = document.getElementById('button');
@@ -58,7 +63,6 @@ export class FaqchildComponent implements OnInit, AfterViewInit {
 
     this.faqItem.title = this.htmlContent;
     this.faqItem.question = this.quest.value;
-    // this.faqItem.answer = this.rep.value;
     this.faqItem.user.id = this.token.getId();
 
     this.faqService.addFaq(this.faqItem).subscribe();

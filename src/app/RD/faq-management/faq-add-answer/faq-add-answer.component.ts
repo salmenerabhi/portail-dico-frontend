@@ -29,13 +29,8 @@ export class FaqAddAnswerComponent implements OnInit {
 
   
   updloadFile() {
-
-    this.faq.user= new UserEntity;
-    this.faq.answer = this.answer.value
-    this.faq.user.id = localStorage.getItem('id')
     this.faqService.updateFaq(this.faq)
       .subscribe(res => {
-        console.log(res);
       });
     this.toast.warning('correction sent successfully !!', 'ADDED', {
       timeOut: 3000,

@@ -1,5 +1,5 @@
-import { Tool } from './../../models/Tool';
-import { FileDB } from './../../models/FileDB';
+import { Tool } from '../../models/Tool';
+import { FileDB } from '../../models/FileDB';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {TokenService} from "../Authentification/services/token.service";

@@ -1,5 +1,5 @@
 
-/* 
+
 .example-action-buttons {
     padding-bottom: 20px;
   }
@@ -36,9 +36,9 @@
   }
   .text-header { color: white; text-align: center; top: 30px; width: 110px; left: 35%; position: absolute; background: green;}
   
-  */
+  
 
-  body {
+  /* body {
     background: #262a2b;
     height: 100%;
     overflow-y: hidden;
@@ -170,4 +170,4 @@
   background: linear-gradient(to right, #0ABFBC, #FC354C);
   }
 
-  
+   */

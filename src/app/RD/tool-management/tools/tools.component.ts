@@ -61,7 +61,6 @@ private toolserv: ToolsService,
     }
     formData.append('file', this.file);
     formData.append('image', this.image);
-    console.log(this.tool);
     formData.append('tool', JSON.stringify(this.tool));
     this.toolserv.Save(formData)
       .subscribe(res => {
@@ -75,7 +74,6 @@ private toolserv: ToolsService,
           timeOut: 3000,
           positionClass: 'toast-bottom-left'
         })
-        console.log(error)
       });
 
   }
@@ -98,8 +96,6 @@ private toolserv: ToolsService,
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
       this.message = this.file;
-      // this.updloadFile();
-      console.log(this.message);
     }
   }
 

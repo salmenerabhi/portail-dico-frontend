@@ -3,7 +3,6 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {TokenService} from "../Authentification/services/token.service";
 import {UserEntity} from "../../models/userEntity";
 import {HttpClient} from "@angular/common/http";
-import {StatUser} from "../../models/StatUser";
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -47,9 +46,7 @@ export class AccountService {
   deleteUser(id :number){
     return this.http.delete(this.url+id);
   }
-getStatUser() :Observable<StatUser>{
-    return this.http.get<StatUser>(this.url+'stat');
-}
+
 resetPassword(id:string,password:string):Observable<any>{
     return this.http.post<any>(this.url+id,password)
 }

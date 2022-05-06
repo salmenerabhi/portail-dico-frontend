@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thesaurus xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="thesau.xsd">
+  <phrase code="1" ratio="32">
+    <libelle lang="en_GB">Warning, for this vehicle :</libelle>
+    <libelle lang="fr_FR">Attention, pour ce véhicule :</libelle>
+    <libelle lang="de_DE">Warnung, für dieses Fahrzeug:</libelle>
+    <libelle lang="it_IT">Avvertimento, per questo veicolo:</libelle>
+    <libelle lang="es_ES">Advertencia, para este vehículo:</libelle>
+    <libelle lang="nl_NL">Waarschuwing, voor dit voertuig:</libelle>
+    <libelle lang="sv_SE">Varning, för detta fordon:</libelle>
+    <libelle lang="pt_PT">Aviso para este veículo:</libelle>
+    <libelle lang="cs_CZ">Výstraha, pro toto vozidlo:</libelle>
+    <libelle lang="hr_HR">Upozorenje, za ovo vozilo:</libelle>
+  </phrase>
+  <phrase code="2" ratio="61">
+    <libelle lang="fr_FR">* chine ou véhicule utilitaire</libelle>
+    <libelle lang="cs_CZ">* Čína nebo užitkové vozidlo</libelle>
+    <libelle lang="da_DK">* Kina eller varebil</libelle>
+    <libelle lang="de_DE">* China oder Nutzfahrzeug</libelle>
+    <libelle lang="el_GR">* Κίνα ή επαγγελματικό όχημα</libelle>
+    <libelle lang="en_GB">* China or commercial vehicle</libelle>
+    <libelle lang="es_ES">* China o vehículo utilitario</libelle>
+    <libelle lang="fi_FI">* Kiina tai hyötyajoneuvo</libelle>
+    <libelle lang="hr_HR">* Kina ili dostavno vozilo</libelle>
+    <libelle lang="hu_HU">* Kína vagy haszongépjármű</libelle>
+    <libelle lang="it_IT">* Cina o veicolo commerciale</libelle>
+    <libelle lang="nl_NL">* China of bedrijfswagen</libelle>
+    <libelle lang="pl_PL">* Chiny lub pojazd użytkowy</libelle>
+    <libelle lang="pt_PT">* China ou veículo de mercadorias</libelle>
+    <libelle lang="ro_RO">* China sau vehicul utilitar</libelle>
+    <libelle lang="ru_RU">* Китай или коммерческий автомобиль</libelle>
+    <libelle lang="sv_SE">* Kina eller lastfordon</libelle>
+    <libelle lang="tr_TR">* Çin veya ticari araç</libelle>
+    <libelle lang="zh_CN">* 中国或商务车</libelle>
+  </phrase>
+  <phrase code="3" ratio="80">
+    <libelle lang="bg_BG">Помощ</libelle>
+    <libelle lang="br_BR">Ajuda</libelle>
+    <libelle lang="cs_CZ">Nápověda</libelle>
+    <libelle lang="da_DK">Hjælp</libelle>
+    <libelle lang="de_DE">Hilfe</libelle>
+    <libelle lang="el_GR">βοήθεια</libelle>
+    <libelle lang="en_GB">help</libelle>
+    <libelle lang="es_ES">Ayuda</libelle>
+    <libelle lang="fi_FI">apu</libelle>
+    <libelle lang="fr_FR">aide</libelle>
+    <libelle lang="hr_HR">Pomoć</libelle>
+    <libelle lang="hu_HU">Segítség</libelle>
+    <libelle lang="it_IT">Aiuto</libelle>
+    <libelle lang="nl_NL">Help</libelle>
+    <libelle lang="nv_NV">hjelp</libelle>
+    <libelle lang="pl_PL">Pomoc</libelle>
+    <libelle lang="pt_PT">Ajuda</libelle>
+    <libelle lang="ro_RO">Ajutor</libelle>
+    <libelle lang="ru_RU">помощь</libelle>
+    <libelle lang="sl_SL">pomoč</libelle>
+    <libelle lang="sr_SR">pomoć</libelle>
+    <libelle lang="sv_SE">Hjälp</libelle>
+    <libelle lang="tr_TR">Yardım</libelle>
+    <libelle lang="zh_CN">帮助</libelle>
+    <libelle lang="he_HE">הרזע</libelle>
+  </phrase>
+  <phrase code="4" ratio="25">
+    <libelle lang="en_GB">Automatic loudness</libelle>
+    <libelle lang="it_IT">Volume automatico</libelle>
+    <libelle lang="nl_NL">Automatische geluidssterkte</libelle>
+    <libelle lang="fr_FR">Volume automatique</libelle>
+    <libelle lang="es_ES">Sonoridad automática</libelle>
+    <libelle lang="pt_PT">Ruído automático</libelle>
+    <libelle lang="sv_SE">Automatisk ljudstyrka</libelle>
+    <libelle lang="de_DE">Automatische Lautstärke</libelle>
+  </phrase>
+  <phrase code="5" ratio="58">
+    <libelle lang="bg_BG">виж във:</libelle>
+    <libelle lang="cs_CZ">viz:</libelle>
+    <libelle lang="da_DK">se i:</libelle>
+    <libelle lang="de_DE">Suchen in:</libelle>
+    <libelle lang="en_GB">see in :</libelle>
+    <libelle lang="es_ES">buscar en:</libelle>
+    <libelle lang="fr_FR">regarder dans :</libelle>
+    <libelle lang="hr_HR">pogledajte u:</libelle>
+    <libelle lang="hu_HU">lásd:</libelle>
+    <libelle lang="it_IT">guarda in:</libelle>
+    <libelle lang="nl_NL">kijk in:</libelle>
+    <libelle lang="pl_PL">patrz w:</libelle>
+    <libelle lang="pt_PT">ver em:</libelle>
+    <libelle lang="ro_RO">consultaţi:</libelle>
+    <libelle lang="sl_SL">glejte v:</libelle>
+    <libelle lang="sr_SR">pogledati u:</libelle>
+    <libelle lang="sv_SE">se i:</libelle>
+    <libelle lang="tr_TR">bkz. :</libelle>
+  </phrase>
+</thesaurus>

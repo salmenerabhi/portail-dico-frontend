@@ -12,7 +12,7 @@ export class TokenService {
 
   }
 
-  handle(data :any) {
+  handle(data: any) {
     this.set(data);
   }
 
@@ -26,10 +26,10 @@ export class TokenService {
 
   remove() {
     localStorage.removeItem('token');
-    localStorage.removeItem('id')
+    localStorage.removeItem('id');
   }
 
-  decode(payload :any) {
+  decode(payload: any) {
     return JSON.parse(atob(payload));
   }
 
@@ -42,10 +42,10 @@ getUserName(){
 }
 
 
-  getExprirationDate(token:string){
-   let date = new Date(0);
-    date.setUTCSeconds(this.payload(token).exp);
-    return date ;
+  getExprirationDate(token: string){
+   const date = new Date(0);
+   date.setUTCSeconds(this.payload(token).exp);
+   return date ;
   }
   getUserRole(){
     return this.payload(this.getToken()).role;
@@ -74,12 +74,9 @@ getUserName(){
       return payload ? payload : null;
     }
 
-    return null
+    return null;
   }
-
-
   loggedIn() {
     return !!this.getToken();
   }
-
 }

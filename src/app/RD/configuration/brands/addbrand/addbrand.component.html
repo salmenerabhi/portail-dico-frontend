@@ -1,0 +1,15 @@
+
+<h1 mat-dialog-title>Add brands</h1>
+<div mat-dialog-content  >
+  <div class="example-container">
+    <div appearance="fill" class="w-100">
+      <mat-label>Create a new brand</mat-label>
+      <br><br>
+      <input type="text" class="form-control" placeholder="Brand" [formControl]="marque" [(ngModel)]="brand.marque" aria-describedby="basic-addon2">
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="justify-content-end">
+  <button mat-button (click)="add()">Send</button>
+
+</div>

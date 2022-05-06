@@ -1,16 +1,14 @@
-<div class="blog-card" *ngFor="let faqItem of ListFaqs">
-  <div class="meta">
-    <div class="photo" style="background-image: url(../../../../assets/img/question.png)"></div>
-    <ul class="details">
-      <li class="author"><a href="#">{{faqItem.user.firstName}} {{faqItem.user.firstName}}</a></li>
-    </ul>
-  </div>
-  <div class="description">
-    <h1>{{faqItem.question}}</h1>
-    <h2>{{faqItem.user.firstName}} {{faqItem.user.firstName}}</h2>
-    <p [innerHTML]="faqItem.title"></p>
-    <p class="read-more">
-      <button mat-icon-button (click)="onEdit(faqItem)">Answer</button>
-    </p>
-  </div>
+
+<div  *ngFor="let faqItem of ListFaqs" class="row w-100">
+  <div class="col-5">
+<mat-card style="background-color: rgb(218, 210, 210);">
+  <mat-card-title>{{faqItem.question}}</mat-card-title>
+  <!-- <mat-card-subtitle>{{faqItem.user.firstName}} {{faqItem.user.firstName}}</mat-card-subtitle> -->
+  <mat-card-actions align="end">
+    <button mat-button  (click)="openDescription(faqItem)">Read description</button>
+    <button mat-button (click)="onEdit(faqItem)">Answer</button>
+  </mat-card-actions>
+</mat-card>
+<br>
+</div>
 </div>

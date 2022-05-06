@@ -7,14 +7,17 @@ import { LoaderService } from 'src/app/services/loader.service';
 import { UserEntity } from 'src/models/userEntity';
 import { ResetPasswordComponent} from 'src/app/Authentification/reset-password/reset-password.component';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  private defaultImage: string = 'assets/img/logo.png';
+  public imageUrl: string ;
   panelOpenState = false;
- user: UserEntity
+ user: UserEntity;
   selectedFile: File;
   retrievedImage: any;
   base64Data: any;
@@ -23,28 +26,28 @@ export class DashboardComponent implements OnInit {
     width: 300,
     height: 300
   };
-
- 
   constructor(private tokenService: TokenService,
-    private router: Router,
-    public LoadService: LoaderService,
-    private accountService: AccountService,
-    private dialog:MatDialog) {
+              private router: Router,
+              public LoadService: LoaderService,
+              private accountService: AccountService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.getUserById();
-
   }
 
 
+  public onError(): void {
+    this.retrievedImage = this.defaultImage;
+  }
 
    getUserById() {
      this.accountService.getUserByEmail(this.tokenService.getId()).subscribe(data => {
         this.user = data;
-         this.getImage();
+        this.getImage();
        }
-     )
+     );
    }
 
    getImage() {
@@ -54,6 +57,10 @@ export class DashboardComponent implements OnInit {
 
 redirectTools(){
   this.router.navigateByUrl('/dashboard/toolsmanager');
+}
+
+redirectLogs(){
+  this.router.navigateByUrl('/dashboard/logs');
 }
 redirectDashboard(){
   this.router.navigateByUrl('/dashboard/listFiles');
@@ -72,21 +79,14 @@ redirectAdministration(){
 
 logout() {
   this.tokenService.remove();
-  this.router.navigateByUrl("/");
+  this.router.navigateByUrl('/');
 
 }
 
 openDialogPassword() {
-  this.dialog.open(ResetPasswordComponent,{
+  this.dialog.open(ResetPasswordComponent, {
     height: '40%',
     width: '60%'
   });
 }
-// openDialog() {
-//   this.dialog.open(ProfileComponent,{
-//     height: '50%',
-//     width: '40%'
-//   });
-// }
-
  }

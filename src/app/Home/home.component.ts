@@ -28,11 +28,11 @@ export class HomeComponent implements OnInit {
 
   });
   constructor(private authService: AuthentificationService,
-    private token: TokenService,
-    private account: AccountService,
-    private toastr: ToastrService,
-    private router: Router,
-    private dialog: MatDialog) { }
+              private token: TokenService,
+              private account: AccountService,
+              private toastr: ToastrService,
+              private router: Router,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.email.reset();
@@ -79,8 +79,8 @@ export class HomeComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       res => this.handleResponse(res),
       err => this.toastr.error(
-        `error`,
-        'email or password incorrect !',
+        ``,
+        'Verify your email and password!',
         {
           timeOut: 3000,
           positionClass: 'toast-bottom-left'
@@ -104,13 +104,20 @@ export class HomeComponent implements OnInit {
 
     );
 
-    if (this.token.getUserRole() == "RD") {
+    if (this.token.getUserRole() == 'RD') {
       this.router.navigateByUrl('/firstpageRD');
     }
-    else if (this.token.getUserRole() === "RC") {
+    else if (this.token.getUserRole() === 'RC') {
 
       this.router.navigateByUrl('/firstpageRC');
-    } else this.router.navigateByUrl('/firstpageRC');
+
+    }
+    else if (this.token.getUserRole() === 'TL') {
+
+      this.router.navigateByUrl('/homeTL');
+
+    }
+    else { this.router.navigateByUrl('/'); }
   }
 
 }

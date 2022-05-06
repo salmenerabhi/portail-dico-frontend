@@ -4,15 +4,16 @@
             <img src="../../assets/img/logo-actia.png" alt="logo" height="50" width="240">
         </span>
         <div class="nav-link text-center  ">
-            <img [src]="retrievedImage" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
+            <img [src]="retrievedImage" (error)="onError()" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
             <p class="name mt-2">{{user?.firstName}} {{user?.lastName}}</p>
             <p class=" designation">{{user?.role}}</p>
         </div>
         <ul class="nav">
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/filesRequest">
-                    <mat-icon>dashboard</mat-icon>
-                    <span style="line-height: 1em;"> <a class="dashboard" (click)="redirectFilesRequest()">Request phrase and <br>approximation</a></span>
+                    <mat-icon>insert_drive_file</mat-icon>
+                    <span style="line-height: 1em;"> <a class="requestphrase" (click)="redirectFilesRequest()">Request
+                            phrase and <br>approximation</a></span>
 
                 </button>
             </li>
@@ -24,7 +25,7 @@
 
                 </button>
             </li>
-            
+
             <li class="nav-item">
                 <mat-accordion>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
@@ -88,20 +89,20 @@
                 <span mat-menu-item class="text-center">
                     <p class="name">{{user?.firstName}} {{user?.lastName}}</p>
                     <p class="designation">Member since {{user?.creationDate|date}} </p>
-              
-                  </span>
+
+                </span>
 
 
-                  <button mat-menu-item (click)="openDialogPassword()">
+                <button mat-menu-item (click)="openDialogPassword()">
                     <mat-icon>security</mat-icon>
-                    <span > Reset password </span>
-                  </button>
+                    <span> Reset password </span>
+                </button>
 
                 <hr>
-                    <button mat-menu-item (click)="logout()">
-                        <mat-icon>logout</mat-icon>
-                        <span>Logout</span>
-                    </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    <span>Logout</span>
+                </button>
             </mat-menu>
         </mat-toolbar>
 
@@ -115,5 +116,3 @@
 
     </mat-sidenav-content>
 </mat-sidenav-container>
-
-

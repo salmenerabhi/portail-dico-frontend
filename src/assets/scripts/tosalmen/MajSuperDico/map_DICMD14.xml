@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Output xmlns="http://www.actia.fr/actidiag/author/thesau" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.actia.fr/actidiag/author/thesau Mapping.xsd">
+  <Languages DefaultLanguage="fr_FR" Format="UTF-8">
+    <Language Code="ar_AR" ThesaurusName="DICMD14AR"/>
+    <Language Code="bg_BG" ThesaurusName="DICMD14BG"/>
+    <Language Code="br_BR" ThesaurusName="DICMD14BR"/>
+    <Language Code="cs_CZ" ThesaurusName="DICMD14CS"/>
+    <Language Code="da_DK" ThesaurusName="DICMD14DA"/>
+    <Language Code="de_DE" ThesaurusName="DICMD14DE"/>
+    <Language Code="el_GR" ThesaurusName="DICMD14EL"/>
+    <Language Code="en_GB" ThesaurusName="DICMD14EN"/>
+    <Language Code="es_ES" ThesaurusName="DICMD14ES"/>
+    <Language Code="fa_FA" ThesaurusName="DICMD14FA"/>
+    <Language Code="fi_FI" ThesaurusName="DICMD14FI"/>
+    <Language Code="fr_FR" ThesaurusName="DICMD14FR"/>
+    <Language Code="he_HE" ThesaurusName="DICMD14HE"/>
+    <Language Code="hr_HR" ThesaurusName="DICMD14HR"/>
+    <Language Code="hu_HU" ThesaurusName="DICMD14HU"/>
+    <Language Code="id_ID" ThesaurusName="DICMD14ID"/>
+    <Language Code="it_IT" ThesaurusName="DICMD14IT"/>
+    <Language Code="ja_JP" ThesaurusName="DICMD14JA"/>
+    <Language Code="lt_LT" ThesaurusName="DICMD14LT"/>
+    <Language Code="nl_NL" ThesaurusName="DICMD14NL"/>
+    <Language Code="nv_NV" ThesaurusName="DICMD14NV"/>
+    <Language Code="pl_PL" ThesaurusName="DICMD14PL"/>
+    <Language Code="pt_PT" ThesaurusName="DICMD14PT"/>
+    <Language Code="ro_RO" ThesaurusName="DICMD14RO"/>
+    <Language Code="ru_RU" ThesaurusName="DICMD14RU"/>
+    <Language Code="sl_SL" ThesaurusName="DICMD14SL"/>
+    <Language Code="sr_SR" ThesaurusName="DICMD14SR"/>
+    <Language Code="sv_SE" ThesaurusName="DICMD14SV"/>
+    <Language Code="th_TH" ThesaurusName="DICMD14TH"/>
+    <Language Code="tr_TR" ThesaurusName="DICMD14TR"/>
+    <Language Code="zh_CN" ThesaurusName="DICMD14ZH"/>
+  </Languages>
+  <Mapping>
+    <Sentence Number="1" Reference="1"/>
+    <Sentence Number="2" Reference="2"/>
+    <Sentence Number="3" Reference="3"/>
+    <Sentence Number="4" Reference="4"/>
+    <Sentence Number="5" Reference="5"/>
+  </Mapping>
+</Output>

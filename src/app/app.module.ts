@@ -74,6 +74,20 @@ import { FaqAnswerComponent } from './RD/faq-management/faq-answer/faq-answer.co
 import { FaqAddAnswerComponent } from './RD/faq-management/faq-add-answer/faq-add-answer.component';
 import { StatsComponent } from './Dashboard/stats/stats.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { ConfigurationComponent } from './RD/configuration/configuration.component';
+import { BrandsComponent } from './RD/configuration/brands/brands.component';
+import { TargetsComponent } from './RD/configuration/targets/targets.component';
+import {MatListModule} from '@angular/material/list';
+import { AddbrandComponent } from './RD/configuration/brands/addbrand/addbrand.component';
+import { AddtargetComponent } from './RD/configuration/targets/addtarget/addtarget.component';
+import { DashboardTLComponent } from './TL/dashboard-tl/dashboard-tl.component';
+import { ListFilesTLComponent } from './TL/list-files-tl/list-files-tl.component';
+import { HomeTLComponent } from './TL/home-tl/home-tl.component';
+import { LogsManagementComponent } from './RD/logs-management/logs-management.component';
+import { LogsComponent } from './Dashboard/logs/logs.component';
+import { FaqdescriptionComponent } from './RD/faq-management/faqdescription/faqdescription.component';
+import { NoSanitizePipe } from './services/data.service';
+import { LoadingapproximationComponent } from './RC/loadingapproximation/loadingapproximation.component';
 
 
 
@@ -114,7 +128,19 @@ import { NgxEchartsModule } from 'ngx-echarts';
     FaqAnswerComponent,
     FaqAddAnswerComponent,
     StatsComponent,
-
+    ConfigurationComponent,
+    BrandsComponent,
+    TargetsComponent,
+    AddbrandComponent,
+    AddtargetComponent,
+    DashboardTLComponent,
+    ListFilesTLComponent,
+    HomeTLComponent,
+    LogsManagementComponent,
+    LogsComponent,
+    FaqdescriptionComponent,
+    NoSanitizePipe,
+    LoadingapproximationComponent
     
   ],
   imports: [
@@ -150,6 +176,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MatCheckboxModule,
     AngularEditorModule ,
     MatTabsModule,
+    MatListModule,
     AngularDualListBoxModule,
     DayPilotModule,
     ScheduleModule,
@@ -158,6 +185,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+
   ],
 
 

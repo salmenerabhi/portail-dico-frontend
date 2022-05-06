@@ -1,8 +1,5 @@
 
-<table class="styled-table">
-
-    <tbody *ngFor="let tool of toolList">
-        <tr>
+    <p *ngFor="let tool of toolList">
             <mat-card class="example-card">
                 <mat-card-title-group>
                     <mat-card-title class="title">{{tool.name}}</mat-card-title>
@@ -11,14 +8,11 @@
                                 href="{{'http://localhost:8085/requestfile/download/'+tool.name}}">Download</a>
                         </button>
                     </mat-card-subtitle>
-                    <img mat-card-md-image [src]="retrievedImage">
+                    <img mat-card-md-image [src]="retrievedImage" style="height: 100px;">
                 </mat-card-title-group>
                 <mat-card-content>
                     {{tool.description}}
                 </mat-card-content>
-            </mat-card>
-        </tr>
-        
-    </tbody>
-</table>
+            </mat-card> 
 
+    </p>

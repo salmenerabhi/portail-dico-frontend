@@ -1,0 +1,28 @@
+
+<br>
+<div class="row w-100">
+    <div class="col-4">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="cible">
+        <mat-header-cell mat-header-cell *matHeaderCellDef style="font-size: medium;"> <b>Target Name</b>
+        </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element"> {{element.cible}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell id="action" *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row" >
+            <button mat-icon-button style="position: relative; left: 70%;" color="warn" matTooltip="delete target" matTooltipPosition="right"
+                (click)="deleteTarget(row.id)">
+                <mat-icon>delete_outline</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+</div>
+<div class="col-2">
+<button class="btn btn-outline-secondary createbutton" type="button"  (click)="openDialog()">Create</button>
+</div>
+</div>

@@ -92,8 +92,6 @@ export class FaqAddComponent implements OnInit, AfterViewInit {
 	}
 	ngAfterViewInit(): void {
 		this.getFaq();
-		console.log(this.faqItem)
-
 	}
 
 	private stationLabel(item: any) {

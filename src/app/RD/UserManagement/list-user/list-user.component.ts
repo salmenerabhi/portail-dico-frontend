@@ -8,30 +8,30 @@ import { TokenService } from 'src/app/Authentification/services/token.service';
 import { AccountService } from 'src/app/services/account.service';
 import { UserEntity } from 'src/models/userEntity';
 import { UpdateUserComponent } from '../update-user/update-user.component';
-
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
   styleUrls: ['./list-user.component.css']
 })
 export class ListUserComponent implements AfterViewInit  {
-  displayedColumns: string[] = ['id','email','firstName','lastName','creation_date','role','site','actions'];
-
+  displayedColumns: string[] = ['id', 'email', 'firstName', 'lastName', 'creation_date', 'role', 'site', 'actions'];
+  private defaultImage = 'assets/img/logo.png';
+    public imageUrl: string ;
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   users: UserEntity[];
-  images:string[];
+  images: string[];
   base64Data: Int8Array;
   retrievedImage: string;
-  
-  constructor( private accountService:AccountService ,
-               private toast:ToastrService,
-               private token:TokenService,
+
+  constructor( private accountService: AccountService ,
+               private toast: ToastrService,
+               private token: TokenService,
                private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(this.users);
   }
-  
+
 
   ngAfterViewInit() {
     this.getAllUser();
@@ -48,35 +48,42 @@ export class ListUserComponent implements AfterViewInit  {
     }
   }
   getAllUser(){
-    this.accountService.getAllUsers().subscribe(data=> {
-        this.dataSource.data=data;
+    this.accountService.getAllUsers().subscribe(data => {
+        this.dataSource.data = data;
       }
-    )
+    );
   }
-  deleteUser(id:number){
-    let confirm= window.confirm('do you went to delete this user')
-    if(confirm) {
+  deleteUser(id: number){
+    const confirm = window.confirm('do you want to delete this user');
+    if (confirm) {
       this.accountService.deleteUser(id).subscribe(res => {
-          this.toast.success("user deleted ",'delete', {
+          this.toast.success('user deleted ', 'delete', {
             timeOut: 3000,
-            positionClass: 'toast-bottom-right'})
+            positionClass: 'toast-bottom-right'});
           this.ngAfterViewInit();
         },
-        error => this.toast.error('something wrong '))
+        error => this.toast.error('something wrong '));
     }}
   onEdit(row){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    dialogConfig.data=row;
-    this.dialog.open(UpdateUserComponent,dialogConfig);
-    this.dialog.afterAllClosed.subscribe(()=>this.ngAfterViewInit());
+    dialogConfig.width = '60%';
+    dialogConfig.data = row;
+    this.dialog.open(UpdateUserComponent, dialogConfig);
+    this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());
   }
-  getImage(user:UserEntity) {
-      this.base64Data = user.image.data;
-    this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+  getImage(user: UserEntity) {
+    if  (user.image.data != null){
+      console.log(this.retrievedImage)
+     this.base64Data = user.image.data;
+     this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+
+    } else {   this.retrievedImage = this.defaultImage; 
+    console.log(this.retrievedImage)}
     return this.retrievedImage;
-   
+  }
+ onError(): void {
+    this.retrievedImage = this.defaultImage;
   }
 }

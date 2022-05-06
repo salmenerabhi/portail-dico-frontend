@@ -1,14 +1,13 @@
+import { UserEntity } from './../../../models/userEntity';
 import { CorrectionComponent } from './../correction/correction.component';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { RequestService } from 'src/app/services/request.service';
-import { RequestFile } from 'src/models/RequestFile';
-import { RejectComponent } from '../../Dashboard/reject/reject.component';
+import { RequestFile, State } from 'src/models/RequestFile';
 
 @Component({
   selector: 'app-dashboarding',
@@ -16,18 +15,18 @@ import { RejectComponent } from '../../Dashboard/reject/reject.component';
   styleUrls: ['./dashboarding.component.css']
 })
 export class DashboardingComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id','fileType','langue', 'name', 'echeanceRC', 'echeanceRD', 'state', 'action'];
+  displayedColumns: string[] = ['fileType', 'langue', 'name', 'echeanceRC', 'echeanceRD', 'state', 'nombrephrase', 'action'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   files: RequestFile[];
-  requestFile: RequestFile
-
-  constructor( private requestService: RequestService,
-    private dialog: MatDialog,
-    private _liveAnnouncer: LiveAnnouncer
-    ) { this.dataSource = new MatTableDataSource(this.files);}
+  requestFile: RequestFile;
+  nombre: number;
+  constructor(private requestService: RequestService,
+              private dialog: MatDialog,
+              private liveAnnouncer: LiveAnnouncer
+  ) { this.dataSource = new MatTableDataSource(this.files); }
 
   ngOnInit(): void {
     this.requestFile = new RequestFile();
@@ -43,9 +42,9 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
   announceSortChange(sortState: Sort) {
 
     if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+      this.liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+      this.liveAnnouncer.announce('Sorting cleared');
     }
   }
   applyFilter(event: Event) {
@@ -58,11 +57,12 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
   }
 
   getAllFiles() {
-    this.requestService.getAlll().subscribe(data => {
+    this.requestFile.user = new UserEntity();
+    this.requestFile.user.id = localStorage.getItem('id');
+    this.requestService.getFileByUser(this.requestFile.user.id).subscribe(data => {
       this.dataSource.data = data;
-      this.files=data;
-    }
-    )
+
+    });
   }
   applyFilter2(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -77,11 +77,23 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = false;
-    dialogConfig.width = "60%";
-    dialogConfig.maxHeight= '90vh'
+    dialogConfig.width = '60%';
+    dialogConfig.maxHeight = '90vh';
     dialogConfig.data = row;
     this.dialog.open(CorrectionComponent, dialogConfig);
     this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());
   }
 
-}
+  countLines(row) {
+this.verify(row);
+this.requestService.Count(row.id).subscribe(res => this.ngAfterViewInit());
+  }
+
+  verify(row){
+    if (row.nombrephrase > 100) {
+      row.state = State.to_verify;
+      this.requestService.update(row).subscribe();
+    }
+  }
+  }
+

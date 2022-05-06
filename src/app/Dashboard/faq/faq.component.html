@@ -16,7 +16,7 @@
     <mat-expansion-panel-header>Q: {{faqItem.question}}</mat-expansion-panel-header>
     <div class="row">
       <mat-card class="col-4" style="background-color: rgb(173, 185, 185);">A: {{faqItem.answer}}</mat-card>
-      <mat-card class="col-8"><div [innerHTML]="faqItem.title"></div></mat-card>
+      <mat-card class="col-8"><div [innerHTML]="faqItem.title | noSanitize"></div></mat-card>
     </div>
   </mat-expansion-panel>
 </mat-accordion>

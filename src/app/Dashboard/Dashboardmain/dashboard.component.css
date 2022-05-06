@@ -30,7 +30,7 @@
     width: 100%;
     color: #3c4858;
   }
-  .nav-item:hover,.menu-button:focus .nav-item:focus ,.panel:hover{
+  .nav-item:hover,.menu-button:focus .nav-item:focus {
   background: #70A888;
     color: white;
   }

@@ -1,5 +1,5 @@
-import { TypeNotif } from './../../../Models/TypeNotif';
-import { Notification } from './../../../Models/Notification';
+import { TypeNotif } from '../../../models/TypeNotif';
+import { Notification } from '../../../models/Notification';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -61,8 +61,6 @@ export class AlertManagementComponent implements OnInit, AfterViewInit {
     this.notification.delaimax = this.delaimax.value;
     this.notification.type = this.TypeNotif.value;
      this.notification.user.firstName = this.responsible.value;
-// console.log(this.responsible.value,this.notification.user.id)
-    //  this.notification.user.id = this.token.getId();
     this.notifService.addNotifs(this.notification).subscribe();
 
     this.toastr.success(

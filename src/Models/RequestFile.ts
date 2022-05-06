@@ -6,27 +6,20 @@ export class RequestFile {
     echeanceRC: Date;
     echeanceRD: Date;
     fileType:FileType;
-    marque: Marque;
-    cible: Cible;
+    marque: Brand;
+    cible: Target;
     fonctionnalite:Fonctionnalite;
     langue: Langue;
     state: State;
     checklist:Infos[];
     commentaire: string;
+    nombrephrase:number;
     user:UserEntity;
     select:any;
   }
 
   export enum FileType{
     Approximation, Demande
-  }
-
-  export enum Marque{
-    Renault,Peugeot,Citroen,BMW,Volkswagen,Hyundai,Mazda,Toyota,Suzuki,Audi
-  }
-
-  export enum Cible{
-    II_2019_pack
   }
 
   export enum Fonctionnalite{
@@ -41,10 +34,21 @@ export class RequestFile {
     unstarted,
     in_progress,
     rejected,
-    finished
+    finished,
+    to_verify,
+    verified
   }
 
   export class Infos{
    infos:string;
    state:boolean;
   }
+
+  export class Brand{
+    marque:string;
+    actions:any;
+   }
+
+   export class Target{
+    cible:string;
+   }

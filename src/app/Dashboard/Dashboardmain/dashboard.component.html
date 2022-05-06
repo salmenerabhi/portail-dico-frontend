@@ -4,7 +4,7 @@
             <img src="../../assets/img/logo-actia.png" alt="logo" height="50" width="240">
         </span>
         <div class="nav-link text-center  ">
-            <img [src]="retrievedImage" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
+            <img [src]="retrievedImage" (error)="onError()" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
             <p class="name mt-2">{{user?.firstName}} {{user?.lastName}}</p>
             <p class=" designation">{{user?.role}}</p>
         </div>
@@ -17,7 +17,7 @@
                 </button>
             </li>
             <li class="nav-item">
-                <mat-accordion>
+                <mat-accordion >
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
                         class="panel">
                         <mat-expansion-panel-header class="menu-button  ">
@@ -29,14 +29,14 @@
                         </mat-expansion-panel-header>
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " routerLink="/dashboard/toolsmanager">
-                    <mat-icon>dashboard</mat-icon>
+                    <mat-icon>memory</mat-icon>
                     <span> <a class="tools" (click)="redirectTools()">Tools</a></span>
                 </button>
             </li>
             <li class="nav-item text-center">
-                <button mat-button class="menu-button  " routerLink="/dashboard/tools/logs">
+                <button mat-button class="menu-button  " routerLink="/dashboard/logs">
                     <mat-icon>insert_drive_file</mat-icon>
-                    <span>Logs</span>
+                    <span> <a class="tools" (click)="redirectLogs()">Logs</a></span>
                 </button>
             </li>
             </mat-expansion-panel>
@@ -87,7 +87,7 @@
             <span class="example-spacer"></span>
             <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon favorite-icon"
                 aria-label="Example icon-button with heart icon">
-                <img [src]="retrievedImage" class="rounded-circle  " height="28" width="28" alt="image">
+                <img [src]="retrievedImage" (error)="onError()" class="rounded-circle  " height="28" width="28" alt="image">
             </button>
             <mat-menu #menu="matMenu">
 

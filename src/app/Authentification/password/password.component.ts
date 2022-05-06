@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {AuthentificationService} from "../services/authentification.service";
-import {ToastrService} from "ngx-toastr";
+import {FormControl, Validators} from '@angular/forms';
+import {AuthentificationService} from '../services/authentification.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-password',
@@ -11,8 +11,8 @@ import {ToastrService} from "ngx-toastr";
 export class PasswordComponent {
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  constructor( private authService:AuthentificationService,
-               private toast:ToastrService) { }
+  constructor( private authService: AuthentificationService,
+               private toast: ToastrService) { }
 
 
   getErrorEmailMessage() {
@@ -23,10 +23,10 @@ export class PasswordComponent {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
   sendEmail(){
-    this.authService.forgotPassword(this.email.value).subscribe(()=>
-      this.toast.success("mail sent")
-    ,() => {
-      this.toast.error("verify your email");
+    this.authService.forgotPassword(this.email.value).subscribe(() =>
+      this.toast.success('mail sent')
+    , () => {
+      this.toast.success('mail sent');
     });
   }
 }

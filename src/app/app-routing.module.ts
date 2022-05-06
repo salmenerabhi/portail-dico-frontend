@@ -1,3 +1,6 @@
+import { LogsComponent } from './Dashboard/logs/logs.component';
+import { HomeTLComponent } from './TL/home-tl/home-tl.component';
+import { ConfigurationComponent } from './RD/configuration/configuration.component';
 import { ToolsRCComponent } from './RC/tools-rc/tools-rc.component';
 import { ToolManagementComponent } from './RD/tool-management/tool-management.component';
 import { DashboardRCComponent } from './RC/dashboard-rc/dashboard-rc.component';
@@ -9,13 +12,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './Authentification/guards/auth.guard';
 import { ResetPasswordComponent } from './Authentification/reset-password/reset-password.component';
-
 import { DashboardComponent } from './Dashboard/Dashboardmain/dashboard.component';
-
 import { FirstpageComponent } from './Dashboard/Firstpage/firstpage.component';
 import { HomeComponent } from './Home/home.component';
-import { AddUserComponent } from './RD/UserManagement/add-user/add-user.component';
-import { UpdateUserComponent } from './RD/UserManagement/update-user/update-user.component';
 import { ToolsComponent } from './RD/tool-management/tools/tools.component';
 import { FaqComponent } from './Dashboard/faq/faq.component';
 import { ListUserComponent } from './RD/UserManagement/list-user/list-user.component';
@@ -26,23 +25,28 @@ import { DashboardingComponent } from './RC/dashboarding/dashboarding.component'
 import { RejectComponent } from './Dashboard/reject/reject.component';
 import { SchedulerComponent } from './Dashboard/scheduler/scheduler.component';
 import { StatsComponent } from './Dashboard/stats/stats.component';
+import { DashboardTLComponent } from './TL/dashboard-tl/dashboard-tl.component';
+import { ListFilesTLComponent } from './TL/list-files-tl/list-files-tl.component';
+import { LogsManagementComponent } from './RD/logs-management/logs-management.component';
+import { AfterAuthGuard } from './Authentification/guards/AfterAuthGuard';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent}, 
+  {path: '', component: HomeComponent ,canActivate: [AfterAuthGuard]}, 
   {path: 'firstpageRD', component:FirstpageComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] ,children:[
     { path: 'listFiles', component: ListFilesComponent,canActivate: [AuthGuard]},
     { path: 'toolsmanager', component: ToolsComponent, canActivate: [AuthGuard] },
+    { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
     { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
     { path: 'administration', component: AdministrationpageComponent, canActivate: [AuthGuard] },
     {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
     {path: 'faqmanagement', component:FaqManagementComponent, canActivate: [AuthGuard] },
     {path: 'toolmanagement', component:ToolManagementComponent, canActivate: [AuthGuard] },
+    {path: 'logsmanagement', component:LogsManagementComponent, canActivate: [AuthGuard] },
     {path: 'alertmanagement', component:AlertManagementComponent, canActivate: [AuthGuard] },
+    {path: 'configuration', component:ConfigurationComponent, canActivate: [AuthGuard] },
     {path: 'planning', component:SchedulerComponent, canActivate: [AuthGuard] },
   ]},
-  {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
-  { path: 'updateuser', component: UpdateUserComponent, canActivate: [AuthGuard] },
 
 
 
@@ -50,6 +54,7 @@ const routes: Routes = [
   { path: 'dashboardRC', component: DashboardRCComponent, canActivate: [AuthGuard] ,children:[
     { path: 'filesRequest', component: FilesRequestRCComponent ,canActivate: [AuthGuard]},
     { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
+    { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
     { path: 'toolsmanager', component: ToolsRCComponent, canActivate: [AuthGuard] },
     { path: 'mainRC', component: DashboardingComponent ,canActivate: [AuthGuard]},
     {path: 'reject', component:RejectComponent, canActivate: [AuthGuard] },
@@ -57,6 +62,17 @@ const routes: Routes = [
     { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
 
   ]},
+
+  {path: 'homeTL', component:HomeTLComponent, canActivate: [AuthGuard] },
+  {path: 'dashboardTL', component:DashboardTLComponent, canActivate: [AuthGuard] ,children:[
+  { path: 'listfilesTL', component: ListFilesTLComponent,canActivate: [AuthGuard]},
+  { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
+  { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
+  { path: 'toolsmanager', component: ToolsRCComponent, canActivate: [AuthGuard] },
+  { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
+
+  ]},
+
 
   {path: 'resetPassword/:token', component: ResetPasswordComponent},
 ]

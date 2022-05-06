@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FileDB } from 'src/models/FileDB';
 import { UserEntity } from 'src/models/userEntity';
-import { TokenService } from '../Authentification/services/token.service';
 import { AccountService } from '../services/account.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class InscriptionComponent implements OnInit {
   hide = true;
   RD = true;
   TL: UserEntity[];
-  confirmPassword = new FormControl(null, [Validators.required, Validators.minLength(8)])
+  confirmPassword = new FormControl(null, [Validators.required, Validators.minLength(8)]);
   show = true;
   message: File;
   photo: File;
@@ -29,7 +28,6 @@ export class InscriptionComponent implements OnInit {
   retrievedImage: string = 'assets/img/avatar.jpg';
 
   constructor(private accountService: AccountService,
-              private tokenService: TokenService,
               private toast: ToastrService,
               private route: Router
   ) {
@@ -38,7 +36,6 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
      this.user.image = new FileDB();
      this.getTL();
-     console.log(this.getTL())
   }
 
   getTL() {
@@ -88,12 +85,11 @@ export class InscriptionComponent implements OnInit {
       if (this.photo) {
         this.user.image.name = this.photo.name;
       }
-      console.log(this.user)
       formData.append('image', this.photo);
       formData.append('userDto', JSON.stringify(this.user));
       this.accountService.addUser(formData)
         .subscribe(res => {
-            this.toast.success('Data added successfully !!', 'add', {
+            this.toast.success('User registered successfully !', '', {
               timeOut: 3000,
               positionClass: 'toast-bottom-right'
             });
@@ -106,7 +102,7 @@ export class InscriptionComponent implements OnInit {
     } else {
       this.accountService.addUserWithoutImage(this.user)
         .subscribe(res => {
-            this.toast.success('Data added successfully !!', 'add', {
+            this.toast.success('User registered successfully!', '', {
               timeOut: 3000,
               positionClass: 'toast-bottom-right'
             });
@@ -117,7 +113,6 @@ export class InscriptionComponent implements OnInit {
               timeOut: 3000,
               positionClass: 'toast-bottom-left'
             })
-            console.log(error)
           });
 
     }

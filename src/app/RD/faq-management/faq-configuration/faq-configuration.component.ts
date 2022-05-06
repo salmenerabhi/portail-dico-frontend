@@ -44,15 +44,12 @@ export class FaqConfigurationComponent implements OnInit ,AfterViewInit{
     this.getFaq();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    console.log(this.ListFaqs)
   }
 
   ngOnInit(): void {
     this.faqItem=new FaqItem();
     this.faqItem.user =new UserEntity();
     this.getFaq();
-    console.log(this.ListFaqs)
-
   }
 
 
@@ -77,33 +74,17 @@ export class FaqConfigurationComponent implements OnInit ,AfterViewInit{
       }
     }
 
-    getImage(user:UserEntity) {
-      this.base64Data = user.image.data;
-    this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-    return this.retrievedImage;
-   
-  }
-
   deletefaq(id:number){
     let confirm= window.confirm('do you want to delete this user')
     if(confirm) {
       this.faqService.deletefaq(id).subscribe(res => {
-          this.toast.success("user deleted ",'delete', {
+          this.toast.success("Question deleted ",'', {
             timeOut: 3000,
             positionClass: 'toast-bottom-right'})
           this.ngAfterViewInit();
         },
         error => this.toast.error('something wrong '))
     }}
-  onEdit(FaqItem){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "60%";
-    dialogConfig.data=this.faqItem;
-    this.dialog.open(UpdateUserComponent,dialogConfig);
-    this.dialog.afterAllClosed.subscribe(()=>this.ngAfterViewInit());
-  }
 
 }
 

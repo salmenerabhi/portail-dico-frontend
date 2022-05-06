@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TokenService } from 'src/app/Authentification/services/token.service';
 import { AccountService } from 'src/app/services/account.service';
 import { FileDB } from 'src/models/FileDB';
 import { UserEntity } from 'src/models/userEntity';
@@ -26,7 +25,6 @@ export class AddUserComponent implements OnInit {
   retrievedImage: string = 'assets/img/avatar.jpg';
 
   constructor(private accountService: AccountService,
-              private tokenService: TokenService,
               private toast: ToastrService,
               private route: Router
   ) {
@@ -80,7 +78,6 @@ export class AddUserComponent implements OnInit {
       if (this.photo) {
         this.user.image.name = this.photo.name;
       }
-      console.log(this.user)
       formData.append('image', this.photo);
       formData.append('userDto', JSON.stringify(this.user));
       this.accountService.addUser(formData)
@@ -109,7 +106,6 @@ export class AddUserComponent implements OnInit {
               timeOut: 3000,
               positionClass: 'toast-bottom-left'
             })
-            console.log(error)
           });
 
     }

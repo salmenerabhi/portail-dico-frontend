@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FaqService } from 'src/app/services/faq.service';
 import { FaqItem } from 'src/models/faq.item';
 import { UpdateUserComponent } from '../../UserManagement/update-user/update-user.component';
+import { FaqdescriptionComponent } from '../faqdescription/faqdescription.component';
 
 @Component({
   selector: 'app-faq-answer',
@@ -30,9 +31,28 @@ export class FaqAnswerComponent implements OnInit {
     onEdit(row){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.autoFocus = true;
-      dialogConfig.width = "60%";
+      dialogConfig.height= "60%";
+      dialogConfig.width = "40%";
+      dialogConfig.position= {
+        top: '200px',
+        right: '100px'
+      }
       dialogConfig.data=row;
       this.dialog.open(FaqAddAnswerComponent,dialogConfig);
+      this.dialog.afterAllClosed.subscribe(()=>this.ngAfterViewInit());
+    }
+
+    openDescription(row){
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      dialogConfig.height= "60%";
+      dialogConfig.width = "40%";
+      dialogConfig.position= {
+        top: '200px',
+        right: '100px'
+      }
+      dialogConfig.data=row;
+      this.dialog.open(FaqdescriptionComponent,dialogConfig);
       this.dialog.afterAllClosed.subscribe(()=>this.ngAfterViewInit());
     }
 }

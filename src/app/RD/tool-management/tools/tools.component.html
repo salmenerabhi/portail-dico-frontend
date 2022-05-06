@@ -4,37 +4,47 @@
   </ol>
 </nav>
 
-<div class="container">
 
-  <div class="row">
-    <form method="POST" enctype="multipart/form-data" action="/tool">
+<div class="row" style="width: 100%;"> 
+  <form method="POST" enctype="multipart/form-data" action="/tool">
+    <div class="col-6">
+      <h2>Tool name </h2>
 
-      <h2 class="col-6">Tool name </h2>
-      <input matInput class="col-6" appearance="fill" placeholder="Ex. Tool.exe" type="text" style="width: 100%;"
-        [(ngModel)]="tool.name" name="tool.name" />
+      <mat-form-field appearance="outline">
+        <mat-label>Tool name</mat-label>
+        <input matInput [(ngModel)]="tool.name" name="tool.name" placeholder="Ex. Tool.exe">
+        <mat-icon matSuffix>description</mat-icon>
+      </mat-form-field>
 
-      <h2 class="col-6">Tool description</h2>
-      <input matInput placeholder="Ex. Pizza" type="text" [(ngModel)]="tool.description" name="tool.description" />
+      <!-- <input matInput class="col-6" appearance="fill" placeholder="Ex. Tool.exe" type="text" style="width: 100%;"
+        [(ngModel)]="tool.name" name="tool.name" /> -->
 
+      <h2>Tool description</h2>
 
-      <h2 class="col-6">Tool to upload</h2>
-
-      <div style="text-align:center">
-      <input type="file" name="file" (change)="onSelectFile($event)" />
+      <mat-form-field appearance="outline">
+        <mat-label>Tool description</mat-label>
+        <textarea matInput [(ngModel)]="tool.description" name="tool.description" rows="12"></textarea>
+      </mat-form-field>
     </div>
-      <h2 class="col-6">Image to upload</h2>
+    <!-- <input matInput placeholder="Ex. Pizza" type="text" [(ngModel)]="tool.description" name="tool.description" /> -->
+
+    <div class="col-5">
+      <h2>Tool to upload</h2>
+
       <div style="text-align:center">
-        <input type="file" name="image" (change)="onSelectImage($event)"  />
-        </div>
-        <img class="card-img-top img-responsive  " [src]="retrievedImage"
-          style="height :100px;width:100px ;border: solid 2px white ;display: block;margin-left: auto;
+        <input type="file" name="file" (change)="onSelectFile($event)" />
+      </div>
+      <h2>Image to upload</h2>
+      <div style="text-align:center">
+        <input type="file" name="image" (change)="onSelectImage($event)" />
+      </div>
+      <img class="card-img-top img-responsive  " [src]="retrievedImage" style="height :100px;width:100px ;border: solid 2px white ;display: block;margin-left: auto;
           margin-right: auto;
           ;" alt="">
-      
 
+    </div>
 
-      <button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent" (click)=" updloadFile()">Correct </button>
-    </form>
-  </div>
-
+    <button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent"
+      (click)=" updloadFile()">Upload </button>
+  </form>
 </div>

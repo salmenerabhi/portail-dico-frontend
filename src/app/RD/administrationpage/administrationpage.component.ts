@@ -33,4 +33,14 @@ export class AdministrationpageComponent implements OnInit {
 
     this.router.navigateByUrl('/dashboard/toolmanagement');
   }
+
+  redirectLogManagement(){
+
+    this.router.navigateByUrl('/dashboard/logsmanagement');
+  }
+
+  redirectConfiguration() {
+
+    this.router.navigateByUrl('/dashboard/configuration');
+  }
 }

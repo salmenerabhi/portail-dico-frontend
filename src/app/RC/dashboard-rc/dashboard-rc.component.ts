@@ -13,79 +13,70 @@ import { UserEntity } from 'src/models/userEntity';
   styleUrls: ['./dashboard-rc.component.css']
 })
 export class DashboardRCComponent implements OnInit {
+  private defaultImage: string = 'assets/img/logo.png';
+  public imageUrl: string ;
+
   panelOpenState = false;
-  user: UserEntity
-   selectedFile: File;
-   retrievedImage: any;
-   base64Data: any;
-   initOpts = {
-     renderer: 'svg',
-     width: 300,
-     height: 300
-   };
- 
-  
-   constructor(private tokenService: TokenService,
-     private router: Router,
-     public LoadService: LoaderService,
-     private accountService: AccountService,
-     private dialog:MatDialog) {
-   }
- 
-   ngOnInit(): void {
-     this.getUserById();
- 
-   }
- 
- 
- 
-    getUserById() {
-      this.accountService.getUserByEmail(this.tokenService.getId()).subscribe(data => {
-         this.user = data;
-          this.getImage();
-        }
-      )
-    }
- 
-    getImage() {
-      this.base64Data = this.user.image.data;
-      this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-    }
- 
- redirectTools(){
-   this.router.navigateByUrl('dashboardRC/toolsmanager');
- }
- redirectDashboard(){
-  this.router.navigateByUrl('/dashboardRC/mainRC');
-}
- redirectFilesRequest(){
-   this.router.navigateByUrl('/dashboardRC/filesRequest');
- }
- redirectFaq(){
-  this.router.navigateByUrl('/dashboardRC/faq');
-}
- 
- redirectAdministration(){
-   this.router.navigateByUrl('/dashboard/administration');
- }
- 
- logout() {
-   this.tokenService.remove();
-   this.router.navigateByUrl("/");
- 
- }
- 
- openDialogPassword() {
-   this.dialog.open(ResetPasswordComponent,{
-     height: '40%',
-     width: '60%'
-   });
- }
- // openDialog() {
- //   this.dialog.open(ProfileComponent,{
- //     height: '50%',
- //     width: '40%'
- //   });
- // }
- 
+  user: UserEntity;
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  initOpts = {
+    renderer: 'svg',
+    width: 300,
+    height: 300
+  };
+  constructor(private tokenService: TokenService,
+              private router: Router,
+              public LoadService: LoaderService,
+              private accountService: AccountService,
+              private dialog: MatDialog) {
   }
+  ngOnInit(): void {
+    this.getUserById();
+  }
+  getUserById() {
+    this.accountService.getUserByEmail(this.tokenService.getId()).subscribe(data => {
+      this.user = data;
+      this.getImage();
+    }
+    );
+  }
+  public onError(): void {
+    this.retrievedImage = this.defaultImage;
+  }
+  getImage() {
+    this.base64Data = this.user.image.data;
+    this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+  }
+
+  redirectTools() {
+    this.router.navigateByUrl('dashboardRC/toolsmanager');
+  }
+  redirectDashboard() {
+    this.router.navigateByUrl('/dashboardRC/mainRC');
+  }
+  redirectFilesRequest() {
+    this.router.navigateByUrl('/dashboardRC/filesRequest');
+  }
+  redirectFaq() {
+    this.router.navigateByUrl('/dashboardRC/faq');
+  }
+
+  redirectAdministration() {
+    this.router.navigateByUrl('/dashboard/administration');
+  }
+
+  logout() {
+    this.tokenService.remove();
+    this.router.navigateByUrl('/');
+
+  }
+
+  openDialogPassword() {
+    this.dialog.open(ResetPasswordComponent, {
+      height: '40%',
+      width: '60%'
+    });
+  }
+}

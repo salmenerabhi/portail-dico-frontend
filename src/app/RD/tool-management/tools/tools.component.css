@@ -1,18 +1,11 @@
-/*     
-   .container{ 
-    
-    border: solid;
-    width: 50%;
-    margin-top: auto;
-    margin-right: auto;
-    margin-left: auto;
-    border-radius: 15px 15px 15px 15px;
-    border-style: groove;}
 
-     */
 
-.file-input {
+/* .file-input {
    display: none;
+ } */
+ mat-form-field{
+    width: 100%;
  }
+
 
     

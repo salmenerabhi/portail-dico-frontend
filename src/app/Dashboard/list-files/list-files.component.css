@@ -10,3 +10,6 @@ table {
   td, th {
     width: 10%;
   }
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: rgb(233, 233, 233);
+  }

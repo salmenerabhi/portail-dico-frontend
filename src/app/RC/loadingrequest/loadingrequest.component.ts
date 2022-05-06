@@ -1,14 +1,9 @@
-import { FileType, State } from './../../../models/RequestFile';
+import { FileType, State } from '../../../models/RequestFile';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { finalize } from 'rxjs/operators';
 import { TokenService } from 'src/app/Authentification/services/token.service';
-import { AccountService } from 'src/app/services/account.service';
-import { RequestService } from 'src/app/services/request.service';
 import { RequestFile } from 'src/models/RequestFile';
 
 @Component({
@@ -23,95 +18,51 @@ export class LoadingrequestComponent implements OnInit {
   file: RequestFile = new RequestFile();
   files: File;
 
-requestfile: RequestFile;
+  requestfile: RequestFile;
   @Input()
-  requiredFileType:string;
+  requiredFileType: string;
 
   fileName = '';
-  uploadProgress:number;
+  uploadProgress: number;
   uploadSub: Subscription;
-  constructor(private http: HttpClient,    private requestFileService: RequestService,   private toast: ToastrService,
+  constructor(
     private Token: TokenService,
-private sign: AccountService,  
-private dialogRef: MatDialogRef<LoadingrequestComponent> ) { }
+  ) { }
   tok: string;
   id: string;
   message: File;
 
   ngOnInit(): void {
-    this.requestfile=new RequestFile();
+    this.requestfile = new RequestFile();
     this.id = this.Token.getInfos().id;
     this.tok = this.Token.getToken();
-    this.requestfile.fileType= FileType.Demande;
-    this.requestfile.state= State.unstarted;
-
-console.log(this.file.fileType);
- 
+    this.requestfile.fileType = FileType.Demande;
+    this.requestfile.state = State.unstarted;
   }
 
   onSelectFile(event: any) {
-    const file:File = event.target.files[0];
+    const file: File = event.target.files[0];
 
     if (event.target.files.length > 0) {
       this.files = event.target.files[0];
       this.message = this.files;
-      // this.updloadFile();
-      this.requestfile.name=this.files.name
-      console.log(this.message);
+      this.requestfile.name = this.files.name;
       this.fileName = file.name;
-  
+
 
     }
   }
-  onFileSelected(event) {
-    const file:File = event.target.files[0];
-  
-    if (file) {
-        this.fileName = file.name;
-        const formData = new FormData();
-        formData.append("thumbnail", file);
 
-        const upload$ = this.http.post("/api/thumbnail-upload", formData, {
-            reportProgress: true,
-            observe: 'events'
-        })
-        .pipe(
-            finalize(() => this.reset())
-        );
-      
-        this.uploadSub = upload$.subscribe(event => {
-          if (event.type == HttpEventType.UploadProgress) {
-            this.uploadProgress = Math.round(100 * (event.loaded / event.total));
-          }
-        })
-    }
-}
+  cancelUpload() {
+    this.uploadSub.unsubscribe();
+    this.reset();
+  }
 
-cancelUpload() {
-this.uploadSub.unsubscribe();
-this.reset();
-}
+  reset() {
+    this.uploadProgress = null;
+    this.uploadSub = null;
+  }
 
-reset() {
-this.uploadProgress = null;
-this.uploadSub = null;
-}
 
-updloadFile() {
-  this.file.id = this.id;
-  
-  const formData = new FormData();
-  formData.append('file', this.files);
-  formData.append('requestfile', JSON.stringify(this.requestfile));
-  this.requestFileService.Save(formData)
-    .subscribe(res => {
-      console.log(res);
-    });
-  this.toast.warning('tool added successfully !!', 'ADDED', {
-    timeOut: 3000,
-    positionClass: 'toast-bottom-left'
-  });
-
-}
 
 }
