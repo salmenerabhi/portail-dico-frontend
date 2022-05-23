@@ -8,10 +8,13 @@ import { Router } from '@angular/router';
 })
 export class FirstpageComponent implements OnInit {
   panelOpenState = false;
+  lang: any;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
   redirectDashboard() {

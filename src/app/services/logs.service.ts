@@ -17,8 +17,11 @@ export class LogsService {
   get(id: string): Observable<Logs> {
     return this.http.get<Logs>(this.url  + id);
   }
-  getContent(): Observable<Logs[]> {
+  getContentError(): Observable<Logs[]> {
     return this.http.get<Logs[]>(this.url +'/doc/error' );
+  }
+  getContentTTBT(): Observable<Logs[]> {
+    return this.http.get<Logs[]>(this.url +'/doc/ttbt' );
   }
   getAll(): Observable<Logs[]> {
     return this.http.get<Logs[]>(this.url)

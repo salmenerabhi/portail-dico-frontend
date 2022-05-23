@@ -12,48 +12,48 @@
         </div>
         <div class="row">
           <mat-form-field class="col-6" appearance="fill">
-            <mat-label>First name</mat-label>
-            <input matInput  [(ngModel)]="user.firstName" maxlength="10" placeholder="First name" required>
+            <mat-label>{{'FirstName' | translate}}</mat-label>
+            <input matInput  [(ngModel)]="user.firstName" maxlength="10" placeholder="{{'FirstName' | translate}}" required>
           </mat-form-field>
           <mat-form-field class="col-6" appearance="fill">
-            <mat-label>Last name</mat-label>
-            <input matInput maxlength="10" [(ngModel)]="user.lastName" placeholder="Last name" required>
+            <mat-label>{{'LastName' | translate}}</mat-label>
+            <input matInput maxlength="10" [(ngModel)]="user.lastName" placeholder="{{'LastName' | translate}}" required>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field class="col-6" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="pat@example.com" [(ngModel)]="user.email" [formControl]="email" required>
+            <mat-label>{{'Email' | translate}}</mat-label>
+            <input matInput placeholder="{{'EmailExample' | translate}}" [(ngModel)]="user.email" [formControl]="email" required>
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
           <mat-form-field class="col-6" appearance="fill">
-            <mat-label>Role</mat-label>
-            <mat-select   [(ngModel)]="user.role" #role="ngModel"  placeholder="Role" required>
-              <mat-option disabled > select role</mat-option>
+            <mat-label>{{'Role' | translate}}</mat-label>
+            <mat-select   [(ngModel)]="user.role" #role="ngModel"  placeholder="{{'Role' | translate}}" required>
+              <mat-option disabled > {{'SelectRole' | translate}}</mat-option>
               
               <mat-option value="TL"> TL</mat-option>
               <mat-option value="RC" selected="RC">RC</mat-option>
+              <mat-option value="Client"> Client</mat-option>
             </mat-select>
           </mat-form-field>
           
           <mat-form-field class="col-6" appearance="fill">
-            <mat-label>Site</mat-label>
-            <mat-select   [(ngModel)]="user.site" #role="ngModel"  placeholder="Site" required>
-              <mat-option disabled > select Site</mat-option>
+            <mat-label>{{'Site' | translate}}</mat-label>
+            <mat-select   [(ngModel)]="user.site" #role="ngModel"  placeholder="{{'Site' | translate}}" required>
+              <mat-option disabled >{{'SelectSite' | translate}}</mat-option>
               
               <mat-option value="Multidiag"> Multidiag</mat-option>
               <mat-option value="ATAL" selected="ATAL">ATAL</mat-option>
               <mat-option value="ACTIA_Italie"> ACTIA Italie</mat-option>
-
+              <mat-option value="ACTIA_Automotive"> ACTIA Automotive</mat-option>
             </mat-select>
           </mat-form-field>
         
-
            <mat-form-field class="col-6" appearance="fill" *ngIf="role.value=='RC'">
-            <mat-label>Responsible</mat-label>
-            <mat-select   [(ngModel)]="user.responsable" #role="ngModel"  placeholder="Site" required>
-              <mat-option disabled > select a Team Leader</mat-option>
+            <mat-label>{{'Responsible' | translate}}</mat-label>
+            <mat-select   [(ngModel)]="user.responsable" #role="ngModel" required>
+              <mat-option disabled >{{'selectATeamLeader' | translate}}</mat-option>
               
               <mat-option *ngFor="let user of TL" [value]="user.id">{{user.firstName}} {{user.lastName}}</mat-option>
             </mat-select>
@@ -62,14 +62,14 @@
         
         <div class="row">
           <mat-form-field appearance="fill" class=" col-6 ">
-            <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" placeholder="password"  [formControl]="password" required>
+            <mat-label>{{'Password' | translate}}</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="{{'Password' | translate}}"  [formControl]="password" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" class="col-6">
-            <mat-label>Confirm password</mat-label>
-            <input matInput [type]="show ? 'password' : 'text'" placeholder="confirm password"
+            <mat-label>{{'ConfirmPassword' | translate}}</mat-label>
+            <input matInput [type]="show ? 'password' : 'text'" placeholder="{{'ConfirmPassword' | translate}}"
                    [formControl]="confirmPassword" required>
             <mat-icon matSuffix (click)="show = !show">{{show ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="confirmPassword.invalid">{{getErrorConfirmPasswordMessage()}}</mat-error>
@@ -80,7 +80,7 @@
       </mat-card-content>
       <mat-card-actions class="p-2" >
         <div class="row justify-content-end">
-          <button mat-button mat-dialog-close class="w-25 " (click)="addUser()"> Add User </button>
+          <button mat-button mat-dialog-close class="w-25 " (click)="addUser()"> {{'AddUser' | translate}} </button>
         </div>
       </mat-card-actions>
     </mat-card>

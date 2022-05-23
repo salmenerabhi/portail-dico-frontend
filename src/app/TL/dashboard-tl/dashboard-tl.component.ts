@@ -71,7 +71,11 @@ export class DashboardTLComponent implements OnInit {
     this.router.navigateByUrl('/dashboardTL/listfilesTL');
   }
   redirectFilesRequest() {
-    this.router.navigateByUrl('/dashboardRC/filesRequest');
+    this.router.navigateByUrl('/dashboardTL/filesRequest');
+  }
+
+  redirectLogs() {
+    this.router.navigateByUrl('/dashboardTL/logs');
   }
   redirectFaq() {
     this.router.navigateByUrl('/dashboardTL/faq');

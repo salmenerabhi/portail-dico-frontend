@@ -14,7 +14,6 @@ import { AccountService } from '../services/account.service';
 export class InscriptionComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   role = new FormControl('');
-
   user: UserEntity = new UserEntity();
   hide = true;
   RD = true;
@@ -26,6 +25,7 @@ export class InscriptionComponent implements OnInit {
   password = new FormControl(null, [Validators.required, Validators.minLength(8)])
   base64Data: Int8Array;
   retrievedImage: string = 'assets/img/avatar.jpg';
+  lang: any;
 
   constructor(private accountService: AccountService,
               private toast: ToastrService,
@@ -36,6 +36,8 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
      this.user.image = new FileDB();
      this.getTL();
+     this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
   getTL() {
@@ -118,6 +120,7 @@ export class InscriptionComponent implements OnInit {
     }
 
   }
+
 
   
 

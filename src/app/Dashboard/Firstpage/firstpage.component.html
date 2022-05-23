@@ -2,25 +2,19 @@
     <img src="../../assets/img/logo-actia.png" alt="logo" class="img-fluid "
         style="height: 20%; width: 20%; margin-top: 1ch; ">
 </div>
-
 <br><br>
-
 <div class="bigcontainer  ">
-
     <br>
     <div class="container  ">
-
-
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b> <a class="dashboard"  (click)="redirectDashboard()"  >Dashboard</a></b> <mat-icon style="position: absolute; left: 80%;">dashboard</mat-icon>
-                   
+                        <b> <a class="dashboard" (click)="redirectDashboard()">{{'Dashboard' | translate}}</a></b>
+                        <mat-icon style="position: absolute; left: 80%;">dashboard</mat-icon>
                     </mat-panel-title>
-
                 </mat-expansion-panel-header>
-                <p>to manage requests and approximation files and track their history </p>
+                <p>{{'to manage requests and approximation files and track their history' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -31,27 +25,28 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectTools()"  >Tools</a></b> <mat-icon style="position: absolute; left: 80%;">memory</mat-icon>
+                        <b><a class="dashboard" (click)="redirectTools()">{{'Tools' | translate}}</a></b>
+                        <mat-icon style="position: absolute; left: 80%;">memory</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>To upload and manage tools</p>
+                <p>{{'To upload and manage tools' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
     <br>
     <div class="container  ">
 
-
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectFaq()"  > FAQs</a></b> <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
+                        <b><a class="dashboard" (click)="redirectFaq()"> {{'FAQs' | translate}}</a></b>
+                        <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>To ask and answer and manage the most frequently asked questions here   </p>
+                <p>{{'To ask and answer and manage the most frequently asked questions here' | translate}} </p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -64,11 +59,12 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectStats()"  > Statistics</a></b><mat-icon style="position: absolute; left: 80%;"> show_chart</mat-icon>
+                        <b><a class="dashboard" (click)="redirectStats()"> {{'Statistics' | translate}}</a></b>
+                        <mat-icon style="position: absolute; left: 80%;"> show_chart</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>to view charts and manage statistics</p>
+                <p>{{'to view charts and manage statistics' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -81,58 +77,15 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectAdministration()"  >Administration </a></b><mat-icon style="position: absolute; left: 80%;">domain</mat-icon>
+                        <b><a class="dashboard" (click)="redirectAdministration()">{{'Administration' | translate}} </a></b>
+                        <mat-icon style="position: absolute; left: 80%;">domain</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>To manage members, FAQs, tools, logs and alerts</p>
+                <p>{{'To manage members, FAQs, tools, logs and alerts' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
-        
+
     </div>
     <br>
 </div>
-<!-- 
-<ul class="tilesWrap">
-
-	<li>
-		<h2>01</h2>
-		<h3>Dashboard</h3>
-		<p>
-			To manage requests and approximation files and track their history.
-		</p>
-		<button (click)="redirectDashboard()" >Go Now</button>
-	</li>
-	<li>
-		<h2>02</h2>
-		<h3>Tools</h3>
-		<p>
-			To upload and manage tools.
-		</p>
-		<button (click)="redirectTools()">Go Now</button>
-	</li>
-	<li>
-		<h2>03</h2>
-		<h3>FAQs</h3>
-		<p>
-			To ask and answer and manage the most frequently asked questions here.
-		</p>
-		<button (click)="redirectFaq()">Go Now</button>
-	</li>
-    <li>
-		<h2>04</h2>
-		<h3>Statistics</h3>
-		<p>
-			To view charts and manage statistics.
-		</p>
-		<button (click)="redirectStats()">Go Now</button>
-	</li>
-    <li>
-		<h2>05</h2>
-		<h3>Administration</h3>
-		<p>
-			To manage members, FAQs, tools, logs and alerts.
-		</p>
-		<button (click)="redirectAdministration()">Go Now</button>
-	</li>
-</ul> -->

@@ -1,0 +1,81 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened mode="side" class="  shadow  ">
+        <span class="w-100">
+            <img src="../../assets/img/logo-actia.png" alt="logo" height="50" width="240">
+        </span>
+        <div class="nav-link text-center  ">
+            <img [src]="retrievedImage" (error)="onError()" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
+            <p class="name mt-2">{{user?.firstName}} {{user?.lastName}}</p>
+            <p class=" designation">{{user?.role}}</p>
+        </div>
+        <ul class="nav">
+            <li class="nav-item text-center">
+                <button mat-button class="menu-button  " #button1 routerLink="/dashboardAT/filesRequest">
+                    <mat-icon>insert_drive_file</mat-icon>
+                    <span style="line-height: 1em;"> <a class="requestphrase" (click)="redirectFilesRequest()">Request phrase and <br>approximation</a></span>
+
+                </button>
+            </li>
+
+            <li class="nav-item text-center">
+                <button mat-button class="menu-button  " #button1 routerLink="/dashboardAT/listfilesAT">
+                    <mat-icon>dashboard</mat-icon>
+                    <span> <a class="dashboard" (click)="redirectDashboard()">Dashboard</a></span>
+
+                </button>
+            </li>
+            
+            <li class="nav-item text-center">
+                <button mat-button class="menu-button  " #button1 routerLink="/dashboardAT/stats">
+                    <mat-icon>show_chart</mat-icon>
+                    <span> <a class="dashboard" (click)="redirectStats()">Statistics</a></span>
+                </button>
+            </li>
+
+
+        </ul>
+        <div class="fixed-bottom mb-1">
+            <span class="nav-item">
+                <p class="designation menu-button ">ACTIA 2022 © </p>
+            </span>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content class=" bg-light">
+        <mat-toolbar>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+            </button>
+            <span class="example-spacer"></span>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon favorite-icon"
+                aria-label="Example icon-button with heart icon">
+                <img [src]="retrievedImage" class="rounded-circle  " height="28" width="28" alt="image">
+            </button>
+            <mat-menu #menu="matMenu">
+
+                <span mat-menu-item class="text-center">
+                    <p class="name">{{user?.firstName}} {{user?.lastName}}</p>
+                    <p class="designation">Member since {{user?.creationDate|date}} </p>
+              
+                  </span>
+
+                <hr>
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>logout</mat-icon>
+                        <span>Logout</span>
+                    </button>
+            </mat-menu>
+        </mat-toolbar>
+
+        <div>
+            <div class="container mb-5 mt-5 ">
+                <router-outlet></router-outlet>
+
+            </div>
+        </div>
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

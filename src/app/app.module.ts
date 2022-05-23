@@ -1,3 +1,4 @@
+import { LanguageInterceptor } from './interceptors/language.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatSliderModule } from '@angular/material/slider';
@@ -8,7 +9,7 @@ import { HomeComponent } from './Home/home.component';
 
 
 
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
@@ -88,10 +89,16 @@ import { LogsComponent } from './Dashboard/logs/logs.component';
 import { FaqdescriptionComponent } from './RD/faq-management/faqdescription/faqdescription.component';
 import { NoSanitizePipe } from './services/data.service';
 import { LoadingapproximationComponent } from './RC/loadingapproximation/loadingapproximation.component';
+import { DashboardATComponent } from './Actia_Toulouse/dashboard-at/dashboard-at.component';
+import { HomeATComponent } from './Actia_Toulouse/home-at/home-at.component';
+import { ListfilesATComponent } from './Actia_Toulouse/listfiles-at/listfiles-at.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
-
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -140,7 +147,10 @@ import { LoadingapproximationComponent } from './RC/loadingapproximation/loading
     LogsComponent,
     FaqdescriptionComponent,
     NoSanitizePipe,
-    LoadingapproximationComponent
+    LoadingapproximationComponent,
+    DashboardATComponent,
+    HomeATComponent,
+    ListfilesATComponent,
     
   ],
   imports: [
@@ -185,6 +195,14 @@ import { LoadingapproximationComponent } from './RC/loadingapproximation/loading
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
 
   ],
 
@@ -194,7 +212,14 @@ import { LoadingapproximationComponent } from './RC/loadingapproximation/loading
   provide: HTTP_INTERCEPTORS,
   useClass: JwtInterceptorService,
   multi: true
-},AuthGuard,DayService,WeekService,MonthAgendaService,WorkWeekService,MonthService ,
+},
+{
+  provide: HTTP_INTERCEPTORS,
+  useClass: LanguageInterceptor,
+  multi: true
+},
+HttpClient,
+AuthGuard,DayService,WeekService,MonthAgendaService,WorkWeekService,MonthService ,
 LinkService, ImageService, HtmlEditorService,ToolbarService,TableService],
   bootstrap: [AppComponent]
 })

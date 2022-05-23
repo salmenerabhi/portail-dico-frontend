@@ -32,7 +32,7 @@ export class FaqAddAnswerComponent implements OnInit {
     this.faqService.updateFaq(this.faq)
       .subscribe(res => {
       });
-    this.toast.warning('correction sent successfully !!', 'ADDED', {
+    this.toast.success('answer sent successfully !!', '', {
       timeOut: 3000,
       positionClass: 'toast-bottom-left'
     });

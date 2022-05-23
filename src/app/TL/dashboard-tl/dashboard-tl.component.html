@@ -43,9 +43,9 @@
                 </button>
             </li>
             <li class="nav-item text-center">
-                <button mat-button class="menu-button  " routerLink="/dashboardTL/tools/logs">
+                <button mat-button class="menu-button  " routerLink="/dashboardTL/logs">
                     <mat-icon>insert_drive_file</mat-icon>
-                    <span>Logs</span>
+                    <span><a class="dashboard" (click)="redirectLogs()">Logs</a></span>
                 </button>
             </li>
             </mat-expansion-panel>
@@ -92,10 +92,10 @@
                   </span>
 
 
-                  <button mat-menu-item (click)="openDialogPassword()">
+                  <!-- <button mat-menu-item (click)="openDialogPassword()">
                     <mat-icon>security</mat-icon>
                     <span > Reset password </span>
-                  </button>
+                  </button> -->
 
                 <hr>
                     <button mat-menu-item (click)="logout()">

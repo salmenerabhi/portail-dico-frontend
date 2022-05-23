@@ -11,7 +11,8 @@ export class Logs {
     cible: Target;
     fonctionnalite:Fonctionnalite;
     type: LogType;
-    
+    creationDate:Date;
+ 
   }
 
   export enum LogType{

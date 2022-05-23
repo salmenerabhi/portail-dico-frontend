@@ -27,7 +27,6 @@ export class ListUserComponent implements AfterViewInit  {
 
   constructor( private accountService: AccountService ,
                private toast: ToastrService,
-               private token: TokenService,
                private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(this.users);
   }
@@ -75,12 +74,11 @@ export class ListUserComponent implements AfterViewInit  {
   }
   getImage(user: UserEntity) {
     if  (user.image.data != null){
-      console.log(this.retrievedImage)
      this.base64Data = user.image.data;
      this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
 
     } else {   this.retrievedImage = this.defaultImage; 
-    console.log(this.retrievedImage)}
+}
     return this.retrievedImage;
   }
  onError(): void {

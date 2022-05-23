@@ -23,6 +23,7 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
   files: RequestFile[];
   requestFile: RequestFile;
   nombre: number;
+  input:any
   constructor(private requestService: RequestService,
               private dialog: MatDialog,
               private liveAnnouncer: LiveAnnouncer
@@ -30,7 +31,7 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.requestFile = new RequestFile();
-    this.getAllFiles();
+    this.getAllFiles();    
   }
 
   ngAfterViewInit() {
@@ -82,18 +83,6 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
     dialogConfig.data = row;
     this.dialog.open(CorrectionComponent, dialogConfig);
     this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());
-  }
-
-  countLines(row) {
-this.verify(row);
-this.requestService.Count(row.id).subscribe(res => this.ngAfterViewInit());
-  }
-
-  verify(row){
-    if (row.nombrephrase > 100) {
-      row.state = State.to_verify;
-      this.requestService.update(row).subscribe();
-    }
   }
   }
 

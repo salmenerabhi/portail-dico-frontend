@@ -45,10 +45,10 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
 
   dataSource: MatTableDataSource<any>;
   dataSourceUS: MatTableDataSource<any>;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort1: MatSort;
-  @ViewChild(MatPaginator) paginator1: MatPaginator;
+  @ViewChild('paginator') paginator1: MatPaginator;
+  @ViewChild('paginatorLegal') paginator: MatPaginator;
+  @ViewChild('MatSort') sort: MatSort;
+  @ViewChild('MatSortLegal') sort1: MatSort;
   pipe = new DatePipe('en-US');
   todayWithPipe = null;
   users: UserEntity[];
@@ -59,11 +59,14 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   selection = new SelectionModel<RequestFile>(true, []);
   selected: any;
   user: UserEntity;
-
+  lang: any;
   fileName = 'ExcelSheet.xlsx';
 
   ngAfterViewInit() {
-
+    this.dataSource.paginator = this.paginator1;
+    this.dataSourceUS.paginator = this.paginator;
+    this.dataSource.sort = this.sort1;
+    this.dataSourceUS.sort = this.sort;
 
     this.getAllFiles();
     this.getAllUS();
@@ -79,8 +82,7 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
     this.getAllFiles();
     this.getAllFilesUsers();
     this.getAllUS();
-
-
+    this.lang= localStorage.getItem('lang') || 'en' ;
 
   }
   announceSortChange(sortState: Sort) {
@@ -110,7 +112,9 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   startAll() {
     for (const file of this.selection.selected) {
       file.state = State.in_progress;
-      this.requestService.update(file).subscribe(r => this.ngAfterViewInit()
+      this.requestService.update(file).subscribe(r => {this.ngAfterViewInit();
+                                                       this.selection.clear();
+      }
       );
 
     }
@@ -137,11 +141,11 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   }
 
   loadScript() {
-    this.script.load('creation of sentence requests').then(data => {
-    }).catch();
-    this.requestService.launchScript().subscribe();
+    for (const file of this.selection.selected) {
+      console.log(this.file)
+    this.requestService.launchScript(file).subscribe();
   }
-
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

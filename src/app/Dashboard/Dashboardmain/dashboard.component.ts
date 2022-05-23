@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
     width: 300,
     height: 300
   };
+  lang: any;
   constructor(private tokenService: TokenService,
               private router: Router,
               public LoadService: LoaderService,
@@ -35,11 +36,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserById();
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
 
   public onError(): void {
     this.retrievedImage = this.defaultImage;
+   
   }
 
    getUserById() {
@@ -67,7 +71,7 @@ redirectDashboard(){
 }
 
 redirectFaq(){
-  this.router.navigateByUrl('/dashboard/faqmanagement');
+  this.router.navigateByUrl('/dashboard/faq');
 }
 redirectStats(){
   this.router.navigateByUrl('/dashboard/stats');
@@ -89,4 +93,8 @@ openDialogPassword() {
     width: '60%'
   });
 }
+changeLang(lang){
+  localStorage.setItem('lang', lang);
+  window.location.reload();
+    }
  }

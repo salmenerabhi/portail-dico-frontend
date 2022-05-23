@@ -17,16 +17,14 @@ import { UserEntity } from 'src/models/userEntity';
 })
 export class HomeComponent implements OnInit {
   user: UserEntity | undefined;
-
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(4)]);
   hide = true;
-
   loginForm = new FormGroup({
     email: this.email,
     password: this.password
-
   });
+lang: any;
   constructor(private authService: AuthentificationService,
               private token: TokenService,
               private account: AccountService,
@@ -37,6 +35,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.email.reset();
     this.password.reset();
+    this.lang= localStorage.getItem('lang') || 'en' ;
   }
   openDialog() {
     this.dialog.open(PasswordComponent, {
@@ -117,7 +116,15 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl('/homeTL');
 
     }
+    else if (this.token.getUserRole() === 'Client') {
+
+      this.router.navigateByUrl('/homeAT');
+    }
     else { this.router.navigateByUrl('/'); }
   }
 
+  changeLang(lang){
+localStorage.setItem('lang', lang);
+window.location.reload();
+  }
 }

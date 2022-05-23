@@ -1,3 +1,3 @@
 export enum Role{
-    RD,RC,TL
+    RD,RC,TL,Client
   }

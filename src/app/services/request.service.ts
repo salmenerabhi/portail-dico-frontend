@@ -1,3 +1,5 @@
+import { requestfileUsersStat } from './../../models/requestfileUsersStat';
+import { StatTarget } from './../../models/StatTarget';
 import { Target } from '../../models/RequestFile';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -46,15 +48,11 @@ export class RequestService {
   getUserName(id: string) {
     return this.http.get(this.url + '/user' + id);
   }
-
-  Count(id: string):Observable<any> {
-    return this.http.get<any>(this.url + '/count/' + id);
-  }
   download(name:string):Observable<any>{
     return  this.http.get<any>(this.url + '/download/'+name);
   }
-  launchScript() {
-    return this.http.get(this.url+ '/launch');
+  launchScript(requestFile: RequestFile) : Observable<RequestFile>  {
+    return this.http.post<RequestFile>(this.url+ '/write' ,  requestFile);
   }
   updateRequest(formData: FormData):Observable<RequestFile>{
     return this.http.put<RequestFile>(this.url+ '/update',formData)
@@ -85,5 +83,20 @@ export class RequestService {
 
   getStatRf() :Observable<StatRequestFiles>{
     return this.http.get<StatRequestFiles>(this.url+'/stat');
-}
+  }
+  getRfperUser(id :string) :Observable<StatRequestFiles>{
+    return this.http.get<StatRequestFiles>(this.url+'/statnbr/'+ id);
+  }
+  getRejectedperUser(id :string) :Observable<StatRequestFiles>{
+    return this.http.get<StatRequestFiles>(this.url+'/statnbr1/'+ id);
+  }
+  getStattarget(year :number) :Observable<StatTarget[]>{
+    return this.http.get<StatTarget[]>(this.url+'/statTarget/'+ year);
+  }
+  getrejectedUsers() :Observable<requestfileUsersStat[]>{
+    return this.http.get<requestfileUsersStat[]>(this.url+'/users/rejected/');
+  }
+  getfinishedUsers() :Observable<requestfileUsersStat[]>{
+    return this.http.get<requestfileUsersStat[]>(this.url+'/users/finished/');
+  }
 }

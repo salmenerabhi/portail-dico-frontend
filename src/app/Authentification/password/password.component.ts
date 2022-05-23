@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {AuthentificationService} from '../services/authentification.service';
 import {ToastrService} from 'ngx-toastr';
@@ -8,11 +8,15 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './password.component.html',
   styleUrls: ['./password.component.css']
 })
-export class PasswordComponent {
+export class PasswordComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
+  lang: any;
   constructor( private authService: AuthentificationService,
                private toast: ToastrService) { }
+  ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
+  }
 
 
   getErrorEmailMessage() {

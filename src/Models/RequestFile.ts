@@ -5,10 +5,10 @@ export class RequestFile {
     ecu: string;
     echeanceRC: Date;
     echeanceRD: Date;
-    fileType:FileType;
+    fileType: FileType;
     marque: Brand;
     cible: Target;
-    fonctionnalite:Fonctionnalite;
+    fonctionnalite: Fonctionnalite;
     langue: Langue;
     state: State;
     checklist:Infos[];

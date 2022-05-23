@@ -2,7 +2,8 @@
     <div>
         <h2>Request phrase</h2>
         <mat-icon style="margin-top: 6px;" class="question" mat-raised-button matTooltipClass="example-tooltip-red"
-            matTooltip="upload a request file through this window" matTooltipPosition="right" [matTooltipDisabled]="disabled.value"
+            matTooltip="upload a request file through this window" matTooltipPosition="right"
+            [matTooltipDisabled]="disabled.value"
             aria-label="Button that displays a tooltip that can be programmatically disabled">help_outline</mat-icon>
 
         <br><br>
@@ -13,9 +14,9 @@
             (change)="onFileSelected($event)" #fileUpload hidden>
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {{file.name || "No file uploaded yet."}}
-
-        <button style="position: relative; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
+        <span *ngIf="file.fileType==1">
+            {{file.name || "No file uploaded yet."}}
+        </span>        <button style="position: absolute; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
             (click)="openDialog()">
             <mat-icon>add</mat-icon>
 
@@ -40,7 +41,8 @@
     <div>
         <h2>approximation</h2>
         <mat-icon style="margin-top: 6px;" class="question" mat-raised-button matTooltipClass="example-tooltip-red"
-            matTooltip="upload an approximation through this window" matTooltipPosition="right" [matTooltipDisabled]="disabled.value"
+            matTooltip="upload an approximation through this window" matTooltipPosition="right"
+            [matTooltipDisabled]="disabled.value"
             aria-label="Button that displays a tooltip that can be programmatically disabled">help_outline</mat-icon>
 
         <br><br>
@@ -50,11 +52,11 @@
         <input type="file" class="file-input" style="margin-right: 5%;" [accept]="requiredFileType"
             (change)="onFileSelected($event)" #fileUpload hidden>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        {{fileName || "No file uploaded yet."}}
-
-        <button style="position: relative; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
-        (click)="openApproximationDialog()">
+        <span *ngIf="file.fileType==0">
+            {{file.name || "No file uploaded yet."}}
+        </span>
+        <button style="position: absolute; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
+            (click)="openApproximationDialog()">
             <mat-icon>attach_file</mat-icon>
 
         </button>
@@ -78,7 +80,7 @@
 
         <mat-form-field class="w-100">
             <mat-label>Brand</mat-label>
-            <mat-select [(ngModel)]="selected" [formControl]="brand" >
+            <mat-select [(ngModel)]="selected" [formControl]="brand">
                 <mat-option *ngFor="let brand of brands" [value]="brand">{{brand.marque}}</mat-option>
             </mat-select>
         </mat-form-field>
@@ -91,7 +93,7 @@
 
         <mat-form-field class="w-100">
             <mat-label>Target</mat-label>
-            <mat-select [(ngModel)]="selected1" [formControl]="target" >
+            <mat-select [(ngModel)]="selected1" [formControl]="target">
                 <mat-option *ngFor="let target of targets" [value]="target">{{target.cible}}</mat-option>
             </mat-select>
         </mat-form-field>

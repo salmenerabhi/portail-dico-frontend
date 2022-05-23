@@ -31,9 +31,13 @@ export class AfterAuthGuard implements CanActivate {
             else if (this.tokenService.getUserRole() === 'TL') {
                 this.router.navigateByUrl('/homeTL');
                 return false;
-              }
+            }
+            else if (this.tokenService.getUserRole() === 'Client') {
+                this.router.navigateByUrl('/homeAT');
+                return false;
+            }
         }
-
-        return true;
+            return true;
+        
     }
 }

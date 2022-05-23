@@ -11,6 +11,8 @@
   },
   "private": true,
   "dependencies": {
+    "5": "0.0.1",
+    "12": "^1.0.2",
     "@angular/animations": "^9.1.13",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.12",
@@ -23,6 +25,8 @@
     "@angular/platform-browser-dynamic": "~9.1.12",
     "@angular/router": "~9.1.12",
     "@kolkov/angular-editor": "^1.0.0",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^5.0.0",
     "@stomp/ng2-stompjs": "^8.0.0",
     "@syncfusion/ej2-angular-buttons": "^19.4.53",
     "@syncfusion/ej2-angular-lists": "^19.4.52",

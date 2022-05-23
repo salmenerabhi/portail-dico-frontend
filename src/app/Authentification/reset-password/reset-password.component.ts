@@ -16,6 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   confirmPassword = new FormControl(null, [Validators.required, Validators.minLength(8)]);
   hide = true;
   show = true;
+  lang: any;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -34,6 +35,8 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.route.snapshot.paramMap.get('token');
     this.checkToken();
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
   checkToken() {

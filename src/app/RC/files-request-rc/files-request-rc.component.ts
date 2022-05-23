@@ -73,6 +73,7 @@ values: Infos [] = [
     this.requestfile = new RequestFile();
     this.getTargets();
     this.getBrands();
+    
   }
 
 
@@ -119,6 +120,8 @@ openDialog() {
     // received data from dialog-component
     this.file = res[0];
     this.files = res[1];
+
+
   });
 }
 
@@ -172,6 +175,5 @@ getBrands() {
 getTargets() {
   this.requestFileService.getTargets().subscribe((r) => (this.targets = r));
 }
-
 }
 

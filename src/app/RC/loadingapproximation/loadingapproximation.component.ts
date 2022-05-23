@@ -38,7 +38,6 @@ export class LoadingapproximationComponent implements OnInit {
     this.requestfile.fileType = FileType.Approximation;
     this.requestfile.state = State.unstarted;
 
-
   }
 
   onSelectFile(event: any) {

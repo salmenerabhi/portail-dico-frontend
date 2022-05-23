@@ -33,11 +33,9 @@ export class FaqConfigurationComponent implements OnInit ,AfterViewInit{
 
 
   constructor(private faqService:FaqService,
-              private token:TokenService,
               private router: Router,
               private toast:ToastrService,
-              private dialog: MatDialog,
-              private accountService:AccountService
+
               ) {     this.dataSource = new MatTableDataSource(this.ListFaqs);
               }
   ngAfterViewInit(): void {
@@ -75,7 +73,7 @@ export class FaqConfigurationComponent implements OnInit ,AfterViewInit{
     }
 
   deletefaq(id:number){
-    let confirm= window.confirm('do you want to delete this user')
+    let confirm= window.confirm('do you want to delete this question?')
     if(confirm) {
       this.faqService.deletefaq(id).subscribe(res => {
           this.toast.success("Question deleted ",'', {

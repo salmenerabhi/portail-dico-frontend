@@ -1,10 +1,59 @@
+<div id="top">
+  <div class="content">
+    <img src="../../assets/img/actia.png" alt="logo" style="width:30%; height: 50px;">
+    <div class="title">
+      <h1 style="color: #dfd4e2;">{{'DicoPortal' | translate}}</h1>
+      <h3 style="    margin: unset;">{{'OnlineDico' | translate}}</h3>
+      <h3>{{'MULTI-DIAG' | translate}}</h3>
+    </div>
+    <div class="col-3">
+     <div class="custom-select"> <mat-icon style="vertical-align: -7px;">language</mat-icon><select (change)="changeLang($event.target.value)">
+      <option value="en" [selected]="lang =='en'">English</option>
+      <option value="fr" [selected]="lang =='fr'">Français</option>
+    </select></div>
+  </div>
+  </div>
+</div>
+<div id="bottom">
+  <br>
+  <form [formGroup]="loginForm">
+    <div class="example-container">
+      <mat-form-field appearance="fill" class="w-50 justify-content-center">
+        <mat-label><mat-icon>account_circle</mat-icon>{{'entermail' | translate}}</mat-label>
+        <input matInput placeholder="{{'EmailExample' | translate}}" [formControl]="email" required >
+        <mat-error *ngIf="email.invalid">{{getErrorEmailMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field appearance="fill" class="w-50  justify-content-center">
+        <mat-label><mat-icon>lock</mat-icon>{{'enterpassword' | translate}}</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" [formControl]="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <span class="text-center" style="position: relative; left : 60%"><a class="password" (click)="openDialog()">{{'ForgotPassword' | translate}}</a></span>
+<br> <br>
+    <div class="row justify-content-center">
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid" (click)="signIn()" class="w-25">{{'SignIn' | translate}}</button>
+    </div>
+    <br>
+    <div class="row ">
+      <span class="text-center" style="position: relative; left : 0%"><p>{{'youHaveNoAccountYet' | translate}}</p><a class="password" (click)="openDialog2()">{{'Register' | translate}}</a></span>
+    </div>
 
+  </form>
+</div>
+
+
+
+
+<!-- 
 
   <div class="bg-light full-height pt-5 h-100">
     <div class="container  ">
       <div class="row">
-        <div class="col-md-6">
-            
+        <div class="col-md-6">   
           <img src="../../assets/img/dico.jpg" alt="Image" class="img-fluid rounded float-left">
         </div>
         <div class="col-md-6 contents">
@@ -55,4 +104,4 @@
   
       </div>
     </div>
-  </div>
+  </div> -->

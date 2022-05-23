@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Output xmlns="http://www.actia.fr/actidiag/author/thesau" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.actia.fr/actidiag/author/thesau Mapping.xsd">
+  <Languages DefaultLanguage="fr_FR" Format="UTF-8">
+    <Language Code="ar_AR" ThesaurusName="DICMD14AR"/>
+    <Language Code="bg_BG" ThesaurusName="DICMD14BG"/>
+    <Language Code="br_BR" ThesaurusName="DICMD14BR"/>
+    <Language Code="cs_CZ" ThesaurusName="DICMD14CS"/>
+    <Language Code="da_DK" ThesaurusName="DICMD14DA"/>
+    <Language Code="de_DE" ThesaurusName="DICMD14DE"/>
+    <Language Code="el_GR" ThesaurusName="DICMD14EL"/>
+    <Language Code="en_GB" ThesaurusName="DICMD14EN"/>
+    <Language Code="es_ES" ThesaurusName="DICMD14ES"/>
+    <Language Code="fa_FA" ThesaurusName="DICMD14FA"/>
+    <Language Code="fi_FI" ThesaurusName="DICMD14FI"/>
+    <Language Code="fr_FR" ThesaurusName="DICMD14FR"/>
+    <Language Code="he_HE" ThesaurusName="DICMD14HE"/>
+    <Language Code="hr_HR" ThesaurusName="DICMD14HR"/>
+    <Language Code="hu_HU" ThesaurusName="DICMD14HU"/>
+    <Language Code="id_ID" ThesaurusName="DICMD14ID"/>
+    <Language Code="it_IT" ThesaurusName="DICMD14IT"/>
+    <Language Code="ja_JP" ThesaurusName="DICMD14JA"/>
+    <Language Code="lt_LT" ThesaurusName="DICMD14LT"/>
+    <Language Code="nl_NL" ThesaurusName="DICMD14NL"/>
+    <Language Code="nv_NV" ThesaurusName="DICMD14NV"/>
+    <Language Code="pl_PL" ThesaurusName="DICMD14PL"/>
+    <Language Code="pt_PT" ThesaurusName="DICMD14PT"/>
+    <Language Code="ro_RO" ThesaurusName="DICMD14RO"/>
+    <Language Code="ru_RU" ThesaurusName="DICMD14RU"/>
+    <Language Code="sl_SL" ThesaurusName="DICMD14SL"/>
+    <Language Code="sr_SR" ThesaurusName="DICMD14SR"/>
+    <Language Code="sv_SE" ThesaurusName="DICMD14SV"/>
+    <Language Code="th_TH" ThesaurusName="DICMD14TH"/>
+    <Language Code="tr_TR" ThesaurusName="DICMD14TR"/>
+    <Language Code="zh_CN" ThesaurusName="DICMD14ZH"/>
+  </Languages>
+  <Mapping>
+    <Sentence Number="1" Reference="1"/>
+    <Sentence Number="2" Reference="2"/>
+    <Sentence Number="3" Reference="3"/>
+    <Sentence Number="4" Reference="4"/>
+    <Sentence Number="5" Reference="5"/>
+	<Sentence Number="6"  Reference="47" />
+	<Sentence Number="7"  Reference="48" />
+	<Sentence Number="8"  Reference="49" />
+	<Sentence Number="9"  Reference="50" />
+	<Sentence Number="10"  Reference="51" />
+	<Sentence Number="11"  Reference="52" />
+	<Sentence Number="12"  Reference="53" />
+	<Sentence Number="13"  Reference="54" />
+	<Sentence Number="14"  Reference="55" />
+	<Sentence Number="15"  Reference="56" />
+	<Sentence Number="16"  Reference="57" />
+	<Sentence Number="17"  Reference="58" />
+	<Sentence Number="18"  Reference="59" />
+	<Sentence Number="19"  Reference="60" />
+	<Sentence Number="20"  Reference="61" />
+	<Sentence Number="21"  Reference="62" />
+	<Sentence Number="22"  Reference="63" />
+	<Sentence Number="23"  Reference="64" />
+	<Sentence Number="24"  Reference="65" />
+	<Sentence Number="25"  Reference="66" />
+	<Sentence Number="26"  Reference="67" />
+	<Sentence Number="27"  Reference="68" />
+	<Sentence Number="28"  Reference="69" />
+	<Sentence Number="29"  Reference="70" />
+	<Sentence Number="30"  Reference="71" />
+	<Sentence Number="31"  Reference="72" />
+	<Sentence Number="32"  Reference="73" />
+	<Sentence Number="33"  Reference="74" />
+	<Sentence Number="34"  Reference="75" />
+	<Sentence Number="35"  Reference="76" />
+	<Sentence Number="36"  Reference="77" />
+	<Sentence Number="37"  Reference="78" />
+	<Sentence Number="38"  Reference="79" />
+	<Sentence Number="39"  Reference="80" />
+	<Sentence Number="40"  Reference="81" />
+	<Sentence Number="41"  Reference="82" />
+	<Sentence Number="42"  Reference="83" />
+	<Sentence Number="43"  Reference="84" />
+	<Sentence Number="44"  Reference="85" />
+	<Sentence Number="45"  Reference="86" />
+	<Sentence Number="46"  Reference="87" />
+	<Sentence Number="47"  Reference="6" />
+	<Sentence Number="48"  Reference="7" />
+	<Sentence Number="49"  Reference="8" />
+	<Sentence Number="50"  Reference="9" />
+	<Sentence Number="51"  Reference="10" />
+	<Sentence Number="52"  Reference="11" />
+	<Sentence Number="53"  Reference="12" />
+	<Sentence Number="54"  Reference="13" />
+	<Sentence Number="55"  Reference="14" />
+	<Sentence Number="56"  Reference="15" />
+	<Sentence Number="57"  Reference="16" />
+	<Sentence Number="58"  Reference="17" />
+	<Sentence Number="59"  Reference="18" />
+	<Sentence Number="60"  Reference="19" />
+	<Sentence Number="61"  Reference="20" />
+	<Sentence Number="62"  Reference="21" />
+	<Sentence Number="63"  Reference="22" />
+	<Sentence Number="64"  Reference="23" />
+	<Sentence Number="65"  Reference="24" />
+	<Sentence Number="66"  Reference="25" />
+	<Sentence Number="67"  Reference="26" />
+	<Sentence Number="68"  Reference="27" />
+	<Sentence Number="69"  Reference="28" />
+	<Sentence Number="70"  Reference="29" />
+	<Sentence Number="71"  Reference="30" />
+	<Sentence Number="72"  Reference="31" />
+	<Sentence Number="73"  Reference="32" />
+	<Sentence Number="74"  Reference="33" />
+	<Sentence Number="75"  Reference="34" />
+	<Sentence Number="76"  Reference="35" />
+	<Sentence Number="77"  Reference="36" />
+	<Sentence Number="78"  Reference="37" />
+	<Sentence Number="79"  Reference="38" />
+	<Sentence Number="80"  Reference="39" />
+	<Sentence Number="81"  Reference="40" />
+	<Sentence Number="82"  Reference="41" />
+	<Sentence Number="83"  Reference="42" />
+	<Sentence Number="84"  Reference="43" />
+	<Sentence Number="85"  Reference="44" />
+	<Sentence Number="86"  Reference="45" />
+	<Sentence Number="87"  Reference="46" />
+  </Mapping>
+</Output>
