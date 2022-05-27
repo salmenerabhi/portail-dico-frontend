@@ -1,3 +1,4 @@
+import { nbrMarqueFamilleStats } from './../../models/nbrMarqueFamilleStats';
 import { requestfileUsersStat } from './../../models/requestfileUsersStat';
 import { StatTarget } from './../../models/StatTarget';
 import { Target } from '../../models/RequestFile';
@@ -54,6 +55,9 @@ export class RequestService {
   launchScript(requestFile: RequestFile) : Observable<RequestFile>  {
     return this.http.post<RequestFile>(this.url+ '/write' ,  requestFile);
   }
+  launchScriptDecoup() {
+    return this.http.get(this.url+ '/launchDecoup');
+  }
   updateRequest(formData: FormData):Observable<RequestFile>{
     return this.http.put<RequestFile>(this.url+ '/update',formData)
   }
@@ -98,5 +102,11 @@ export class RequestService {
   }
   getfinishedUsers() :Observable<requestfileUsersStat[]>{
     return this.http.get<requestfileUsersStat[]>(this.url+'/users/finished/');
+  }
+  getStatnbrMarqueFamille() :Observable<nbrMarqueFamilleStats[]>{
+    return this.http.get<nbrMarqueFamilleStats[]>(this.url+'/nbrmarquefamille');
+  }
+  gettreatment() :Observable<requestfileUsersStat[]>{
+    return this.http.get<requestfileUsersStat[]>(this.url+'/treatment');
   }
 }

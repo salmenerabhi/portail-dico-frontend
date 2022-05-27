@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { ScriptServiceService } from './../../services/script-service.service';
-import { AccountService } from 'src/app/services/account.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -110,13 +109,13 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
     this.selection.select(...this.dataSource.data);
   }
   startAll() {
+    this.requestService.launchScriptDecoup().subscribe();
     for (const file of this.selection.selected) {
       file.state = State.in_progress;
       this.requestService.update(file).subscribe(r => {this.ngAfterViewInit();
                                                        this.selection.clear();
       }
       );
-
     }
     this.ngAfterViewInit();
 

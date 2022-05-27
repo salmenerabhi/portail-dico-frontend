@@ -4,7 +4,7 @@
     <div class="col-4">
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="cible">
-        <mat-header-cell mat-header-cell *matHeaderCellDef style="font-size: medium;"> <b>Target Name</b>
+        <mat-header-cell mat-header-cell *matHeaderCellDef style="font-size: medium;"> <b>{{'Target Name' | translate}}</b>
         </mat-header-cell>
         <mat-cell mat-cell *matCellDef="let element"> {{element.cible}}</mat-cell>
     </ng-container>
@@ -23,6 +23,6 @@
 </mat-table>
 </div>
 <div class="col-2">
-<button class="btn btn-outline-secondary createbutton" type="button"  (click)="openDialog()">Create</button>
+<button class="btn btn-outline-secondary createbutton" type="button"  (click)="openDialog()">{{'Create' | translate}}</button>
 </div>
 </div>

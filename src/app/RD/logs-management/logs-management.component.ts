@@ -20,6 +20,7 @@ export class LogsManagementComponent implements OnInit {
   requiredFileType:string;
   file: Logs = new Logs();
   files: File;
+  lang: any;
   constructor(private http: HttpClient,
     private toast: ToastrService,
     private logService: LogsService,
@@ -27,6 +28,8 @@ export class LogsManagementComponent implements OnInit {
     message: File;
 
   ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
   updloadFile() {
     const formData = new FormData();

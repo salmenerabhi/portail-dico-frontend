@@ -93,3 +93,17 @@ a:hover{
   color: white;
   text-decoration: none;
 }
+select{
+font-size: 14px;
+border-radius: 15px 15px 15px 15px;
+/* border: none; */
+    background: white;
+    width: 75px;
+    overflow: hidden;
+    height: 33px;
+    text-indent: 10px;
+    -webkit-appearance: none;
+    border-color: #3c4858;
+}
+
+

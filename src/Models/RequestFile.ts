@@ -3,6 +3,7 @@ export class RequestFile {
     id?: string;
     name: string;
     ecu: string;
+    famille: string;
     echeanceRC: Date;
     echeanceRD: Date;
     fileType: FileType;

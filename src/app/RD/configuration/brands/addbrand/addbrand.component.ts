@@ -12,6 +12,7 @@ import { Brand } from 'src/models/RequestFile';
 export class AddbrandComponent implements OnInit, AfterViewInit {
   brand: Brand;
   marque = new FormControl(null);
+  lang: any;
 
   constructor(private RequestfileService: RequestService,
               private toastr: ToastrService,
@@ -21,6 +22,7 @@ export class AddbrandComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.brand = new Brand();
+    this.lang= localStorage.getItem('lang') || 'en' ;
 
   }
 

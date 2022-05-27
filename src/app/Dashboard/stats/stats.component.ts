@@ -8,6 +8,7 @@ import { RequestFile } from 'src/models/RequestFile';
 import { MatTableDataSource } from '@angular/material/table';
 import { StatRequestFiles } from 'src/models/StatRequestFiles';
 import { TokenService } from 'src/app/Authentification/services/token.service';
+import { nbrMarqueFamilleStats } from 'src/models/nbrMarqueFamilleStats';
 
 @Component({
   selector: 'app-stats',
@@ -36,10 +37,13 @@ export class StatsComponent implements OnInit {
   chartOption4: any;
   chartOption5: any;
   chartOption6: any;
+  chartOption7: any;
+  chartOption8: any;
 
   rejectedperUser: any;
   percentage: any;
   totalperUser: any;
+  lang: any;
   constructor(private requestService: RequestService,
     private userService: AccountService,
     private Token: TokenService,
@@ -47,21 +51,26 @@ export class StatsComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.result);
   }
 
-
+  nbrMFdatas: nbrMarqueFamilleStats[]
   datas: StatTarget[]
   userdatas: requestfileUsersStat[]
 
   statistic: StatRequestFiles = new StatRequestFiles();
   targetStats: StatTarget = new StatTarget();
+  nbrfamillemarquestatistic: nbrMarqueFamilleStats = new nbrMarqueFamilleStats();
+
   ngOnInit(): void {
     this.getRequestFiles();
     this.getStatistic();
     this.id = this.Token.getId();
     this.getRfPerUser(this.id);
-    // this.getTargetStatistic();
     this.setData();
     this.rejectedUsers();
     this.finishedUsers();
+    this.getNbrMarquefamillestats()
+    this.getTempsTraitement()
+    this.lang = localStorage.getItem('lang') || 'en';
+
   }
 
 
@@ -106,36 +115,6 @@ export class StatsComponent implements OnInit {
           },
         ],
       };
-
-      // this.chartOption4 = {
-      //   tooltip: {
-      //     trigger: 'item',
-      //     formatter: '{a} <br/>{b} : {c} ({d}%)',
-      //   },
-      //   legend: {
-      //     orient: 'vertical',
-      //     left: 10,
-      //     top: 20,
-      //     bottom: 20,
-      //     type: 'scroll',
-      //     data: ['Finished approximations', 'Rejected approximations','Finished requests','Rejected requests'],
-      //   },
-      //   series: [
-      //     {
-      //       name: 'Request files',
-      //       type: 'pie',
-      //       radius: '80%',
-      //       center: ['50%', '50%'],
-      //       data: [
-      //         { value: this.statistic.nbrapproximationtraites, name: 'Finished approximations' },
-      //         { value: this.statistic.nbrapproximationrejetes, name: 'Rejected approximations' },
-      //         { value: this.statistic.nbrdemandestraites, name: 'Finished requests' },
-      //         { value: this.statistic.nbrdemandesrejetes, name: 'Rejected requests' }
-
-      //       ],
-      //     },
-      //   ],
-      // };
 
 
       this.option = {
@@ -278,57 +257,6 @@ export class StatsComponent implements OnInit {
     );
   }
 
-  // getTargetStatistic() {
-  //   this.requestService.getStattarget().subscribe(data => {
-  //     this.targetStats = data;
-  //     console.log(this.targetStats);
-
-  //     this.chartOption3 = {
-  //       tooltip: {
-  //         trigger: 'axis',
-  //         axisPointer: {
-  //           type: 'shadow'
-  //         }
-  //       },
-  //       grid: {
-  //         left: '3%',
-  //         right: '4%',
-  //         bottom: '3%',
-  //         containLabel: true
-  //       },
-  //       xAxis: [
-  //         {
-  //           type: 'category',
-  //           data: ['week'],
-  //           axisTick: {
-  //             alignWithLabel: true
-  //           }
-  //         }
-  //       ],
-  //       yAxis: [
-  //         {
-  //           data: ['value'],
-  //           type: 'value'
-  //         }
-  //       ],
-  //       series: [
-  //         {
-  //           name: 'Direct',
-  //           type: 'bar',
-  //           barWidth: '60%',
-  //           data: [
-  //             { value: this.targetStats.value, name: 'value' },
-  //             { value: this.targetStats.week, name: 'week' }
-
-  //           ]
-  //         }
-  //       ]
-  //     };
-  //   }
-  //   );
-  // }
-
-
   getRfPerUser(id: string) {
 
     this.requestService.getRfperUser(this.id).subscribe(r => {
@@ -365,6 +293,7 @@ export class StatsComponent implements OnInit {
     }
     )
   }
+
   setData() {
     const data1 = [];
     const xAxisData = [];
@@ -445,62 +374,6 @@ export class StatsComponent implements OnInit {
     )
   };
 
-
-  // this.chartOption3 = {
-  //   legend: {
-  //     data: ['value'],
-  //     align: 'left',
-  //   },
-  //   tooltip: {},
-  //   toolbox: {
-  //     show: true,
-  //     feature: {
-  //       mark: {show: true},
-  //       dataView: {show: true, readOnly: false},
-  //       magicType: {show: true, type: ['line', 'bar','pie']},
-  //       restore: {show: true},
-  //       saveAsImage: {show: true}
-  //     }},
-  //   dataZoom: [
-  //     {
-  //       show: true,
-  //       start: 0,
-  //       end: 10
-  //     },
-  //     {
-  //       type: 'inside',
-  //       start: 0,
-  //       end: 10
-  //     }
-  //   ],
-  //   xAxis: {
-  //     data: xAxisData,
-  //     silent: false,
-  //     splitLine: {
-  //       show: true,
-  //     },
-  //   },
-  //   yAxis: {
-  //     data: data1,
-  //     silent: false,
-  //     splitLine: {
-  //       show: true,
-  //     },
-  //   },
-  //   series: [
-  //     {
-  //       name: 'value',
-  //       type: 'bar',
-  //       data: data1,
-  //       animationDelay: (idx) => idx * 10,
-  //     },
-
-  //   ],
-  //   animationEasing: 'elasticOut',
-  //   animationDelayUpdate: (idx) => idx * 5,
-  // };
-
-
   rejectedUsers() {
     const data1 = [];
     const xAxisData = [];
@@ -508,9 +381,9 @@ export class StatsComponent implements OnInit {
     this.requestService.getrejectedUsers().subscribe(data => {
       this.userdatas = data
       for (let s of this.userdatas) {
-        
-          xAxisData.push(s.firstname);
-          data1.push(s.value)
+
+        xAxisData.push(s.firstname);
+        data1.push(s.value)
 
       }
       this.chartOption5 = {
@@ -570,9 +443,9 @@ export class StatsComponent implements OnInit {
     this.requestService.getfinishedUsers().subscribe(data => {
       this.userdatas = data
       for (let s of this.userdatas) {
-        
-          xAxisData.push(s.firstname);
-          data1.push(s.value)
+
+        xAxisData.push(s.firstname);
+        data1.push(s.value)
 
       }
       this.chartOption6 = {
@@ -624,5 +497,145 @@ export class StatsComponent implements OnInit {
     }
     )
   };
+
+  getNbrMarquefamillestats() {
+    const data1 = [];
+    const xAxisData = [];
+    const yAxisData = [];
+    this.requestService.getStatnbrMarqueFamille().subscribe(data => {
+      this.nbrMFdatas = data
+      for (let s of this.nbrMFdatas) {
+        xAxisData.push(s.marque)
+        yAxisData.push(s.famille)
+        data1.push(s.nbr)
+      }
+
+      this.chartOption7 = {
+        title: {
+          text: 'Life Expectancy and GDP by Country',
+          left: '5%',
+          top: '3%'
+        },
+        toolbox: {
+          // y: 'bottom',
+          feature: {
+
+            dataView: {},
+            magicType: { show: true, type: ['bar'] },
+
+            saveAsImage: {
+              pixelRatio: 2
+            }
+          }
+        },
+        legend: {
+          right: '10%',
+          top: '3%',
+          data: data1
+        },
+        grid: {
+          left: '8%',
+          top: '10%'
+        },
+        xAxis: {
+          data: xAxisData,
+          splitLine: {
+            lineStyle: {
+              type: 'dashed'
+            }
+          }
+        },
+        yAxis: {
+          data: yAxisData,
+
+          splitLine: {
+            lineStyle: {
+              type: 'dashed'
+            }
+          },
+          scale: true
+        },
+        series: [
+          {
+            data: data1,
+            symbolSize: function (data) {
+              return data
+            },
+            type: 'scatter',
+          },
+        ]
+      };
+
+
+    })
+  }
+
+  getTempsTraitement() {
+    const data1 = [];
+    const xAxisData = [];
+    this.requestService.gettreatment().subscribe(data => {
+      this.userdatas = data
+      for (let s of this.userdatas) {
+        data1.push(s.value)
+        xAxisData.push(s.firstname)
+        this.chartOption8 = {
+          title: {
+            text: 'Traitement / Demande'
+          },
+          grid: {
+            bottom: 150,
+          },
+          legend: {
+            data: xAxisData
+          },
+          toolbox: {
+            // y: 'bottom',
+            feature: {
+
+              dataView: {},
+              magicType: { show: true, type: ['bar', 'line'] },
+
+              saveAsImage: {
+                pixelRatio: 2
+              }
+            }
+          },
+          tooltip: {
+          },
+          xAxis: {
+            data: xAxisData,
+            splitLine: {
+              show: false
+            },
+            axisLabel: {
+              interval: 0,
+              rotate: 30,
+              fontSize: '10' ,
+            }
+            
+          },
+          yAxis: {},
+          series: [
+            {
+              name: 'Temps de traitement par jour',
+              type: 'bar',
+              data: data1,
+              emphasis: {
+                focus: 'series'
+              },
+              animationDelay: function (idx) {
+                return idx * 10;
+              }
+            }
+          ],
+          animationEasing: 'elasticOut',
+          animationDelayUpdate: function (idx) {
+            return idx * 5;
+          }
+        }
+      }
+    })
+  }
 }
+
 

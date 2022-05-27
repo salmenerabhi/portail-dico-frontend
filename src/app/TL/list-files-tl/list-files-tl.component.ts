@@ -16,16 +16,23 @@ import { UserEntity } from 'src/models/userEntity';
 export class ListFilesTLComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['fileType', 'user', 'langue', 'name', 'echeanceRC', 'echeanceRD', 'state', 'nombrephrase', 'action'];
   dataSource: MatTableDataSource<any>;
+  datasource1: MatTableDataSource<any>;
+
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('paginator') paginator1: MatPaginator;
+  @ViewChild('paginatorLegal') paginator: MatPaginator;
+
   files: RequestFile[];
   requestFile: RequestFile;
   constructor(private requestService: RequestService,
               private liveAnnouncer: LiveAnnouncer
-  ) { this.dataSource = new MatTableDataSource(this.files); }
+  ) { this.dataSource = new MatTableDataSource(this.files); 
+    this.datasource1 = new MatTableDataSource(this.files);}
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator1;
+    this.datasource1.paginator = this.paginator;
+
     this.getAllFiles();
   }
 
@@ -66,7 +73,9 @@ export class ListFilesTLComponent implements OnInit, AfterViewInit {
   }
 
   getAllFilesUsers() {
-    this.requestService.getAlll().subscribe((r) => (this.files = r));
+    this.requestService.getAlll().subscribe((r) => {(this.files = r)
+      this.datasource1.data = r;
+    });
   }
   applyFilter2(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

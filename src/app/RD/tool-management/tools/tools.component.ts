@@ -20,8 +20,6 @@ export class ToolsComponent implements OnInit {
   retrievedImage: string = 'assets/img/toollogo.png';
   @Input()
   requiredFileType: string;
-  public aa: any;
-
   tool: Tool;
   image: File;
   file: File;
@@ -30,6 +28,7 @@ export class ToolsComponent implements OnInit {
   fileName = '';
   uploadProgress: number;
   uploadSub: Subscription;
+  lang: any;
 
   constructor(private http: HttpClient,
     private toolservice: ToolsService,
@@ -42,13 +41,10 @@ private toolserv: ToolsService,
     tok: string;
     id: string;
   ngOnInit(): void {
-
+    this.lang= localStorage.getItem('lang') || 'en' ;
     this.tool=new Tool();
     this.id = this.Token.getInfos().id;
     this.tok = this.Token.getToken();
-    // this.toolserv.get(this.id).subscribe((res: Tool) => {
-    //   this.tool = res;
-    // });
   }
 
 

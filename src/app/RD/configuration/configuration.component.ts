@@ -7,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./configuration.component.css']
 })
 export class ConfigurationComponent implements OnInit {
+  lang: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
 }

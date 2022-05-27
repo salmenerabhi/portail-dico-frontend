@@ -12,43 +12,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./faq.component.css']
 })
 export class FaqComponent implements OnInit , AfterViewInit{
-
-
-  constructor(private faqService: FaqService,
-              private router: Router,
-
-              ) { }
+  lang: any;
   ListFaqs: FaqItem[];
   ListFaq: any;
   faqItem: FaqItem;
-
   // tslint:disable-next-line: member-ordering
   @Input()
   title = 'FAQ';
-
   // tslint:disable-next-line: member-ordering
   @Input()
   multi = false;
-
   // tslint:disable-next-line: member-ordering
   @Input()
   displayMode = 'default';
-
   // tslint:disable-next-line: member-ordering
   @Input()
   faqList: FaqItem[] = [];
-
-
   // tslint:disable-next-line: member-ordering
   @Input()
   title1 = 'Admin';
-
   @Output()
   onFAQItemAdded: EventEmitter<FaqItem> = new EventEmitter<FaqItem>();
-
   // tslint:disable-next-line: member-ordering
   question: string;
   answer: string;
+  constructor(private faqService: FaqService,
+              private router: Router,
+              private token: TokenService,
+              ) { }
+
   ngAfterViewInit(): void {
     this.getFaq();
   }
@@ -57,6 +49,8 @@ export class FaqComponent implements OnInit , AfterViewInit{
     this.faqItem = new FaqItem();
     this.faqItem.user = new UserEntity();
     this.getFaq();
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
   reset() {
@@ -71,7 +65,19 @@ export class FaqComponent implements OnInit , AfterViewInit{
 
     redirectfaqchild(){
 
-      this.router.navigateByUrl('/dashboardRC/ask');
+      if (this.token.getUserRole() == 'RD') {
+        this.router.navigateByUrl('/dashboard/ask');
+      }
+      else if (this.token.getUserRole() === 'RC') {
+  
+        this.router.navigateByUrl('/dashboardRC/ask');
+  
+      }
+      else if (this.token.getUserRole() === 'TL') {
+  
+        this.router.navigateByUrl('/dashboardTL/ask');
+  
+      }
 
     }
 

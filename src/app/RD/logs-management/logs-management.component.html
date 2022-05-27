@@ -1,17 +1,16 @@
 <div >
-    <h2>Select the log type to upload: {{file.type}} Log</h2>
+    <h2>{{'Select the log type to upload:' | translate}} {{file.type}} Log</h2>
 </div>
 <br><br>
-<p>First, you have to upload the Reference log and then upload the other log(Error or @TTBT) to make the comparison</p>
+<p>{{'First, you have to upload the Reference log and then upload the other log(Error or @TTBT) to make the comparison' | translate}}</p>
 <div>
     <mat-form-field class="col-6" appearance="outline">
-        <mat-label>Type</mat-label>
+        <mat-label>{{'Type' | translate}}</mat-label>
         <mat-select [(ngModel)]="file.type" #type="ngModel" placeholder="Type" required>
-            <mat-option disabled> select the log type</mat-option>
-            <mat-option value="Error"> Error Log</mat-option>
-            <mat-option value="TBBT">@TBBT Log</mat-option>
-            <mat-option value="Ref" selected="Ref">Reference Log</mat-option>
-
+            <mat-option disabled>{{'select the log type' | translate}} </mat-option>
+            <mat-option value="Error">{{'Error Log' | translate}}</mat-option>
+            <mat-option value="TBBT">{{'TBBT Log' | translate}}</mat-option>
+            <mat-option value="Ref" selected="Ref">{{'Reference Log' | translate}}</mat-option>
         </mat-select>
     </mat-form-field>
 </div>
@@ -24,5 +23,5 @@
         (change)="onSelectFile($event)" #fileUpload >        
     </div>
     <button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent"
-    (click)=" updloadFile()">Validate </button>
+    (click)=" updloadFile()">{{'Validate' | translate}} </button>
 </div>

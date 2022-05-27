@@ -26,7 +26,7 @@ export class FirstpageComponent implements OnInit {
   }
 
   redirectFaq() {
-    this.router.navigateByUrl('/dashboard/faqmanagement');
+    this.router.navigateByUrl('/dashboard/faq');
   }
 
   redirectStats() {

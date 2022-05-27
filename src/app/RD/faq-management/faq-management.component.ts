@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./faq-management.component.css']
 })
 export class FaqManagementComponent implements OnInit {
+  lang: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
 }

@@ -17,4 +17,6 @@ export class Logs {
 
   export enum LogType{
     Error, TBBT, Ref
+//		Error, TBBT_FNC,TBBT_GPC,TBBT_MENU, Ref
+
   }

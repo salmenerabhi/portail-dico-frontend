@@ -5,8 +5,8 @@
   <mat-card-title>{{faqItem.question}}</mat-card-title>
   <!-- <mat-card-subtitle>{{faqItem.user.firstName}} {{faqItem.user.firstName}}</mat-card-subtitle> -->
   <mat-card-actions align="end">
-    <button mat-button  (click)="openDescription(faqItem)">Read description</button>
-    <button mat-button (click)="onEdit(faqItem)">Answer</button>
+    <button mat-button  (click)="openDescription(faqItem)">{{'Read description' | translate}}</button>
+    <button mat-button (click)="onEdit(faqItem)">{{'Answer' | translate}}</button>
   </mat-card-actions>
 </mat-card>
 <br>

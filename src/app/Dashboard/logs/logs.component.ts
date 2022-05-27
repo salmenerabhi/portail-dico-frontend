@@ -13,9 +13,11 @@ import { Logs } from 'src/models/log';
 })
 export class LogsComponent implements OnInit, AfterViewInit {
  myMap = new Map([
-    ["1§", "On trouve THESAU, CITACT ou CITTV,POLUXDATA au lieu de trouver DICMD."],["2§", ": On utilise plus de @P que de DICMD. "],["3§", "a pas de séparation entre le code phrase et le dictionnaire par un ‘-‘"],["4§", "Le numéro du dictionnaire est erroné."],["5§", "Le code est erroné"],["6§", "Le code n’appartient pas au dictionnaire"],["7§", "sans @ "],["8§", "sans P"],["9§", "espace après et avant DICMDxx"],["10", "T après DICMDxx sans @"],["11", "Concaténation sans @\+ ou bien @T"]
+    ["1§", "On trouve THESAU, CITACT ou CITTV,POLUXDATA au lieu de trouver DICMD."],["2§", ": On utilise plus de @P que de DICMD. "],["3§", "a pas de séparation entre le code phrase et le dictionnaire par un ‘-‘"],["4§", "Le numéro du dictionnaire est erroné."],["5§", "Le code est erroné"],["6§", "Le code n’appartient pas au dictionnaire"],["7§", "sans @ "],["8§", "sans P"],["9§", "espace après et avant DICMDxx"],["10", "T après DICMDxx sans @"],["11", "Concaténation sans @\\+ ou bien @T"]
 ]); 
   displayedColumns: string[] = ['numero', 'description', 'filename'];
+  displayedColumns1: string[] = ['filename'];
+
 content: Logs [];
 content1: Logs [];
   dataSource: MatTableDataSource<any>;
@@ -24,6 +26,7 @@ content1: Logs [];
   logs: Logs;
   @ViewChild('paginator') paginator1: MatPaginator;
   @ViewChild('paginatorLegal') paginator: MatPaginator;
+  lang: any;
   constructor(private logsService: LogsService)
    { this.dataSource = new MatTableDataSource(this.content);
      this.dataSource1 = new MatTableDataSource(this.content1); }
@@ -37,8 +40,8 @@ content1: Logs [];
     this.logs = new Logs;
     this.getLogErrorContent();
     this.getLogTTBTContent();
-    console.log(this.logs.date);
-     
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
   applyFilter(event: Event) {
@@ -68,8 +71,10 @@ content1: Logs [];
 }
 
 getLogTTBTContent() {
-  this.logsService.getContentTTBT().subscribe(r => this.dataSource1.data = r.slice(1, r.length)
-);
+  this.logsService.getContentTTBT().subscribe(r => {this.dataSource1.data = r.slice(1, r.length)
+    console.log(this.dataSource1.data);
+    
+  });
 }
 getValue(key:string){
 return this.myMap.get(key);

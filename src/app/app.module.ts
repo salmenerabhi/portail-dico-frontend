@@ -5,10 +5,6 @@ import { MatSliderModule } from '@angular/material/slider';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Home/home.component';
-
-
-
-
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpClient} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +22,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTableModule} from "@angular/material/table";
-import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { InscriptionComponent } from './inscription/inscription.component';
 
@@ -94,6 +90,7 @@ import { HomeATComponent } from './Actia_Toulouse/home-at/home-at.component';
 import { ListfilesATComponent } from './Actia_Toulouse/listfiles-at/listfiles-at.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { getenPaginatorIntl, getfrPaginatorIntl } from './services/MatPaginatorIntl';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -218,6 +215,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   useClass: LanguageInterceptor,
   multi: true
 },
+//{ provide: MatPaginatorIntl, useValue: getfrPaginatorIntl() },
+
 HttpClient,
 AuthGuard,DayService,WeekService,MonthAgendaService,WorkWeekService,MonthService ,
 LinkService, ImageService, HtmlEditorService,ToolbarService,TableService],

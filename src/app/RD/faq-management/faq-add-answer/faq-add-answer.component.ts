@@ -14,12 +14,14 @@ import { UserEntity } from 'src/models/userEntity';
 export class FaqAddAnswerComponent implements OnInit {
   message:string;
   answer = new FormControl('', [Validators.required]);
+  lang: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public faq: FaqItem,
               private faqService:FaqService,
               private toast: ToastrService) { }
 
   ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
     this.getQuestion()
   }
 

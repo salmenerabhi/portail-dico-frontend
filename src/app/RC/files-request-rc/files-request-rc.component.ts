@@ -25,6 +25,8 @@ export class FilesRequestRCComponent implements OnInit {
  info = new Infos();
   disabled = new FormControl(false);
   ECU = new FormControl('', [Validators.required]);
+  Famille = new FormControl('', [Validators.required]);
+
   targets: Target[];
   brands: Brand[];
 
@@ -146,6 +148,15 @@ getErrorMessage() {
   return this.ECU.hasError('ECU') ? 'Not a valid ECU' : '';
 }
 
+getfamilleErrorMessage() {
+  if (this.Famille.hasError('required')) {
+    return 'You must enter a family';
+  }
+
+  return this.Famille.hasError('Famille') ? 'Not a valid Family' : '';
+}
+
+
 
 updloadFile() {
   const formData = new FormData();
@@ -153,6 +164,8 @@ updloadFile() {
   this.file.checklist = this.values;
   this.file.user.id = localStorage.getItem('id');
   this.file.ecu = this.ECU.value;
+  this.file.famille = this.Famille.value;
+
   this.file.marque = this.brand.value;
   this.file.cible = this.target.value;
 

@@ -41,6 +41,7 @@ const routes: Routes = [
     { path: 'toolsmanager', component: ToolsComponent, canActivate: [AuthGuard] },
     { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
     { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
+    { path: 'ask', component: FaqchildComponent, canActivate: [AuthGuard] },
     { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
     { path: 'administration', component: AdministrationpageComponent, canActivate: [AuthGuard] },
     {path: 'usermanagement', component:ListUserComponent, canActivate: [AuthGuard] },
@@ -71,6 +72,7 @@ const routes: Routes = [
   {path: 'dashboardTL', component:DashboardTLComponent, canActivate: [AuthGuard] ,children:[
   { path: 'listfilesTL', component: ListFilesTLComponent,canActivate: [AuthGuard]},
   { path: 'faq', component: FaqComponent, canActivate: [AuthGuard] },
+  { path: 'ask', component: FaqchildComponent, canActivate: [AuthGuard] },
   { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
   { path: 'toolsmanager', component: ToolsRCComponent, canActivate: [AuthGuard] },
   { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },

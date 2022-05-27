@@ -12,11 +12,13 @@ import { Target } from 'src/models/RequestFile';
 export class AddtargetComponent implements OnInit {
   target: Target;
   cible = new FormControl(null);
+  lang: any;
   constructor(private RequestfileService: RequestService,
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.target = new Target();
+    this.lang= localStorage.getItem('lang') || 'en' ;
 
   }
   add(): void {

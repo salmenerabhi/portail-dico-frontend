@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <h3 class="breadcrumb-item active" aria-current="page">Tools Management</h3>
+    <h3 class="breadcrumb-item active" aria-current="page">{{'Tools Management' | translate}}</h3>
   </ol>
 </nav>
 
@@ -10,21 +10,21 @@
     <div class="col-6">
 
 
-      <h2>Tool description</h2>
+      <h2>{{'Tool description' | translate}}</h2>
 
       <mat-form-field appearance="outline">
-        <mat-label>Tool description</mat-label>
+        <mat-label>{{'Tool description' | translate}}</mat-label>
         <textarea matInput [(ngModel)]="tool.description" name="tool.description" rows="12"></textarea>
       </mat-form-field>
     </div>
 
     <div class="col-5">
-      <h2>Tool to upload</h2>
+      <h2>{{'Tool to upload' | translate}}</h2>
 
       <div style="text-align:center">
         <input type="file" name="file" (change)="onSelectFile($event)" />
       </div>
-      <h2>Image to upload</h2>
+      <h2>{{'Image to upload' | translate}}</h2>
       <div style="text-align:center">
         <input type="file" name="image" (change)="onSelectImage($event)" />
       </div>
@@ -33,6 +33,6 @@
     </div>
 
     <button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent"
-      (click)=" updloadFile()">Upload </button>
+      (click)=" updloadFile()">{{'Upload' | translate}} </button>
   </form>
 </div>

@@ -13,7 +13,7 @@ import { UpdateUserComponent } from '../update-user/update-user.component';
   templateUrl: './list-user.component.html',
   styleUrls: ['./list-user.component.css']
 })
-export class ListUserComponent implements AfterViewInit  {
+export class ListUserComponent implements AfterViewInit , OnInit {
   displayedColumns: string[] = ['id', 'email', 'firstName', 'lastName', 'creation_date', 'role', 'site', 'actions'];
   private defaultImage = 'assets/img/logo.png';
     public imageUrl: string ;
@@ -24,11 +24,15 @@ export class ListUserComponent implements AfterViewInit  {
   images: string[];
   base64Data: Int8Array;
   retrievedImage: string;
+  lang: any;
 
   constructor( private accountService: AccountService ,
                private toast: ToastrService,
                private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(this.users);
+  }
+  ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
   }
 
 

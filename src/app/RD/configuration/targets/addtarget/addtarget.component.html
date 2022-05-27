@@ -1,15 +1,15 @@
 
-<h1 mat-dialog-title>Add targets</h1>
+<h1 mat-dialog-title>{{'Add targets' | translate}}</h1>
 <div mat-dialog-content  >
   <div class="example-container">
     <div appearance="fill" class="w-100">
-      <mat-label>Create a new target</mat-label>
+      <mat-label>{{'Create a new target' | translate}}</mat-label>
       <br><br>
-      <input type="text" class="form-control" placeholder="Target" [formControl]="cible" [(ngModel)]="target.cible" aria-describedby="basic-addon2">
+      <input type="text" class="form-control" placeholder="{{'Target' | translate}}" [formControl]="cible" [(ngModel)]="target.cible" aria-describedby="basic-addon2">
     </div>
   </div>
 </div>
 <div mat-dialog-actions class="justify-content-end">
-  <button mat-button (click)="add()">Send</button>
+  <button mat-button (click)="add()">{{'Create' | translate}}</button>
 
 </div>

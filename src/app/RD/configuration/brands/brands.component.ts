@@ -18,6 +18,7 @@ export class BrandsComponent implements OnInit, AfterViewInit {
   marque = new FormControl(null);
   displayedColumns: string[] = ['marque', 'actions'];
   dataSource: MatTableDataSource<any>;
+  lang: any;
 
   constructor(private RequestfileService: RequestService,
               private toastr: ToastrService,
@@ -33,7 +34,7 @@ export class BrandsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getBrands();
     this.brand = new Brand();
-
+    this.lang= localStorage.getItem('lang') || 'en' ;
   }
 
 

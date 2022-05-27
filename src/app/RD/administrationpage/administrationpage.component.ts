@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AdministrationpageComponent implements OnInit {
   panelOpenState = false;
+  lang: any;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.lang= localStorage.getItem('lang') || 'en' ;
   }
 
 

@@ -14,11 +14,14 @@ import { FaqdescriptionComponent } from '../faqdescription/faqdescription.compon
 export class FaqAnswerComponent implements OnInit {
   ListFaqs: FaqItem[];
   faqItem:FaqItem;
+  lang: any;
   constructor(private faqService:FaqService,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getFaq();
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
   ngAfterViewInit() {
     this.getFaq();

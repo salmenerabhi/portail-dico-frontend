@@ -14,6 +14,7 @@ import { UserEntity } from 'src/models/userEntity';
   styleUrls: ['./faqchild.component.css']
 })
 export class FaqchildComponent implements OnInit, AfterViewInit {
+  lang: any;
 
   constructor(private token: TokenService,
               private faqService: FaqService,
@@ -48,7 +49,7 @@ export class FaqchildComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+    this.lang= localStorage.getItem('lang') || 'en' ;
     this.faqItem = new FaqItem();
     this.faqItem.user = new UserEntity();
   }
@@ -83,8 +84,19 @@ export class FaqchildComponent implements OnInit, AfterViewInit {
   }
 
   redirectfaq() {
+    if (this.token.getUserRole() == 'RD') {
+      this.router.navigateByUrl('/dashboard/faq');
+    }
+    else if (this.token.getUserRole() === 'RC') {
 
-    this.router.navigateByUrl('/dashboardRC/faq');
+      this.router.navigateByUrl('/dashboardRC/faq');
+
+    }
+    else if (this.token.getUserRole() === 'TL') {
+
+      this.router.navigateByUrl('/dashboardTL/faq');
+
+    }
 
   }
 }

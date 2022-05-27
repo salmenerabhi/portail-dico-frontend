@@ -10,6 +10,13 @@
         </div>
         <ul class="nav">
             <li class="nav-item text-center">
+                <button mat-button class="menu-button  ">
+                    <mat-icon> bar_chart</mat-icon>
+                    <span> <a class="dashboard" href="http://172.31.103.213/kibana/s/multidiag/app/kibana#/discover?_g=()&_a=(columns:!(_source),filters:!(),index:'1171c0d0-74bd-11ea-abfd-71f9ac7a8e88',interval:auto,query:(language:lucene,query:''),sort:!(_score,desc))">Kibana</a></span>
+
+                </button>
+            </li>
+            <li class="nav-item text-center">
                 <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/filesRequest">
                     <mat-icon>insert_drive_file</mat-icon>
                     <span style="line-height: 1em;"> <a class="requestphrase" (click)="redirectFilesRequest()">Request

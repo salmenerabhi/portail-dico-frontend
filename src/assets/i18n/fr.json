@@ -55,7 +55,58 @@
     "Finalize": "Finaliser",
     "Reject": "Rejeter",
     "See schedule": "Voir planning",
-    "In history": "En historique"
+    "In history": "En historique",
+    "Tools Management": "Gestion des outils",
+    "Tool description": "Description de l'outil",
+    "Tool to upload": "L'outil à télécharger",
+    "Image to upload": "L'image à télécharger",
+    "Upload": "Télecharger",
+    "Error Log": "Log Erreur",
+    "The codes used for every error": "Les codes utilisés pour chaque erreur",
+    "Description": "Description",
+    "Filename": "Nom du fichier",
+    "TTBT Log": "Log @TTBT",
+    "Q:": "Q:",
+    "A:": "R:",
+    "The question": "La question",
+    "Add here the question of your clients": "Ajoutez ici la question de vos clients",
+    "Please type an appropriate description here to the above question": "Veuillez saisir ici une description appropriée de la question ci-dessus",
+    "User managment": "Gestion des utilisateurs",
+    "Accept user registration, update and delete the user informations": "Accepter l'enregistrement de l'utilisateur, mettre à jour et supprimer les informations de l'utilisateur",
+    "FAQs managment": "Gestion des FAQs",
+    "Reference logs managment": "Gestion des logs de référence",
+    "Alerts management": "Gestion des alertes",
+    "Configuration": "Configuration",
+    "To configure and manage internal stuff": "Pour configurer et gérer les éléments internes",
+    "to view and manage alerts": "Afficher et gérer les alertes",
+    "Image": "Image",
+    "Creation date": "Date de création",
+    "Actions": "Actions",
+    "Answer": "Répondre",
+    "Read description" : "Lire la description",
+    "Select the log type to upload:": "Sélectionnez le type de log à télécharger :",
+    "First, you have to upload the Reference log and then upload the other log(Error or @TTBT) to make the comparison": "Vous devez d'abord télécharger le log de référence, puis télécharger l'autre log (erreur ou @TTBT) pour effectuer la comparaison.",
+    "select the log type": "Sélectionnez le type de log",
+    "Reference Log": "Log de référence",
+    "Validate" : "Valider",
+    "Brands": "Marque",
+    "Target": "Cible",
+    "Create": "Créer",
+    "Brand Name": "Nom de la marque",
+    "Add brands": "Ajoutez une marque",
+    "Create a new brand": "Créer une nouvelle marque",
+    "Target Name": "Nom de la cible",
+    "Add targets": "Ajoutez un cible",
+    "Create a new target": "Créer une nouvelle cible"
+
+
+
+
+
+
+
+
+
 
 
 

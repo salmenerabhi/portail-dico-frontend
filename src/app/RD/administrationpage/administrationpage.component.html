@@ -5,28 +5,26 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectUserManagement()">User managment </a></b><mat-icon style="position: absolute; left: 80%;"> supervised_user_circle</mat-icon>
+                        <b><a class="dashboard"  (click)="redirectUserManagement()">{{'User managment' | translate}}</a></b><mat-icon style="position: absolute; left: 80%;"> supervised_user_circle</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>Accept user registration, update and delete the user informations</p>
+                <p>{{'Accept user registration, update and delete the user informations' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
     <br>
     <div class="container  ">
-
-
         <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b> <a class="dashboard"  (click)="redirectFaqManagement()"  >FAQs managment</a></b> <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
+                        <b> <a class="dashboard"  (click)="redirectFaqManagement()"  >{{'FAQs managment' | translate}}</a></b> <mat-icon style="position: absolute; left: 80%;">question_answer</mat-icon>
                    
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>to manage requests and approximation files and track their history </p>
+                <p>{{'to manage requests and approximation files and track their history' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -37,11 +35,11 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectToolManagement()"  >Tools</a></b> <mat-icon style="position: absolute; left: 80%;">memory</mat-icon>
+                        <b><a class="dashboard"  (click)="redirectToolManagement()"  >{{'Tools' | translate}}</a></b> <mat-icon style="position: absolute; left: 80%;">memory</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>To upload and manage tools</p>
+                <p>{{'To upload and manage tools' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -53,11 +51,11 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectLogManagement()"  >Reference logs managment</a></b> <mat-icon style="position: absolute; left: 80%;">file_copy</mat-icon>
+                        <b><a class="dashboard"  (click)="redirectLogManagement()"  >{{'Reference logs managment' | translate}}</a></b> <mat-icon style="position: absolute; left: 80%;">file_copy</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>To ask and answer and manage the most frequently asked questions here   </p>
+                <p>{{'To ask and answer and manage the most frequently asked questions here' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -70,10 +68,10 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b> <a class="dashboard"  (click)="redirectAlertManagement()"  >Alerts management</a></b><mat-icon style="position: absolute; left: 80%;"> notification_important</mat-icon>
+                        <b> <a class="dashboard"  (click)="redirectAlertManagement()"  >{{'Alerts management' | translate}}</a></b><mat-icon style="position: absolute; left: 80%;"> notification_important</mat-icon>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>to view and manage alerts</p>
+                <p>{{'to view and manage alerts' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -86,11 +84,11 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="panel">
                 <mat-expansion-panel-header>
                     <mat-panel-title class="justify-content-center">
-                        <b><a class="dashboard"  (click)="redirectConfiguration()"  >Configuration</a></b> <mat-icon style="position: absolute; left: 80%;">settings</mat-icon>
+                        <b><a class="dashboard"  (click)="redirectConfiguration()"  >{{'Configuration' | translate}}</a></b> <mat-icon style="position: absolute; left: 80%;">settings</mat-icon>
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>To configure and manage internal stuff</p>
+                <p>{{'To configure and manage internal stuff' | translate}}</p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
