@@ -9,8 +9,16 @@
         <mat-select [(ngModel)]="file.type" #type="ngModel" placeholder="Type" required>
             <mat-option disabled>{{'select the log type' | translate}} </mat-option>
             <mat-option value="Error">{{'Error Log' | translate}}</mat-option>
-            <mat-option value="TBBT">{{'TBBT Log' | translate}}</mat-option>
             <mat-option value="Ref" selected="Ref">{{'Reference Log' | translate}}</mat-option>
+
+            <mat-option value="TBBT_FNC">fnc</mat-option>
+            <mat-option value="TBBT_GPC">gpc</mat-option>
+            <mat-option value="TBBT_MENU">menu</mat-option>
+
+            <mat-option value="TBBT_FNC_Ref">fncref</mat-option>
+            <mat-option value="TBBT_GPC_Ref">gpcref</mat-option>
+            <mat-option value="TBBT_MENU_Ref">menuref</mat-option>
+
         </mat-select>
     </mat-form-field>
 </div>

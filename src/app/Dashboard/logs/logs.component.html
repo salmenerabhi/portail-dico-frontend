@@ -41,7 +41,7 @@
 </mat-sidenav-container>
 
 <br><br>
-<h1 style="text-align: center;">{{'TTBT Log' | translate}}</h1>
+<h1 style="text-align: center;">{{'Function Cpp' | translate}}</h1>
 <mat-sidenav-container fxFlex="0 1 auto">
   <mat-sidenav-content>
     <mat-form-field appearance="standard">
@@ -63,6 +63,61 @@
 
     </table>
     <mat-paginator #paginatorLegal="matPaginator" [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of logs"></mat-paginator>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<br><br>
+<h1 style="text-align: center;">{{'GPC Log' | translate}}</h1>
+<mat-sidenav-container fxFlex="0 1 auto">
+  <mat-sidenav-content>
+    <mat-form-field appearance="standard">
+      <mat-label>{{'Filter' | translate}}</mat-label>
+      <input matInput (keyup)="applyFilter2($event)" placeholder="" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+
+      <!-- filename Column -->
+      <ng-container matColumnDef="filename">
+        <th mat-header-cell *matHeaderCellDef>
+          {{'Filename' | translate}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+
+    </table>
+    <mat-paginator #paginator2="matPaginator" [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of logs"></mat-paginator>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<br><br>
+<h1 style="text-align: center;">{{'Flowchart' | translate}}</h1>
+<mat-sidenav-container fxFlex="0 1 auto">
+  <mat-sidenav-content>
+    <mat-form-field appearance="standard">
+      <mat-label>{{'Filter' | translate}}</mat-label>
+      <input matInput (keyup)="applyFilter2($event)" placeholder="" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8">
+
+      <!-- filename Column -->
+      <ng-container matColumnDef="filename">
+        <th mat-header-cell *matHeaderCellDef>
+          {{'Filename' | translate}}
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+
+    </table>
+    <mat-paginator #paginator3="matPaginator" [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Select page of logs"></mat-paginator>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

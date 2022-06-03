@@ -97,8 +97,10 @@
     "Create a new brand": "Create a new brand",
     "Target Name": "Target Name",
     "Add targets": "Add targets",
-    "Create a new target": "Create a new target"
-
+    "Create a new target": "Create a new target",
+    "Function Cpp": "Function Cpp Log",
+    "GPC Log": "GPC Log",
+    "Flowchart":"Flowchart Log"
 
 
 }

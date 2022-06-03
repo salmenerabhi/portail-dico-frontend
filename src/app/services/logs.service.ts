@@ -21,7 +21,13 @@ export class LogsService {
     return this.http.get<Logs[]>(this.url +'/doc/error' );
   }
   getContentTTBT(): Observable<Logs[]> {
-    return this.http.get<Logs[]>(this.url +'/doc/ttbt' );
+    return this.http.get<Logs[]>(this.url +'/doc/ttbtfnc' );
+  }  
+  getContentTTBTGPC(): Observable<Logs[]> {
+    return this.http.get<Logs[]>(this.url +'/doc/ttbtgpc' );
+  } 
+  getContentTTBTMENU(): Observable<Logs[]> {
+    return this.http.get<Logs[]>(this.url +'/doc/ttbtmenu' );
   }
   getAll(): Observable<Logs[]> {
     return this.http.get<Logs[]>(this.url)

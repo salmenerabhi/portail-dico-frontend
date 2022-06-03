@@ -1,20 +1,35 @@
+import { NbrRejectedRCDateStats } from './../../../models/NbrRejectedRCDateStats';
 import { requestfileUsersStat } from './../../../models/requestfileUsersStat';
 import { StatTarget } from './../../../models/StatTarget';
 import { AccountService } from './../../services/account.service';
 import { UserEntity } from './../../../models/userEntity';
 import { RequestService } from './../../services/request.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList } from '@angular/core';
 import { RequestFile } from 'src/models/RequestFile';
 import { MatTableDataSource } from '@angular/material/table';
 import { StatRequestFiles } from 'src/models/StatRequestFiles';
 import { TokenService } from 'src/app/Authentification/services/token.service';
 import { nbrMarqueFamilleStats } from 'src/models/nbrMarqueFamilleStats';
+import { nbrMarqueSiteStats } from 'src/models/nbrMarqueSiteStats';
 
+export enum ToggleEnum {
+  Option1,
+  Option2,
+  Option3,
+  Option4,
+  Option5,
+  Option6,
+  Option7,
+  Option8,
+  Option9,
+}
 @Component({
   selector: 'app-stats',
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
+
+
 export class StatsComponent implements OnInit {
   result: RequestFile[];
   chartOption: any;
@@ -39,11 +54,23 @@ export class StatsComponent implements OnInit {
   chartOption6: any;
   chartOption7: any;
   chartOption8: any;
+  chartOption9: any;
+  chartOption10: any;
+  chartOption11: any;
 
   rejectedperUser: any;
   percentage: any;
   totalperUser: any;
   lang: any;
+  toggleEnum = ToggleEnum;
+  toggleEnum1 = ToggleEnum;
+
+  selectedState = null;
+  selectedState1 = null;
+  selectedState2= null ;
+  selectedState3: ToggleEnum.Option1;
+  selectedState4: ToggleEnum.Option1;
+
   constructor(private requestService: RequestService,
     private userService: AccountService,
     private Token: TokenService,
@@ -54,12 +81,14 @@ export class StatsComponent implements OnInit {
   nbrMFdatas: nbrMarqueFamilleStats[]
   datas: StatTarget[]
   userdatas: requestfileUsersStat[]
-
+  nbrMSdatas: nbrMarqueSiteStats[]
+  nbrRejRDdatas: NbrRejectedRCDateStats[]
   statistic: StatRequestFiles = new StatRequestFiles();
   targetStats: StatTarget = new StatTarget();
   nbrfamillemarquestatistic: nbrMarqueFamilleStats = new nbrMarqueFamilleStats();
 
   ngOnInit(): void {
+
     this.getRequestFiles();
     this.getStatistic();
     this.id = this.Token.getId();
@@ -72,7 +101,6 @@ export class StatsComponent implements OnInit {
     this.lang = localStorage.getItem('lang') || 'en';
 
   }
-
 
   getRequestFiles() {
     this.requestService.getAlll().subscribe(data => {
@@ -198,18 +226,6 @@ export class StatsComponent implements OnInit {
           }
         ]
       };
-
-
-
-
-
-
-
-
-
-
-
-
       this.chartoption1 = {
         tooltip: {
           trigger: 'axis',
@@ -499,75 +515,708 @@ export class StatsComponent implements OnInit {
   };
 
   getNbrMarquefamillestats() {
-    const data1 = [];
-    const xAxisData = [];
-    const yAxisData = [];
     this.requestService.getStatnbrMarqueFamille().subscribe(data => {
       this.nbrMFdatas = data
+      const data1 = []
       for (let s of this.nbrMFdatas) {
-        xAxisData.push(s.marque)
-        yAxisData.push(s.famille)
+
         data1.push(s.nbr)
       }
-
       this.chartOption7 = {
         title: {
-          text: 'Life Expectancy and GDP by Country',
+          text: 'nombre/marque/famille',
           left: '5%',
           top: '3%'
+        },
+        dataset: [
+          {
+            dimensions: ['marque', 'famille', 'nbr'],
+            source: this.nbrMFdatas
+          },
+          {
+            transform: {
+              type: 'sort',
+              config: [
+                { dimension: 'famille', order: 'asc' },
+                { dimension: 'nbr', order: 'desc' }
+              ]
+            }
+          }
+        ],
+        tooltip: {
+
+        },
+        xAxis: {
+          type: 'category',
+        },
+        yAxis: {
+          type: 'category',
+        },
+        series: {
+          type: 'scatter',
+          emphasis: {
+            focus: 'self'
+          },
+          animationDelay: function (idx) {
+            return idx * 10;
+          },
+          label: {
+            show: true,
+            position: 'top',
+            align: 'left',
+            verticalAlign: 'middle',
+            color: '#91cc75'
+          },
+          encode: { x: 'famille', y: 'nbr', label: ['marque'] },
+          datasetIndex: 0
         },
         toolbox: {
           // y: 'bottom',
           feature: {
 
             dataView: {},
-            magicType: { show: true, type: ['bar'] },
 
             saveAsImage: {
               pixelRatio: 2
             }
           }
-        },
-        legend: {
-          right: '10%',
-          top: '3%',
-          data: data1
-        },
-        grid: {
-          left: '8%',
-          top: '10%'
-        },
-        xAxis: {
-          data: xAxisData,
-          splitLine: {
-            lineStyle: {
-              type: 'dashed'
-            }
-          }
-        },
-        yAxis: {
-          data: yAxisData,
-
-          splitLine: {
-            lineStyle: {
-              type: 'dashed'
-            }
-          },
-          scale: true
-        },
-        series: [
-          {
-            data: data1,
-            symbolSize: function (data) {
-              return data
-            },
-            type: 'scatter',
-          },
-        ]
+        }
       };
-
-
     })
+  }
+
+  getNbrMarquesitestats($event) {
+    this.selectedState = $event.value;
+
+    if (this.selectedState == 0) {
+      this.requestService.getStatnbrMarqueSite().subscribe(data => {
+        this.nbrMSdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.nbrMSdatas) {
+          date.push(s.date)
+          nbr.push(s.nbr)
+          site.push(s.famille)
+          marque.push(s.marque)
+        }
+
+        this.chartOption9 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+    else if (this.selectedState == 2) {
+      this.requestService.getStatnbrMarqueSiteyear().subscribe(data => {
+        this.nbrMSdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.nbrMSdatas) {
+          date.push(s.date)
+          nbr.push(s.nbr)
+          site.push(s.famille)
+          marque.push(s.marque)
+        }
+
+        this.chartOption9 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+    else if (this.selectedState == 3) {
+      this.requestService.getStatnbrMarqueSitecible().subscribe(data => {
+        this.nbrMSdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.nbrMSdatas) {
+          date.push(s.date)
+          nbr.push(s.nbr)
+          site.push(s.famille)
+          marque.push(s.marque)
+        }
+
+        this.chartOption9 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+    else if (this.selectedState == 4) {
+      this.requestService.getStatnbrMarqueSitemonth().subscribe(data => {
+        this.nbrMSdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.nbrMSdatas) {
+          date.push(s.date)
+          nbr.push(s.nbr)
+          site.push(s.famille)
+          marque.push(s.marque)
+        }
+
+        this.chartOption9 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+    else {
+      this.requestService.getStatnbrMarqueSiteweek().subscribe(data => {
+        this.nbrMSdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.nbrMSdatas) {
+          date.push(s.date)
+          nbr.push(s.nbr)
+          site.push(s.famille)
+          marque.push(s.marque)
+        }
+
+        this.chartOption9 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
   }
 
   getTempsTraitement() {
@@ -601,6 +1250,7 @@ export class StatsComponent implements OnInit {
             }
           },
           tooltip: {
+
           },
           xAxis: {
             data: xAxisData,
@@ -610,9 +1260,9 @@ export class StatsComponent implements OnInit {
             axisLabel: {
               interval: 0,
               rotate: 30,
-              fontSize: '10' ,
+              fontSize: '10',
             }
-            
+
           },
           yAxis: {},
           series: [
@@ -636,6 +1286,960 @@ export class StatsComponent implements OnInit {
       }
     })
   }
+
+  getRejectedRCdate($event) {
+
+    this.selectedState1 = $event.value;
+
+    if (this.selectedState1 == 0) {
+      this.requestService.getStatnbrRejectedRCday().subscribe(data => {
+        this.nbrRejRDdatas = data;
+
+        this.chartOption10 = {
+          dataset: [
+            {
+              dimensions: ['firstname', 'date', 'value'],
+              source: this.nbrRejRDdatas
+            },
+            {
+              transform: {
+                type: 'sort',
+                config: [
+                  { dimension: 'firstname', order: 'asc' },
+                  { dimension: 'value', order: 'desc' }
+                ]
+              }
+            }
+          ],
+          legend: {
+            data: ['Number of rejected demands'],
+            left: 'right'
+          },
+          tooltip: {
+
+          },
+          xAxis: {
+            type: 'category',
+            axisLabel: { interval: 0, rotate: 30 },
+            name: 'Nom du RC',
+
+          },
+          yAxis: {
+            type: 'category',
+            name: 'Date',
+
+          },
+          series: {
+            name: 'Number of rejected demands',
+            type: 'scatter',
+            label: {
+              show: true,
+              position: 'top',
+              align: 'left',
+              verticalAlign: 'middle',
+              color: '#91cc75'
+            },
+
+            encode: { x: 'firstname', y: 'date', label: ['value'] },
+            datasetIndex: 1
+          }
+        };
+      }
+      )
+    }
+    if (this.selectedState1 == 1) {
+      this.requestService.getStatnbrRejectedRCweek().subscribe(data => {
+        this.nbrRejRDdatas = data;
+        this.chartOption10 = {
+          dataset: [
+            {
+              dimensions: ['firstname', 'date', 'value'],
+              source: this.nbrRejRDdatas
+            },
+            {
+              transform: {
+                type: 'sort',
+                config: [
+                  { dimension: 'firstname', order: 'asc' },
+                  { dimension: 'value', order: 'desc' }
+                ]
+              }
+            }
+          ],
+          legend: {
+            data: ['Number of rejected demands'],
+            left: 'right'
+          },
+          tooltip: {
+
+          },
+          xAxis: {
+            type: 'category',
+            axisLabel: { interval: 0, rotate: 30 },
+            name: 'Nom du RC',
+
+          },
+          yAxis: {
+            type: 'category',
+            name: 'Date',
+
+          },
+          series: {
+            name: 'Number of rejected demands',
+            type: 'scatter',
+            label: {
+              show: true,
+              position: 'top',
+              align: 'left',
+              verticalAlign: 'middle',
+              color: '#91cc75'
+            },
+
+            encode: { x: 'firstname', y: 'date', label: ['value'] },
+            datasetIndex: 1
+          }
+        };
+      }
+      )
+    }
+    if (this.selectedState1 == 2) {
+      this.requestService.getStatnbrRejectedRCmonth().subscribe(data => {
+        this.nbrRejRDdatas = data;
+
+        this.chartOption10 = {
+          dataset: [
+            {
+              dimensions: ['firstname', 'date', 'value'],
+              source: this.nbrRejRDdatas
+            },
+            {
+              transform: {
+                type: 'sort',
+                config: [
+                  { dimension: 'firstname', order: 'asc' },
+                  { dimension: 'value', order: 'desc' }
+                ]
+              }
+            }
+          ],
+          legend: {
+            data: ['Number of rejected demands'],
+            left: 'right'
+          },
+          tooltip: {
+
+          },
+          xAxis: {
+            type: 'category',
+            axisLabel: { interval: 0, rotate: 30 },
+            name: 'Nom du RC',
+
+          },
+          yAxis: {
+            type: 'category',
+            name: 'Date',
+
+          },
+          series: {
+            name: 'Number of rejected demands',
+            type: 'scatter',
+            label: {
+              show: true,
+              position: 'top',
+              align: 'left',
+              verticalAlign: 'middle',
+              color: '#91cc75'
+            },
+
+            encode: { x: 'firstname', y: 'date', label: ['value'] },
+            datasetIndex: 1
+          }
+        };
+      }
+      )
+    }
+    if (this.selectedState1 == 3) {
+      this.requestService.getStatnbrRejectedRCyear().subscribe(data => {
+        this.nbrRejRDdatas = data;
+
+        this.chartOption10 = {
+          dataset: [
+            {
+              dimensions: ['firstname', 'date', 'value'],
+              source: this.nbrRejRDdatas
+            },
+            {
+              transform: {
+                type: 'sort',
+                config: [
+                  { dimension: 'firstname', order: 'asc' },
+                  { dimension: 'value', order: 'desc' }
+                ]
+              }
+            }
+          ],
+          legend: {
+            data: ['Number of rejected demands'],
+            left: 'right'
+          },
+          tooltip: {
+
+          },
+          xAxis: {
+            type: 'category',
+            axisLabel: { interval: 0, rotate: 30 },
+            name: 'Nom du RC',
+
+          },
+          yAxis: {
+            type: 'category',
+            name: 'Date',
+
+          },
+          series: {
+            name: 'Number of rejected demands',
+            type: 'scatter',
+            label: {
+              show: true,
+              position: 'top',
+              align: 'left',
+              verticalAlign: 'middle',
+              color: '#91cc75'
+            },
+
+            encode: { x: 'firstname', y: 'date', label: ['value'] },
+            datasetIndex: 1
+          }
+        };
+      }
+      )
+    }
+    if (this.selectedState1 == 4){
+      this.requestService.getStatnbrRejectedRCcible().subscribe(data => {
+        this.nbrRejRDdatas = data;
+
+        this.chartOption10 = {
+          dataset: [
+            {
+              dimensions: ['firstname', 'date', 'value'],
+              source: this.nbrRejRDdatas
+            },
+            {
+              transform: {
+                type: 'sort',
+                config: [
+                  { dimension: 'firstname', order: 'asc' },
+                  { dimension: 'value', order: 'desc' }
+                ]
+              }
+            }
+          ],
+          legend: {
+            data: ['Number of rejected demands'],
+            left: 'right'
+          },
+          tooltip: {
+
+          },
+          xAxis: {
+            type: 'category',
+            axisLabel: { interval: 0, rotate: 30 },
+            name: 'Nom du RC',
+
+          },
+          yAxis: {
+            type: 'category',
+            name: 'Date',
+
+          },
+          series: {
+            name: 'Number of rejected demands',
+            type: 'scatter',
+            label: {
+              show: true,
+              position: 'top',
+              align: 'left',
+              verticalAlign: 'middle',
+              color: '#91cc75'
+            },
+
+            encode: { x: 'firstname', y: 'date', label: ['value'] },
+            datasetIndex: 1
+          }
+        };
+      }
+      )
+    }
+  }
+
+
+  getNbrMarquestats($event) {
+    this.selectedState2 = $event.value;
+
+
+    if (this.selectedState2 == 0) {
+      this.requestService.getStatnbrMarque().subscribe(data => {
+        this.userdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.userdatas) {
+          nbr.push(s.value)
+          marque.push(s.firstname)
+        }
+
+        this.chartOption11 = {
+          title: {
+            text: 'stats globales',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 0,
+              data: nbr
+            }
+          ]
+        };
+      })
+    }
+    else if (this.selectedState2 == 1) {
+      this.requestService.getStatnbrRejectedMarque().subscribe(data => {
+        this.userdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.userdatas) {
+          nbr.push(s.value)
+          marque.push(s.firstname)
+        }
+
+        this.chartOption11 = {
+          title: {
+            text: 'stats globales',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 0,
+              data: nbr
+            }
+          ]
+        };
+      })
+    }
+    else if (this.selectedState2 == 2) {
+      this.requestService.getStatnbrMarque().subscribe(data => {
+        this.userdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.userdatas) {
+          nbr.push(s.value)
+          marque.push(s.firstname)
+        }
+
+        this.chartOption11 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+    else if (this.selectedState2 == 3) {
+      this.requestService.getStatnbrMarque().subscribe(data => {
+        this.userdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.userdatas) {
+          nbr.push(s.value)
+          marque.push(s.firstname)
+        }
+
+        this.chartOption11 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+    else if (this.selectedState2 == 4) {
+      this.requestService.getStatnbrMarque().subscribe(data => {
+        this.userdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.userdatas) {
+          nbr.push(s.value)
+          marque.push(s.firstname)
+        }
+
+        this.chartOption11 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+    else {
+      this.requestService.getStatnbrMarqueSiteweek().subscribe(data => {
+        this.nbrMSdatas = data
+        const nbr = []
+        const date = []
+        const site = []
+        const marque = []
+
+        const colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+        for (let s of this.nbrMSdatas) {
+          date.push(s.date)
+          nbr.push(s.nbr)
+          site.push(s.famille)
+          marque.push(s.marque)
+        }
+
+        this.chartOption11 = {
+          title: {
+            text: 'nombre/marque/Site',
+            left: '5%',
+            top: '1%'
+
+          },
+          color: colors,
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            }
+          },
+          grid: {
+            right: '20%'
+          },
+          toolbox: {
+            feature: {
+              dataView: { show: true, readOnly: false },
+              restore: { show: true },
+              saveAsImage: { show: true }
+            }
+          },
+          legend: {
+            data: ['date', 'nombre', 'site']
+          },
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                alignWithLabel: true
+              },
+              // prettier-ignore
+              data: marque
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: 'date',
+              position: 'right',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[0]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+            {
+              type: 'value',
+              name: 'nombre',
+              position: 'right',
+              alignTicks: true,
+              offset: 80,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[1]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            },
+
+            {
+              type: 'category',
+              name: 'site',
+              position: 'left',
+              alignTicks: true,
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: colors[2]
+                }
+              },
+              axisLabel: {
+                formatter: '{value}'
+              }
+            }
+          ],
+          series: [
+            {
+              name: 'date',
+              type: 'bar',
+              data: date
+            },
+            {
+              name: 'nombre',
+              type: 'bar',
+              yAxisIndex: 1,
+              data: nbr
+            },
+
+            {
+              name: 'site',
+              type: 'scatter',
+              yAxisIndex: 2,
+              data: site
+            }
+          ]
+        };
+      })
+    }
+  }
+
 }
-
-

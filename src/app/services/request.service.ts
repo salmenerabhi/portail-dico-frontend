@@ -1,3 +1,5 @@
+import { calendarEvents } from './../../models/calendarEvents';
+import { NbrRejectedRCDateStats } from './../../models/NbrRejectedRCDateStats';
 import { nbrMarqueFamilleStats } from './../../models/nbrMarqueFamilleStats';
 import { requestfileUsersStat } from './../../models/requestfileUsersStat';
 import { StatTarget } from './../../models/StatTarget';
@@ -9,6 +11,7 @@ import { Brand, RequestFile } from 'src/models/RequestFile';
 import { UserEntity } from 'src/models/userEntity';
 import { TokenService } from '../Authentification/services/token.service';
 import { StatRequestFiles } from 'src/models/StatRequestFiles';
+import { nbrMarqueSiteStats } from 'src/models/nbrMarqueSiteStats';
 
 @Injectable({
   providedIn: 'root'
@@ -106,7 +109,47 @@ export class RequestService {
   getStatnbrMarqueFamille() :Observable<nbrMarqueFamilleStats[]>{
     return this.http.get<nbrMarqueFamilleStats[]>(this.url+'/nbrmarquefamille');
   }
+
+  getStatnbrMarqueSite() :Observable<nbrMarqueSiteStats[]>{
+    return this.http.get<nbrMarqueSiteStats[]>(this.url+'/nbrmarquesite');
+  }
+  getStatnbrMarqueSiteweek() :Observable<nbrMarqueSiteStats[]>{
+    return this.http.get<nbrMarqueSiteStats[]>(this.url+'/nbrmarquesiteweek');
+  }
+  getStatnbrMarqueSitemonth() :Observable<nbrMarqueSiteStats[]>{
+    return this.http.get<nbrMarqueSiteStats[]>(this.url+'/nbrmarquesitemonth');
+  }
+  getStatnbrMarqueSiteyear() :Observable<nbrMarqueSiteStats[]>{
+    return this.http.get<nbrMarqueSiteStats[]>(this.url+'/nbrmarquesiteyear');
+  }
+  getStatnbrMarqueSitecible() :Observable<nbrMarqueSiteStats[]>{
+    return this.http.get<nbrMarqueSiteStats[]>(this.url+'/nbrmarquesitecible');
+  }
+  getStatnbrRejectedRCday() :Observable<NbrRejectedRCDateStats[]>{
+    return this.http.get<NbrRejectedRCDateStats[]>(this.url+'/nbrrejectedrcday');
+  } 
+  getStatnbrRejectedRCweek() :Observable<NbrRejectedRCDateStats[]>{
+    return this.http.get<NbrRejectedRCDateStats[]>(this.url+'/nbrrejectedrcweek');
+  }
+  getStatnbrRejectedRCmonth() :Observable<NbrRejectedRCDateStats[]>{
+    return this.http.get<NbrRejectedRCDateStats[]>(this.url+'/nbrrejectedrcmonth');
+  }
+  getStatnbrRejectedRCyear() :Observable<NbrRejectedRCDateStats[]>{
+    return this.http.get<NbrRejectedRCDateStats[]>(this.url+'/nbrrejectedrcyear');
+  }
+  getStatnbrRejectedRCcible() :Observable<NbrRejectedRCDateStats[]>{
+    return this.http.get<NbrRejectedRCDateStats[]>(this.url+'/nbrrejectedrccible');
+  }
+  getStatnbrMarque() :Observable<requestfileUsersStat[]>{
+    return this.http.get<requestfileUsersStat[]>(this.url+'/nbrbymarque');
+  }
+  getStatnbrRejectedMarque() :Observable<requestfileUsersStat[]>{
+    return this.http.get<requestfileUsersStat[]>(this.url+'/nbrrejectedbymarque');
+  }
   gettreatment() :Observable<requestfileUsersStat[]>{
     return this.http.get<requestfileUsersStat[]>(this.url+'/treatment');
+  }
+  getevents() :Observable<calendarEvents[]>{
+    return this.http.get<calendarEvents[]>(this.url+'/events');
   }
 }

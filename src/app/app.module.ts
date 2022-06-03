@@ -1,3 +1,5 @@
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 import { LanguageInterceptor } from './interceptors/language.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -189,6 +191,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ScheduleModule,
     RecurrenceEditorModule,
     RichTextEditorModule,
+    MatButtonToggleModule,
+    DayPilotModule,
+
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),

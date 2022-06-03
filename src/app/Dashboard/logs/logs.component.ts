@@ -22,17 +22,27 @@ content: Logs [];
 content1: Logs [];
   dataSource: MatTableDataSource<any>;
   dataSource1: MatTableDataSource<any>;
+  dataSource2: MatTableDataSource<any>;
+  dataSource3: MatTableDataSource<any>;
+
   files: Logs[];
   logs: Logs;
   @ViewChild('paginator') paginator1: MatPaginator;
   @ViewChild('paginatorLegal') paginator: MatPaginator;
+  @ViewChild('paginator2') paginator2: MatPaginator;
+  @ViewChild('paginator3') paginator3: MatPaginator;
   lang: any;
   constructor(private logsService: LogsService)
    { this.dataSource = new MatTableDataSource(this.content);
-     this.dataSource1 = new MatTableDataSource(this.content1); }
+     this.dataSource1 = new MatTableDataSource(this.content);
+     this.dataSource2 = new MatTableDataSource(this.content);
+     this.dataSource3 = new MatTableDataSource(this.content); }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator1;
     this.dataSource1.paginator = this.paginator;
+    this.dataSource2.paginator = this.paginator2;
+    this.dataSource3.paginator = this.paginator3;
+
   }
 
   ngOnInit(): void {
@@ -40,6 +50,8 @@ content1: Logs [];
     this.logs = new Logs;
     this.getLogErrorContent();
     this.getLogTTBTContent();
+    this.getLogTTBTGPCContent();
+    this.getLogTTBTMENUContent();
     this.lang= localStorage.getItem('lang') || 'en' ;
 
   }
@@ -72,10 +84,19 @@ content1: Logs [];
 
 getLogTTBTContent() {
   this.logsService.getContentTTBT().subscribe(r => {this.dataSource1.data = r.slice(1, r.length)
-    console.log(this.dataSource1.data);
-    
   });
 }
+
+getLogTTBTGPCContent() {
+  this.logsService.getContentTTBTGPC().subscribe(r => {this.dataSource2.data = r.slice(1, r.length)
+  });
+}
+
+getLogTTBTMENUContent() {
+  this.logsService.getContentTTBTMENU().subscribe(r => {this.dataSource3.data = r.slice(1, r.length)
+  });
+}
+
 getValue(key:string){
 return this.myMap.get(key);
 }

@@ -97,7 +97,11 @@
     "Create a new brand": "Créer une nouvelle marque",
     "Target Name": "Nom de la cible",
     "Add targets": "Ajoutez un cible",
-    "Create a new target": "Créer une nouvelle cible"
+    "Create a new target": "Créer une nouvelle cible",
+    "Function Cpp": "Log @TTBT_Fonction Cpp",
+    "GPC Log": "Log @TTBT_GPC",
+    "Flowchart":"Log @TTBT_Flowchart"
+
 
 
 

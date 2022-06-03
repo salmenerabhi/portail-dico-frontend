@@ -1,10 +1,39 @@
 <div class="row">
-    <div echarts [options]="chartOption5" class="demo-chart col-6" ></div>
-    <div echarts [options]="chartOption6" class="demo-chart col-6" ></div>
+    <div echarts [options]="chartOption5" class="demo-chart col-6"></div>
+    <div echarts [options]="chartOption6" class="demo-chart col-6"></div>
 
 </div>
-<div echarts [options]="chartOption7" class="demo-chart" ></div>
-<div echarts [options]="chartOption8" class="demo-chart" ></div>
+<div style="position:relative ; left: 50%">
+    <mat-button-toggle-group [value]="selectedState" (change)="getNbrMarquesitestats($event)">
+        <mat-button-toggle [value]="toggleEnum.Option1">Jour</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option2">Semaine</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option5">Mois</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option3">Année</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option4">Cible</mat-button-toggle>
+
+    </mat-button-toggle-group>
+</div>
+<br> <br> <br>
+
+<div echarts [options]="chartOption9" class="demo-chart"></div>
+
+<div style="position:relative ; left: 50%">
+    <mat-button-toggle-group [value]="selectedState1" (change)="getRejectedRCdate($event)">
+        <mat-button-toggle [value]="toggleEnum.Option1">Jour</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option2">Semaine</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option3">Mois</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option4">Année</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option5">Cible</mat-button-toggle>
+
+    </mat-button-toggle-group>
+</div>
+<br> <br> <br>
+<div echarts [options]="chartOption10" class="demo-chart"></div>
+
+
+<div echarts [options]="chartOption7" class="demo-chart"></div>
+<div echarts [options]="chartOption8" class="demo-chart"></div>
+
 <br>
 <div echarts [options]="chartOption3" class="demo-chart"></div>
 <div echarts [options]="chartOption" class="demo-chart"></div>
@@ -21,4 +50,22 @@
 
 <p> rejection percentage = {{percentage}}%</p>
 
+<div style="position:relative ; left: 50%">
+    <mat-button-toggle-group [value]="selectedState2" (change)="getNbrMarquestats($event)">
+        <mat-button-toggle [value]="toggleEnum1.Option3">Jour</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum1.Option4">Semaine</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum1.Option5">Mois</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum1.Option6">Année</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum1.Option7">Cible</mat-button-toggle>
 
+    </mat-button-toggle-group>
+</div>
+<div style="position:relative ; left: 50%">
+    <mat-button-toggle-group [value]="selectedState3" (change)="getNbrMarquestats($event)">
+        <mat-button-toggle [value]="toggleEnum.Option1">nbr phrases</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option2">nbr phrases rejetées</mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+
+<br> <br> <br>
+<div echarts [options]="chartOption11" class="demo-chart"></div>
