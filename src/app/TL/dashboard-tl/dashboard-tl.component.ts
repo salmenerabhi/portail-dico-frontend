@@ -82,7 +82,7 @@ export class DashboardTLComponent implements OnInit {
   }
 
   redirectStats() {
-    this.router.navigateByUrl('/dashboardTL/stats');
+    this.router.navigateByUrl('/dashboardTL/statstl');
   }
 
 }

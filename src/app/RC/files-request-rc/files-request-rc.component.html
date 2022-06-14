@@ -1,6 +1,7 @@
 <div class="bigcontainer " style="margin-left: 10%; ">
     <div>
-        <h2>Request phrase</h2>
+        <h2>{{'Request phrase' | translate}}
+            </h2>
         <mat-icon style="margin-top: 6px;" class="question" mat-raised-button matTooltipClass="example-tooltip-red"
             matTooltip="upload a request file through this window" matTooltipPosition="right"
             [matTooltipDisabled]="disabled.value"
@@ -18,7 +19,7 @@
             {{file.name || "No file uploaded yet."}}
         </span>        <button style="position: absolute; left: 65%;" mat-mini-fab color="primary" class="upload-btn"
             (click)="openDialog()">
-            <mat-icon>add</mat-icon>
+            <mat-icon> add</mat-icon>
 
         </button>
 
@@ -76,29 +77,29 @@
 <br><br>
 <div class="row">
     <div class="  col-4 m-5 p-2">
-        <h1>Context of the request</h1> <br>
+        <h1>{{'Context of the request' | translate}}</h1> <br>
 
         <mat-form-field class="w-100">
-            <mat-label>Brand</mat-label>
+            <mat-label>{{'Brands' | translate}}</mat-label>
             <mat-select [(ngModel)]="selected" [formControl]="brand">
                 <mat-option *ngFor="let brand of brands" [value]="brand">{{brand.marque}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field class="w-100">
-            <mat-label> ECU</mat-label>
+            <mat-label> {{'ECU' | translate}}</mat-label>
             <input matInput [formControl]="ECU" required>
             <mat-error *ngIf="ECU.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="w-100">
-            <mat-label> Famille</mat-label>
+            <mat-label>{{'Famille' | translate}}</mat-label>
             <input matInput [formControl]="Famille" required>
             <mat-error *ngIf="Famille.invalid">{{getfamilleErrorMessage()}}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="w-100">
-            <mat-label>Target</mat-label>
+            <mat-label>{{'Target' | translate}}</mat-label>
             <mat-select [(ngModel)]="selected1" [formControl]="target">
                 <mat-option *ngFor="let target of targets" [value]="target">{{target.cible}}</mat-option>
             </mat-select>
@@ -109,7 +110,7 @@
     </div>
     <div class="col-6">
         <section class="example-section">
-            <h1>Checklist to verify:</h1>
+            <h1>{{'Checklist to verify:' | translate}}</h1>
             <p *ngFor=" let v of values">
                 <mat-checkbox [checked]="v.state" (change)="v.state=!v.state">{{v.infos}}</mat-checkbox>
             </p>
@@ -121,11 +122,11 @@
 </div>
 <div class="col-6 m-5">
     <mat-form-field class="w-50">
-        <mat-label>Choose a date</mat-label>
+        <mat-label>{{'Choose a date' | translate}}</mat-label>
         <input matInput [matDatepicker]="picker" [(ngModel)]="file.echeanceRC">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
     </mat-form-field>
 </div>
 <button mat-button class="mat-raised-button  " style="position: relative; left: 80%;" color="accent"
-    (click)=" updloadFile()">Validate </button>
+    (click)=" updloadFile()">{{'Validate' | translate}} </button>

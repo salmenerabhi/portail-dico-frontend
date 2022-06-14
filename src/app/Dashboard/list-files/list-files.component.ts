@@ -73,8 +73,7 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
+
     this.todayWithPipe = this.pipe.transform(Date.now(), 'dd/MM/yyyy');
     this.requestFile = new RequestFile();
     this.requestFile.user = new UserEntity();
@@ -141,8 +140,9 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
 
   loadScript() {
     for (const file of this.selection.selected) {
-      console.log(this.file)
     this.requestService.launchScript(file).subscribe();
+    file.state = State.finished;
+    this.requestService.update(file).subscribe(r => this.ngAfterViewInit());
   }
   }
 
@@ -191,7 +191,7 @@ export class ListFilesComponent implements OnInit, AfterViewInit {
       dialogConfig.data = file;
       this.dialog.open(RejectComponent, dialogConfig);
       this.selection.clear();
-      this.dialog.afterAllClosed.subscribe(() => this.ngAfterViewInit());
+      this.dialog.afterAllClosed.subscribe(r => this.ngAfterViewInit());
     }
   }
 

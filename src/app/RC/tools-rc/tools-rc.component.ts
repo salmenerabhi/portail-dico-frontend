@@ -12,6 +12,8 @@ export class ToolsRCComponent implements OnInit, AfterViewInit {
   tool: Tool;
   toolList: Tool[];
   base64Data: Int8Array;
+  lang: any;
+
   constructor(private toolService: ToolsService, ) { }
 
 
@@ -21,6 +23,8 @@ export class ToolsRCComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.tool = new Tool();
     this.gettools();
+    this.lang = localStorage.getItem('lang') || 'en';
+
   }
 
   gettools() {

@@ -24,6 +24,8 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
   requestFile: RequestFile;
   nombre: number;
   input:any
+  lang: any;
+
   constructor(private requestService: RequestService,
               private dialog: MatDialog,
               private liveAnnouncer: LiveAnnouncer
@@ -31,7 +33,9 @@ export class DashboardingComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.requestFile = new RequestFile();
-    this.getAllFiles();    
+    this.getAllFiles(); 
+    this.lang= localStorage.getItem('lang') || 'en' ;
+   
   }
 
   ngAfterViewInit() {

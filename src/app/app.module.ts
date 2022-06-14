@@ -27,6 +27,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { InscriptionComponent } from './inscription/inscription.component';
+import {WebSocketServiceService} from "./services/web-socket-service.service";
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import { DashboardComponent } from './Dashboard/Dashboardmain/dashboard.component';
@@ -55,7 +56,6 @@ import { FirstpageComponent } from './Dashboard/Firstpage/firstpage.component';
 import { FirstpageRCComponent } from './RC/firstpage-rc/firstpage-rc.component';
 import { DashboardRCComponent } from './RC/dashboard-rc/dashboard-rc.component';
 import { FilesRequestRCComponent } from './RC/files-request-rc/files-request-rc.component';
-import {DayPilotModule} from "daypilot-pro-angular";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -93,6 +93,14 @@ import { ListfilesATComponent } from './Actia_Toulouse/listfiles-at/listfiles-at
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { getenPaginatorIntl, getfrPaginatorIntl } from './services/MatPaginatorIntl';
+import {MatBadgeModule} from '@angular/material/badge';
+import { NbrfamillemarqueComponent } from './RD/statsRD/nbrfamillemarque/nbrfamillemarque.component';
+import { NbrrejectedrcComponent } from './RD/statsRD/nbrrejectedrc/nbrrejectedrc.component';
+import { NbrmarquesiteComponent } from './RD/statsRD/nbrmarquesite/nbrmarquesite.component';
+import { TreatmentperdemandComponent } from './RD/statsRD/treatmentperdemand/treatmentperdemand.component';
+import { OtherstatsComponent } from './RD/statsRD/otherstats/otherstats.component';
+import { StatTLComponent } from './TL/stat-tl/stat-tl.component';
+import { StatclientComponent } from './Actia_Toulouse/statclient/statclient.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -150,6 +158,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     DashboardATComponent,
     HomeATComponent,
     ListfilesATComponent,
+    NbrfamillemarqueComponent,
+    NbrrejectedrcComponent,
+    NbrmarquesiteComponent,
+    TreatmentperdemandComponent,
+    OtherstatsComponent,
+    StatTLComponent,
+    StatclientComponent,
     
   ],
   imports: [
@@ -187,13 +202,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTabsModule,
     MatListModule,
     AngularDualListBoxModule,
-    DayPilotModule,
     ScheduleModule,
     RecurrenceEditorModule,
     RichTextEditorModule,
     MatButtonToggleModule,
-    DayPilotModule,
-
+    MatBadgeModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
@@ -209,7 +222,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
 
 
-  providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
+  providers: [WebSocketServiceService,{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
   {
   provide: HTTP_INTERCEPTORS,
   useClass: JwtInterceptorService,

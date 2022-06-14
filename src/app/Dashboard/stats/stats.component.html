@@ -1,7 +1,25 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="{{'nbrfamillemarque' | translate}}">
+        <app-nbrfamillemarque></app-nbrfamillemarque>
+    </mat-tab>
+    <mat-tab label="{{'nbrrejectedrcdate' | translate}}">
+        <app-nbrrejectedrc></app-nbrrejectedrc>
+    </mat-tab>
+    <mat-tab label="{{'nbrmarquesite' | translate}}">
+        <app-nbrmarquesite></app-nbrmarquesite>
+    </mat-tab>
+    <mat-tab label="{{'treatmentperdemand' | translate}}">
+        <app-treatmentperdemand></app-treatmentperdemand>
+    </mat-tab>
+    <mat-tab label="{{'otherstats' | translate}}">
+        <app-otherstats></app-otherstats>
+    </mat-tab>
+</mat-tab-group>
+
+<!-- 
 <div class="row">
     <div echarts [options]="chartOption5" class="demo-chart col-6"></div>
     <div echarts [options]="chartOption6" class="demo-chart col-6"></div>
-
 </div>
 <div style="position:relative ; left: 50%">
     <mat-button-toggle-group [value]="selectedState" (change)="getNbrMarquesitestats($event)">
@@ -68,4 +86,4 @@
 </div>
 
 <br> <br> <br>
-<div echarts [options]="chartOption11" class="demo-chart"></div>
+<div echarts [options]="chartOption11" class="demo-chart"></div> -->

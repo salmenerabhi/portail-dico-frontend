@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { DayPilot } from 'daypilot-pro-angular';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,9 +11,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
   private url = 'http://localhost:8085/requestfile';
 
-  getEvents(from: DayPilot.Date, to: DayPilot.Date): Observable<any[]> {
-    return this.http.get(this.url + "/api/events?from=" + from.toString() + "&to=" + to.toString()) as Observable<any>;
-  }
+  
 
   getResources(): Observable<any[]> {
     return this.http.get(this.url) as Observable<any>;

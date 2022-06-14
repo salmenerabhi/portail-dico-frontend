@@ -18,17 +18,17 @@ export class HomeTLComponent implements OnInit {
     this.router.navigateByUrl('/dashboardTL/listfilesTL');
   }
   redirectTools() {
-    this.router.navigateByUrl('/listfilesTL/toolsmanager');
+    this.router.navigateByUrl('/dashboardTL/toolsmanager');
   }
 
   redirectFaq() {
-    this.router.navigateByUrl('/listfilesTL/faq');
+    this.router.navigateByUrl('/dashboardTL/faq');
   }
 
   redirectStats() {
-    this.router.navigateByUrl('/listfilesTL/stats');
+    this.router.navigateByUrl('/dashboardTL/statstl');
   }
   redirectRequestFile() {
-    this.router.navigateByUrl('/listfilesTL/filesRequest');
+    this.router.navigateByUrl('/dashboardTL/filesRequest');
   }
 }

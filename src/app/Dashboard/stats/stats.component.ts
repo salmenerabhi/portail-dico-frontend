@@ -67,7 +67,7 @@ export class StatsComponent implements OnInit {
 
   selectedState = null;
   selectedState1 = null;
-  selectedState2= null ;
+  selectedState2 = null;
   selectedState3: ToggleEnum.Option1;
   selectedState4: ToggleEnum.Option1;
 
@@ -515,71 +515,77 @@ export class StatsComponent implements OnInit {
   };
 
   getNbrMarquefamillestats() {
+
     this.requestService.getStatnbrMarqueFamille().subscribe(data => {
       this.nbrMFdatas = data
-      const data1 = []
-      for (let s of this.nbrMFdatas) {
+      let xAxisData = ['famille'];
+      let data3 = [];
+      let data4 = [];
+      let c = "";
 
-        data1.push(s.nbr)
+      let i = 0
+      let map = new Map();
+      for (let s of this.nbrMFdatas) {
+        if (c != s.famille) {
+
+          data3.push(mapToObj(map));
+          map = new Map();
+          map.set("famille", s.famille)
+          map.set(s.marque, s.nbr)
+          xAxisData.push(s.marque)
+          data4.push({ type: 'bar', stack: " " })
+        } else {
+          map.set(s.marque, s.nbr)
+          xAxisData.push(s.marque)
+          data4.push({ type: 'bar', stack: " " })
+
+        }
+
+        c = s.famille
+      }
+      data3.push(mapToObj(map));
+      data3.shift()
+
+
+      function mapToObj(inputMap) {
+        let obj = {};
+
+        inputMap.forEach(function (value, key) {
+          obj[key] = value
+        });
+
+        return obj;
       }
       this.chartOption7 = {
+        legend: {},
         title: {
           text: 'nombre/marque/famille',
           left: '5%',
           top: '3%'
         },
-        dataset: [
-          {
-            dimensions: ['marque', 'famille', 'nbr'],
-            source: this.nbrMFdatas
-          },
-          {
-            transform: {
-              type: 'sort',
-              config: [
-                { dimension: 'famille', order: 'asc' },
-                { dimension: 'nbr', order: 'desc' }
-              ]
-            }
-          }
-        ],
-        tooltip: {
-
+  toolbox: {
+    show: true,
+    orient: 'vertical',
+    left: 'right',
+    top: 'center',
+    feature: {
+      mark: { show: true },
+      dataView: { show: true, readOnly: false },
+      magicType: { show: true, type: [ 'stack'] },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
+  },
+        tooltip: {},
+        dataset: {
+          dimensions: xAxisData,
+          source: data3
         },
-        xAxis: {
-          type: 'category',
-        },
-        yAxis: {
-          type: 'category',
-        },
-        series: {
-          type: 'scatter',
-          emphasis: {
-            focus: 'self'
-          },
-          animationDelay: function (idx) {
-            return idx * 10;
-          },
-          label: {
-            show: true,
-            position: 'top',
-            align: 'left',
-            verticalAlign: 'middle',
-            color: '#91cc75'
-          },
-          encode: { x: 'famille', y: 'nbr', label: ['marque'] },
-          datasetIndex: 0
-        },
-        toolbox: {
-          // y: 'bottom',
-          feature: {
-
-            dataView: {},
-
-            saveAsImage: {
-              pixelRatio: 2
-            }
-          }
+        xAxis: { type: 'category' },
+        yAxis: {},
+        series: data4,
+        label:{
+          show: true
         }
       };
     })
@@ -1228,6 +1234,7 @@ export class StatsComponent implements OnInit {
         data1.push(s.value)
         xAxisData.push(s.firstname)
         this.chartOption8 = {
+
           title: {
             text: 'Traitement / Demande'
           },
@@ -1266,10 +1273,16 @@ export class StatsComponent implements OnInit {
           },
           yAxis: {},
           series: [
+
             {
               name: 'Temps de traitement par jour',
               type: 'bar',
               data: data1,
+              tooltip: {
+                valueFormatter: function (value) {
+                  return value + ' jour(s)';
+                }
+              },
               emphasis: {
                 focus: 'series'
               },
@@ -1294,55 +1307,65 @@ export class StatsComponent implements OnInit {
     if (this.selectedState1 == 0) {
       this.requestService.getStatnbrRejectedRCday().subscribe(data => {
         this.nbrRejRDdatas = data;
+        let xAxisData = ['firstname'];
 
+        let data3 = [];
+        let data4 = [];
+        let c="";
+        
+        let i =0
+         let map = new Map();
+        for (let s of this.nbrRejRDdatas) {
+          if(c!=s.firstname){
+            
+             data3.push(mapToObj(map)); 
+        map =new Map();
+        map.set("firstname",s.firstname)
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" " })
+        }else{
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" ", })
+        
+        }
+        
+        c=s.firstname
+        }
+         data3.push(mapToObj(map)); 
+         data3.shift()
+        
+        
+        function mapToObj(inputMap) {
+            let obj = {};
+        
+            inputMap.forEach(function(value, key){
+                obj[key] = value
+            });
+        
+            return obj;
+        }
+        
         this.chartOption10 = {
-          dataset: [
-            {
-              dimensions: ['firstname', 'date', 'value'],
-              source: this.nbrRejRDdatas
-            },
-            {
-              transform: {
-                type: 'sort',
-                config: [
-                  { dimension: 'firstname', order: 'asc' },
-                  { dimension: 'value', order: 'desc' }
-                ]
-              }
-            }
-          ],
-          legend: {
-            data: ['Number of rejected demands'],
-            left: 'right'
-          },
-          tooltip: {
+          title: {
+            text: 'nombre/rejected/RC',
+            left: '5%',
+            top: '1%'
 
           },
-          xAxis: {
-            type: 'category',
-            axisLabel: { interval: 0, rotate: 30 },
-            name: 'Nom du RC',
-
+          legend: {},
+          tooltip: {},
+          dataset: {
+           dimensions: xAxisData,
+            source: data3
           },
-          yAxis: {
-            type: 'category',
-            name: 'Date',
-
-          },
-          series: {
-            name: 'Number of rejected demands',
-            type: 'scatter',
-            label: {
-              show: true,
-              position: 'top',
-              align: 'left',
-              verticalAlign: 'middle',
-              color: '#91cc75'
-            },
-
-            encode: { x: 'firstname', y: 'date', label: ['value'] },
-            datasetIndex: 1
-          }
+          xAxis: { type: 'category' },
+          yAxis: {},
+          series: data4,
+          label: {
+                show: true
+              },
         };
       }
       )
@@ -1350,54 +1373,65 @@ export class StatsComponent implements OnInit {
     if (this.selectedState1 == 1) {
       this.requestService.getStatnbrRejectedRCweek().subscribe(data => {
         this.nbrRejRDdatas = data;
+        let xAxisData = ['firstname'];
+
+        let data3 = [];
+        let data4 = [];
+        let c="";
+        
+        let i =0
+         let map = new Map();
+        for (let s of this.nbrRejRDdatas) {
+          if(c!=s.firstname){
+            
+             data3.push(mapToObj(map)); 
+        map =new Map();
+        map.set("firstname",s.firstname)
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" " })
+        }else{
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" ", })
+        
+        }
+        
+        c=s.firstname
+        }
+         data3.push(mapToObj(map)); 
+         data3.shift()
+        
+        
+        function mapToObj(inputMap) {
+            let obj = {};
+        
+            inputMap.forEach(function(value, key){
+                obj[key] = value
+            });
+        
+            return obj;
+        }
+        
         this.chartOption10 = {
-          dataset: [
-            {
-              dimensions: ['firstname', 'date', 'value'],
-              source: this.nbrRejRDdatas
-            },
-            {
-              transform: {
-                type: 'sort',
-                config: [
-                  { dimension: 'firstname', order: 'asc' },
-                  { dimension: 'value', order: 'desc' }
-                ]
-              }
-            }
-          ],
-          legend: {
-            data: ['Number of rejected demands'],
-            left: 'right'
-          },
-          tooltip: {
+          title: {
+            text: 'nombre/rejected/RC',
+            left: '5%',
+            top: '1%'
 
           },
-          xAxis: {
-            type: 'category',
-            axisLabel: { interval: 0, rotate: 30 },
-            name: 'Nom du RC',
-
+          legend: {},
+          tooltip: {},
+          dataset: {
+           dimensions: xAxisData,
+            source: data3
           },
-          yAxis: {
-            type: 'category',
-            name: 'Date',
-
-          },
-          series: {
-            name: 'Number of rejected demands',
-            type: 'scatter',
-            label: {
-              show: true,
-              position: 'top',
-              align: 'left',
-              verticalAlign: 'middle',
-              color: '#91cc75'
-            },
-
-            encode: { x: 'firstname', y: 'date', label: ['value'] },
-            datasetIndex: 1
-          }
+          xAxis: { type: 'category' },
+          yAxis: {},
+          series: data4,
+          label: {
+                show: true
+              },
         };
       }
       )
@@ -1405,55 +1439,65 @@ export class StatsComponent implements OnInit {
     if (this.selectedState1 == 2) {
       this.requestService.getStatnbrRejectedRCmonth().subscribe(data => {
         this.nbrRejRDdatas = data;
+        let xAxisData = ['firstname'];
 
+        let data3 = [];
+        let data4 = [];
+        let c="";
+        
+        let i =0
+         let map = new Map();
+        for (let s of this.nbrRejRDdatas) {
+          if(c!=s.firstname){
+            
+             data3.push(mapToObj(map)); 
+        map =new Map();
+        map.set("firstname",s.firstname)
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" " })
+        }else{
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" ", })
+        
+        }
+        
+        c=s.firstname
+        }
+         data3.push(mapToObj(map)); 
+         data3.shift()
+        
+        
+        function mapToObj(inputMap) {
+            let obj = {};
+        
+            inputMap.forEach(function(value, key){
+                obj[key] = value
+            });
+        
+            return obj;
+        }
+        
         this.chartOption10 = {
-          dataset: [
-            {
-              dimensions: ['firstname', 'date', 'value'],
-              source: this.nbrRejRDdatas
-            },
-            {
-              transform: {
-                type: 'sort',
-                config: [
-                  { dimension: 'firstname', order: 'asc' },
-                  { dimension: 'value', order: 'desc' }
-                ]
-              }
-            }
-          ],
-          legend: {
-            data: ['Number of rejected demands'],
-            left: 'right'
-          },
-          tooltip: {
+          title: {
+            text: 'nombre/rejected/RC',
+            left: '5%',
+            top: '1%'
 
           },
-          xAxis: {
-            type: 'category',
-            axisLabel: { interval: 0, rotate: 30 },
-            name: 'Nom du RC',
-
+          legend: {},
+          tooltip: {},
+          dataset: {
+           dimensions: xAxisData,
+            source: data3
           },
-          yAxis: {
-            type: 'category',
-            name: 'Date',
-
-          },
-          series: {
-            name: 'Number of rejected demands',
-            type: 'scatter',
-            label: {
-              show: true,
-              position: 'top',
-              align: 'left',
-              verticalAlign: 'middle',
-              color: '#91cc75'
-            },
-
-            encode: { x: 'firstname', y: 'date', label: ['value'] },
-            datasetIndex: 1
-          }
+          xAxis: { type: 'category' },
+          yAxis: {},
+          series: data4,
+          label: {
+                show: true
+              },
         };
       }
       )
@@ -1461,111 +1505,132 @@ export class StatsComponent implements OnInit {
     if (this.selectedState1 == 3) {
       this.requestService.getStatnbrRejectedRCyear().subscribe(data => {
         this.nbrRejRDdatas = data;
+        let xAxisData = ['firstname'];
 
+        let data3 = [];
+        let data4 = [];
+        let c="";
+        
+        let i =0
+         let map = new Map();
+        for (let s of this.nbrRejRDdatas) {
+          if(c!=s.firstname){
+            
+             data3.push(mapToObj(map)); 
+        map =new Map();
+        map.set("firstname",s.firstname)
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" " })
+        }else{
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" ", })
+        
+        }
+        
+        c=s.firstname
+        }
+         data3.push(mapToObj(map)); 
+         data3.shift()
+        
+        
+        function mapToObj(inputMap) {
+            let obj = {};
+        
+            inputMap.forEach(function(value, key){
+                obj[key] = value
+            });
+        
+            return obj;
+        }
+        
         this.chartOption10 = {
-          dataset: [
-            {
-              dimensions: ['firstname', 'date', 'value'],
-              source: this.nbrRejRDdatas
-            },
-            {
-              transform: {
-                type: 'sort',
-                config: [
-                  { dimension: 'firstname', order: 'asc' },
-                  { dimension: 'value', order: 'desc' }
-                ]
-              }
-            }
-          ],
-          legend: {
-            data: ['Number of rejected demands'],
-            left: 'right'
-          },
-          tooltip: {
+          title: {
+            text: 'nombre/rejected/RC',
+            left: '5%',
+            top: '1%'
 
           },
-          xAxis: {
-            type: 'category',
-            axisLabel: { interval: 0, rotate: 30 },
-            name: 'Nom du RC',
-
+          legend: {},
+          tooltip: {},
+          dataset: {
+           dimensions: xAxisData,
+            source: data3
           },
-          yAxis: {
-            type: 'category',
-            name: 'Date',
-
-          },
-          series: {
-            name: 'Number of rejected demands',
-            type: 'scatter',
-            label: {
-              show: true,
-              position: 'top',
-              align: 'left',
-              verticalAlign: 'middle',
-              color: '#91cc75'
-            },
-
-            encode: { x: 'firstname', y: 'date', label: ['value'] },
-            datasetIndex: 1
-          }
+          xAxis: { type: 'category' },
+          yAxis: {},
+          series: data4,
+          label: {
+                show: true
+              },
         };
       }
       )
     }
-    if (this.selectedState1 == 4){
+    if (this.selectedState1 == 4) {
       this.requestService.getStatnbrRejectedRCcible().subscribe(data => {
         this.nbrRejRDdatas = data;
 
+        let xAxisData = ['firstname'];
+
+        let data3 = [];
+        let data4 = [];
+        let c="";
+        
+        let i =0
+         let map = new Map();
+        for (let s of this.nbrRejRDdatas) {
+          if(c!=s.firstname){
+            
+             data3.push(mapToObj(map)); 
+        map =new Map();
+        map.set("firstname",s.firstname)
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" " })
+        }else{
+        map.set(s.date,s.value)
+        xAxisData.push(s.date)
+        data4.push( { type: 'bar',stack:" ", })
+        
+        }
+        
+        c=s.firstname
+        }
+         data3.push(mapToObj(map)); 
+         data3.shift()
+        
+        
+        function mapToObj(inputMap) {
+            let obj = {};
+        
+            inputMap.forEach(function(value, key){
+                obj[key] = value
+            });
+        
+            return obj;
+        }
+        
         this.chartOption10 = {
-          dataset: [
-            {
-              dimensions: ['firstname', 'date', 'value'],
-              source: this.nbrRejRDdatas
-            },
-            {
-              transform: {
-                type: 'sort',
-                config: [
-                  { dimension: 'firstname', order: 'asc' },
-                  { dimension: 'value', order: 'desc' }
-                ]
-              }
-            }
-          ],
-          legend: {
-            data: ['Number of rejected demands'],
-            left: 'right'
-          },
-          tooltip: {
+          title: {
+            text: 'nombre/rejected/RC',
+            left: '5%',
+            top: '1%'
 
           },
-          xAxis: {
-            type: 'category',
-            axisLabel: { interval: 0, rotate: 30 },
-            name: 'Nom du RC',
-
+          legend: {},
+          tooltip: {},
+          dataset: {
+           dimensions: xAxisData,
+            source: data3
           },
-          yAxis: {
-            type: 'category',
-            name: 'Date',
-
-          },
-          series: {
-            name: 'Number of rejected demands',
-            type: 'scatter',
-            label: {
-              show: true,
-              position: 'top',
-              align: 'left',
-              verticalAlign: 'middle',
-              color: '#91cc75'
-            },
-
-            encode: { x: 'firstname', y: 'date', label: ['value'] },
-            datasetIndex: 1
-          }
+          xAxis: { type: 'category' },
+          yAxis: {},
+          series: data4,
+          label: {
+                show: true
+              },
         };
       }
       )

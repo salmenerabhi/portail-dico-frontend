@@ -5,6 +5,8 @@ import { ResetPasswordComponent } from 'src/app/Authentification/reset-password/
 import { TokenService } from 'src/app/Authentification/services/token.service';
 import { AccountService } from 'src/app/services/account.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { WebSocketServiceService } from 'src/app/services/web-socket-service.service';
+import { Notifications } from 'src/models/Notification';
 import { UserEntity } from 'src/models/userEntity';
 
 @Component({
@@ -26,14 +28,34 @@ export class DashboardRCComponent implements OnInit {
     width: 300,
     height: 300
   };
+  lang: any;
+
+  public notifications = 0;
+  public notif = new Notifications();
   constructor(private tokenService: TokenService,
               private router: Router,
               public LoadService: LoaderService,
               private accountService: AccountService,
-              private dialog: MatDialog) {
-  }
+              private dialog: MatDialog,
+              private webSocketService: WebSocketServiceService) {
+
+                // Open connection with server socket
+let stompClient = this.webSocketService.connect();
+stompClient.connect({}, frame => {
+
+  // Subscribe to notification topic
+  stompClient.subscribe('/topic/notification', notifications => {
+
+    // Update notifications attribute with the recent messsage sent from the server
+    this.notif = JSON.parse(notifications.body);
+    this.notifications++;
+  })
+});
+}
   ngOnInit(): void {
     this.getUserById();
+    this.lang = localStorage.getItem('lang') || 'en';
+
   }
   getUserById() {
     this.accountService.getUserByEmail(this.tokenService.getId()).subscribe(data => {
@@ -81,5 +103,13 @@ export class DashboardRCComponent implements OnInit {
       height: '40%',
       width: '60%'
     });
+  }
+
+  changeLang(lang) {
+    localStorage.setItem('lang', lang);
+    window.location.reload();
+  }
+  reset() {
+    this.notifications = 0;
   }
 }

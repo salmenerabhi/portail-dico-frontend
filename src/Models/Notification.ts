@@ -1,9 +1,6 @@
 import { TypeNotif } from './TypeNotif';
 import { UserEntity } from './userEntity';
-export class Notification {
-    id?: string;
-    
-    delaimax: Date;
-    type: TypeNotif;
-    user:UserEntity;
+export class Notifications {
+  count :number;
+  message:string;
   }

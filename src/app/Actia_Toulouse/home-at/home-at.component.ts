@@ -18,7 +18,7 @@ export class HomeATComponent implements OnInit {
     this.router.navigateByUrl('/dashboardAT/listfilesAT');
   }
   redirectStats() {
-    this.router.navigateByUrl('/dashboardAT/stats');
+    this.router.navigateByUrl('/dashboardAT/statclient');
   }
   redirectRequestFile() {
     this.router.navigateByUrl('/dashboardAT/filesRequest');

@@ -1,0 +1,13 @@
+<div>
+    <mat-button-toggle-group [value]="selectedState" (change)="getNbrMarquesitestats($event)">
+        <mat-button-toggle [value]="toggleEnum.Option1">Jour</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option2">Semaine</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option5">Mois</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option3">Année</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option4">Cible</mat-button-toggle>
+
+    </mat-button-toggle-group>
+</div>
+<br> <br> <br>
+
+<div echarts [options]="chartOption9" class="demo-chart"></div>

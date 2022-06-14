@@ -52,6 +52,7 @@ fileUrl: string;
 fileUploaded = false;
 toppings: FormGroup;
 requestfile: RequestFile;
+lang: any;
 
 
 values: Infos [] = [
@@ -75,7 +76,8 @@ values: Infos [] = [
     this.requestfile = new RequestFile();
     this.getTargets();
     this.getBrands();
-    
+    this.lang= localStorage.getItem('lang') || 'en' ;
+
   }
 
 

@@ -1,0 +1,13 @@
+<div >
+    <mat-button-toggle-group [value]="selectedState1" (change)="getRejectedRCdate($event)">
+        <mat-button-toggle [value]="toggleEnum.Option1">Jour</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option2">Semaine</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option3">Mois</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option4">Année</mat-button-toggle>
+        <mat-button-toggle [value]="toggleEnum.Option5">Cible</mat-button-toggle>
+
+    </mat-button-toggle-group>
+
+
+</div>
+<div echarts [options]="chartOption10" class="demo-chart"></div>

@@ -72,7 +72,7 @@ export class DashboardATComponent implements OnInit {
     this.router.navigateByUrl('/dashboardAT/filesRequest');
   }
   redirectStats() {
-    this.router.navigateByUrl('/dashboardAT/stats');
+    this.router.navigateByUrl('/dashboardAT/statclient');
   }
 
 }

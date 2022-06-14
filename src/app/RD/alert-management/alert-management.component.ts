@@ -1,5 +1,5 @@
 import { TypeNotif } from '../../../models/TypeNotif';
-import { Notification } from '../../../models/Notification';
+import { Notifications } from '../../../models/Notification';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -22,7 +22,7 @@ export class AlertManagementComponent implements OnInit, AfterViewInit {
   
   selected: string;
   user: UserEntity = new UserEntity();
-  notification:Notification;
+  notification:Notifications;
 
   delaimax = new FormControl(null, [Validators.required])
   TypeNotif = new FormControl(null, [Validators.required])
@@ -39,8 +39,7 @@ export class AlertManagementComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.notification = new Notification();
-    this.notification.user = new UserEntity();
+    this.notification = new Notifications();
     
   }
 
@@ -58,10 +57,7 @@ export class AlertManagementComponent implements OnInit, AfterViewInit {
   }
 
   add(): void {
-    this.notification.delaimax = this.delaimax.value;
-    this.notification.type = this.TypeNotif.value;
-     this.notification.user.firstName = this.responsible.value;
-    this.notifService.addNotifs(this.notification).subscribe();
+
 
     this.toastr.success(
       ``,

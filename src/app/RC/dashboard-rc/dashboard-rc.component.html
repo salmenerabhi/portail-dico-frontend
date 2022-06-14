@@ -4,7 +4,8 @@
             <img src="../../assets/img/logo-actia.png" alt="logo" height="50" width="240">
         </span>
         <div class="nav-link text-center  ">
-            <img [src]="retrievedImage" (error)="onError()" class="rounded-circle  mt-0 " height="70" width="70" alt="image">
+            <img [src]="retrievedImage" (error)="onError()" class="rounded-circle  mt-0 " height="70" width="70"
+                alt="image">
             <p class="name mt-2">{{user?.firstName}} {{user?.lastName}}</p>
             <p class=" designation">{{user?.role}}</p>
         </div>
@@ -12,15 +13,15 @@
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  ">
                     <mat-icon> bar_chart</mat-icon>
-                    <span> <a class="dashboard" href="http://172.31.103.213/kibana/s/multidiag/app/kibana#/discover?_g=()&_a=(columns:!(_source),filters:!(),index:'1171c0d0-74bd-11ea-abfd-71f9ac7a8e88',interval:auto,query:(language:lucene,query:''),sort:!(_score,desc))">Kibana</a></span>
+                    <span> <a class="dashboard"
+                            href="http://172.31.103.213/kibana/s/multidiag/app/kibana#/discover?_g=()&_a=(columns:!(_source),filters:!(),index:'1171c0d0-74bd-11ea-abfd-71f9ac7a8e88',interval:auto,query:(language:lucene,query:''),sort:!(_score,desc))">Kibana</a></span>
 
                 </button>
             </li>
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/filesRequest">
                     <mat-icon>insert_drive_file</mat-icon>
-                    <span style="line-height: 1em;"> <a class="requestphrase" (click)="redirectFilesRequest()">Request
-                            phrase and <br>approximation</a></span>
+                    <span style="line-height: 1em;"> <a class="requestphrase" (click)="redirectFilesRequest()">{{'Request phrase and' | translate}} <br>{{'approximation' | translate}}</a></span>
 
                 </button>
             </li>
@@ -28,7 +29,7 @@
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/mainRC">
                     <mat-icon>dashboard</mat-icon>
-                    <span> <a class="dashboard" (click)="redirectDashboard()">Dashboard</a></span>
+                    <span> <a class="dashboard" (click)="redirectDashboard()">{{'Dashboard' | translate}}</a></span>
 
                 </button>
             </li>
@@ -41,13 +42,13 @@
 
                             <mat-icon>memory</mat-icon>
 
-                            <span> Tools </span>
+                            <span> {{'Tools' | translate}} </span>
 
                         </mat-expansion-panel-header>
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " routerLink="/dashboardRC/toolsmanager">
                     <mat-icon>dashboard</mat-icon>
-                    <span> <a class="tools" (click)="redirectTools()">Tools</a></span>
+                    <span> <a class="tools" (click)="redirectTools()">{{'Tools' | translate}}</a></span>
                 </button>
             </li>
             <li class="nav-item text-center">
@@ -62,14 +63,14 @@
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/faq">
                     <mat-icon>question_answer</mat-icon>
-                    <span> <a class="dashboard" (click)="redirectFaq()">FAQ</a></span>
+                    <span> <a class="dashboard" (click)="redirectFaq()">{{'FAQs' | translate}}</a></span>
                 </button>
             </li>
 
             <li class="nav-item text-center">
                 <button mat-button class="menu-button  " #button1 routerLink="/dashboardRC/stats">
                     <mat-icon>show_chart</mat-icon>
-                    <span> <a class="dashboard" (click)="redirectStats()">Statistics</a></span>
+                    <span> <a class="dashboard" (click)="redirectStats()">{{'Statistics' | translate}}</a></span>
                 </button>
             </li>
 
@@ -86,30 +87,51 @@
             <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
                 <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
             </button>
+
             <span class="example-spacer"></span>
+
+            <div class="col-2">
+                <div class="custom-select">
+                    <mat-icon style="vertical-align: -7px;">language</mat-icon>
+                    <select (change)="changeLang($event.target.value)">
+                        <option value="en" [selected]="lang =='en'">En</option>
+                        <option value="fr" [selected]="lang =='fr'">Fr</option>
+                    </select>
+                </div>
+            </div>
+            <p>
+
+                <button mat-icon-button [matMenuTriggerFor]="menu2" class="example-icon favorite-icon"
+                    aria-label="Example icon-button with heart icon" (click)="reset()">
+                    <mat-icon matBadge="{{ notifications }}" matBadgeColor="warn"
+                        style="vertical-align:-20px ;">notifications_active</mat-icon>
+
+                </button>
+            </p>
+
             <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon favorite-icon"
                 aria-label="Example icon-button with heart icon">
                 <img [src]="retrievedImage" class="rounded-circle  " height="28" width="28" alt="image">
             </button>
-            <mat-menu #menu="matMenu">
 
+            <mat-menu #menu="matMenu">
                 <span mat-menu-item class="text-center">
                     <p class="name">{{user?.firstName}} {{user?.lastName}}</p>
                     <p class="designation">Member since {{user?.creationDate|date}} </p>
-
                 </span>
-
-
-                <!-- <button mat-menu-item (click)="openDialogPassword()">
-                    <mat-icon>security</mat-icon>
-                    <span> Reset password </span>
-                </button> -->
-
                 <hr>
                 <button mat-menu-item (click)="logout()">
                     <mat-icon>logout</mat-icon>
                     <span>Logout</span>
                 </button>
+            </mat-menu>
+
+            <mat-menu #menu2="matMenu" class="my-full-width-menu">
+
+                <button mat-menu-item style="white-space: normal" (click)="redirectDashboard()">
+                    {{notif.message}}
+                </button>
+
             </mat-menu>
         </mat-toolbar>
 

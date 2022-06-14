@@ -2,14 +2,14 @@ import { calendarEvents } from './../../../models/calendarEvents';
 import { RequestFile } from './../../../models/RequestFile';
 import { RequestService } from 'src/app/services/request.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService, AgendaService, ScheduleComponent, PopupOpenEventArgs, EJ2Instance } from '@syncfusion/ej2-angular-schedule';
+import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService, AgendaService, ScheduleComponent, PopupOpenEventArgs, EJ2Instance, DragAndDropService } from '@syncfusion/ej2-angular-schedule';
 import { DataManager, ODataV4Adaptor, Query } from '@syncfusion/ej2-data';
 import { Button } from '@syncfusion/ej2-buttons';
 
 @Component({
   selector: 'app-scheduler',
   templateUrl: './scheduler.component.html',
-  providers: [DayService, WeekService, WorkWeekService, MonthService, AgendaService],
+  providers: [DayService, WeekService, WorkWeekService, MonthService, AgendaService, DragAndDropService],
 
   styleUrls: ['./scheduler.component.css']
 })
@@ -17,6 +17,7 @@ export class SchedulerComponent implements OnInit {
   events: calendarEvents [] 
   selectedDate:Date
   eventSettings : EventSettingsModel
+  
   constructor(private requestService: RequestService) { }
 
   ngOnInit(): void {

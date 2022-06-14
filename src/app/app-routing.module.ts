@@ -1,3 +1,5 @@
+import { StatclientComponent } from './Actia_Toulouse/statclient/statclient.component';
+import { StatTLComponent } from './TL/stat-tl/stat-tl.component';
 import { ListfilesATComponent } from './Actia_Toulouse/listfiles-at/listfiles-at.component';
 import { HomeATComponent } from './Actia_Toulouse/home-at/home-at.component';
 import { DashboardATComponent } from './Actia_Toulouse/dashboard-at/dashboard-at.component';
@@ -51,6 +53,8 @@ const routes: Routes = [
     {path: 'alertmanagement', component:AlertManagementComponent, canActivate: [AuthGuard] },
     {path: 'configuration', component:ConfigurationComponent, canActivate: [AuthGuard] },
     {path: 'planning', component:SchedulerComponent, canActivate: [AuthGuard] },
+    { path: 'tools', component: ToolsRCComponent, canActivate: [AuthGuard] },
+
   ]},
 
 
@@ -75,15 +79,14 @@ const routes: Routes = [
   { path: 'ask', component: FaqchildComponent, canActivate: [AuthGuard] },
   { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
   { path: 'toolsmanager', component: ToolsRCComponent, canActivate: [AuthGuard] },
-  { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
+  { path: 'statstl', component: StatTLComponent, canActivate: [AuthGuard] },
   { path: 'logs', component: LogsComponent, canActivate: [AuthGuard] },
-  { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
 
   ]},
   
   {path: 'homeAT', component:HomeATComponent, canActivate: [AuthGuard] },
   {path: 'dashboardAT', component:DashboardATComponent, canActivate: [AuthGuard] ,children:[
-    { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
+    { path: 'statclient', component: StatclientComponent, canActivate: [AuthGuard] },
     { path: 'filesRequest', component: FilesRequestRCComponent ,canActivate: [AuthGuard]},
     { path: 'listfilesAT', component: ListfilesATComponent ,canActivate: [AuthGuard]},
 

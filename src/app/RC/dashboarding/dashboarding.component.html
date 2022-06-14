@@ -1,10 +1,10 @@
-<h1 style="text-align: center;">Dashboard of the Developer</h1>
-<h4>In progress</h4>
+<h1 style="text-align: center;">{{'Dashboard of the Developer' | translate}}</h1>
+<h4>{{'In Progress' | translate}}</h4>
 
 <mat-form-field appearance="standard">
-  <mat-label>Filter <mat-icon>search</mat-icon>
+  <mat-label>{{'Filter' | translate}} <mat-icon>search</mat-icon>
   </mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. request" #input1>
+  <input matInput (keyup)="applyFilter($event)" placeholder="{{'Ex. request' | translate}}" #input1>
 </mat-form-field>
 
 
@@ -18,7 +18,7 @@
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
-        ID
+        {{'ID' | translate}}
       </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
@@ -27,7 +27,7 @@
     <!-- Type Column -->
     <ng-container matColumnDef="fileType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
-        Type
+        {{'Type' | translate}}
       </th>
       <td mat-cell *matCellDef="let element"> {{element.fileType}} </td>
     </ng-container>
@@ -35,7 +35,8 @@
     <!-- Language Column -->
     <ng-container matColumnDef="langue">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
-        Language
+        {{'Language' | translate}}
+
       </th>
       <td mat-cell *matCellDef="let element"> {{element.langue}} </td>
     </ng-container>
@@ -43,7 +44,7 @@
     <!-- request name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
-        Name (request)
+        {{'Name (request)' | translate}}
       </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
@@ -51,7 +52,7 @@
     <!-- *****Desired due date Column -->
     <ng-container matColumnDef="echeanceRC">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by desired due date">
-        Desired due date
+        {{'Desired due date' | translate}} 
       </th>
       <td mat-cell *matCellDef="let element"> {{element.echeanceRC | date: 'longDate'}} </td>
     </ng-container>
@@ -59,7 +60,7 @@
     <!-- Proposed  Column -->
     <ng-container matColumnDef="echeanceRD">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by proposed date">
-        Proposed date
+        {{'Proposed date' | translate}}
       </th>
       <td mat-cell *matCellDef="let element"> {{element.echeanceRD | date: 'longDate'}} </td>
     </ng-container>
@@ -67,7 +68,7 @@
     <!-- State Column -->
     <ng-container matColumnDef="state">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by state">
-        State
+        {{'State' | translate}}
       </th>
       <td mat-cell *matCellDef="let element"> {{element.state}} </td>
     </ng-container>
@@ -75,7 +76,7 @@
      <!-- nombre Column -->
      <ng-container matColumnDef="nombrephrase">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nombre">
-        Phrase number
+        {{'Phrase number' | translate}}
       </th>
       <td mat-cell *matCellDef="let element"> {{element.nombrephrase}} </td>
     </ng-container>
@@ -83,11 +84,11 @@
     <!-- Action Column -->
     <ng-container matColumnDef="action" style="width: 110%;">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by action">
-        Action
+        {{'Action' | translate}}
       </th>
       <td mat-cell *matCellDef="let row">
          <button mat-flat-button color="accent" class="menu-button col-8" 
-          (click)="onEdit(row)" *ngIf="row.state=='rejected'">Correct </button>
+          (click)="onEdit(row)" *ngIf="row.state=='rejected'">{{'Correct' | translate}} </button>
 
       </td>
 
@@ -100,7 +101,7 @@
 
     <!-- Row shown when there is no matching data. -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter {{input.value}}</td>
+      <td class="mat-cell" colspan="4">{{'No data matching the filter' | translate}} {{input.value}}</td>
     </tr>
   </table>
 
@@ -108,108 +109,3 @@
 
 </div>
 <br><br>
-
-
-
-
-
-
-<!--history table-->
-<!-- <h4>In history</h4>
-
-<mat-form-field appearance="standard">
-
-  <mat-label>Filter <mat-icon>search</mat-icon>
-  </mat-label>
-  <input matInput (keyup)="applyFilter2($event)" placeholder="Ex. request" #input>
-</mat-form-field>
-
-
-<div class="mat-elevation-z8">
-
-  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
-    class="mat-elevation-z8" id="excel-table"> -->
-
-    <!-- ID Column -->
-    <!-- <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
-        ID
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container> -->
-
-    <!-- Type Column -->
-    <!-- <ng-container matColumnDef="fileType">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
-        Type
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.fileType}} </td>
-    </ng-container> -->
-
-    <!-- Language Column -->
-    <!-- <ng-container matColumnDef="langue">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
-        Language
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.langue}} </td>
-    </ng-container> -->
-
-    <!-- request name Column -->
-    <!-- <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
-        Name (request)
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container> -->
-
-    <!-- *****Desired due date Column -->
-    <!-- <ng-container matColumnDef="echeanceRC">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by desired due date">
-        Desired due date
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.echeanceRC | date: 'longDate'}} </td>
-    </ng-container> -->
-
-    <!-- Proposed  Column -->
-    <!-- <ng-container matColumnDef="echeanceRD">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by proposed date">
-        Proposed date
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.echeanceRD | date: 'longDate'}}</td>
-    </ng-container> -->
-
-    <!-- State Column -->
-    <!-- <ng-container matColumnDef="state">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by state">
-        State
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.state}} </td>
-    </ng-container> -->
-    <!-- nombre Column -->
-    <!-- <ng-container matColumnDef="nombrephrase">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nombre">
-        Nombre
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombrephrase}} </td>
-    </ng-container>
-     -->
-    <!-- Action Column -->
-    <!-- <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by action">
-      </th>
-      <td mat-cell *matCellDef="let element"></td>
-    </ng-container> -->
-
-<!-- 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
-
-    <!-- Row shown when there is no matching data. -->
-    <!-- <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-
-</div> -->
